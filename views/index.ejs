@@ -1,0 +1,13 @@
+<%- include('./partials/header') %>
+<div class="tuning">
+  <h2>Thanks for tuning in!</h2>
+</div>
+<div class="preview-bar">
+<% for (let i=0; i<5;i++){ %>
+  <div class="preview">
+    <img class="preview-image" src="<%= previewsImages[i][0].resolutions.original.url %>" />
+    <h3 class="preview-titles"><%= previews[i].name %></h3>
+  </div>  
+<% } %>
+</div>
+<%- include('./partials/footer') %>
