@@ -111,7 +111,7 @@ nav>ul>li>a {
 
 .purple {
   background-color: #8767acff;
-  z-index: 10;
+  z-index: 1;
 
 }
 
@@ -159,10 +159,14 @@ nav>ul>li>a {
     width: 2vw;
     height: 100%;
   }
+  
+  .purple {
+    box-shadow: 5px 0px 5px #00000060;
+  }
 
   .carousel {
     width: auto;
-    animation: desktop-transition 300s infinite;
+    animation: desktop-transition 300s linear infinite;
     display: flex;
     flex-direction: column;
   }
