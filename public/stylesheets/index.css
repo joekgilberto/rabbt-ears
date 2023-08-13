@@ -3,14 +3,15 @@ body {
   height: 100vh;
   position: fixed;
   display: flex;
+  flex-direction: column;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
 header {
-  width: 71%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -19,32 +20,33 @@ header {
   background-color: #fffcf4;
 }
 
-.logo{
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo>img{
+.logo>img {
   width: 200px;
   height: 200px;
 }
+
 .title {
   height: 200px;
   width: 595px;
 }
 
 .title>h1,
-.title>h2{
+.title>h2 {
   margin: 0 0 0 20px;
   padding: 0;
 }
 
-.title>h1{
+.title>h1 {
   font-size: 120px;
 }
 
-.title>h2{
+.title>h2 {
   font-family: 'Pacifico', cursive;
   font-size: 70px;
   font-weight: normal;
@@ -52,25 +54,25 @@ header {
   color: #8767ac;
 }
 
-nav{
+nav {
   width: 795px;
   margin-top: 30px;
   border-top: 4px solid #efe3c3;
 }
 
-nav>ul{
+nav>ul {
   display: flex;
   justify-content: space-between;
   padding: 0;
 }
 
-nav>ul>li{
+nav>ul>li {
   list-style: none;
   padding: 5px 20px;
 
 }
 
-nav>ul>li>a{
+nav>ul>li>a {
   font-size: 30px;
 
 }
@@ -80,57 +82,97 @@ nav>ul>li>a{
   background-color: #000;
 }
 
-.bar{
-  height: 100%;
-  width: 1.5%;
+.bar {
+  width: 100%;
+  height: 2vh;
 }
 
-.red{
+.red {
   background-color: #eb1f26ff;
 }
 
-.orange{
+.orange {
   background-color: #f1901fff;
 }
 
-.yellow{
-background-color: #ffcb4dff;
+.yellow {
+  background-color: #ffcb4dff;
 }
 
-.green{
+.green {
   background-color: #5c903eff;
 
 }
 
-.blue{
+.blue {
   background-color: #216798ff;
 
 }
 
-.purple{
+.purple {
   background-color: #8767acff;
   z-index: 10;
 
 }
 
-.carousel{
-  width: 20%;
-  animation: posters-transition 300s infinite;
+.carousel {
+  width: 100%;
+  height: auto;
+  animation: mobile-transition 300s infinite;
   display: flex;
-  flex-direction: column;
 }
 
-.carousel > img{
-  width: 100%;
+.carousel>img {
+  width: 20vw;
+  height: auto;
   object-fit: cover;
   margin: 0;
   padding: 0;
 }
 
-@keyframes posters-transition {
-  from{
-    transform: translate(0, -1200vh);
-  }to{
-    transform: translate(0, -1200vh);
+@keyframes desktop-transition {
+  from {
+    transform: translate(0, -1940vh);
+  }
+
+  to {
+    transform: translate(0, 0vh);
+  }
+}
+
+@keyframes mobile-transition {
+  from {
+    transform: translate(-920vw, 0);
+  }
+
+  to {
+    transform: translate(0vw, 0);
+  }
+}
+
+@media only screen and (min-width: 1195px) {
+  body {
+    flex-direction: row;
+  }
+
+  .bar {
+    width: 2vw;
+    height: 100%;
+  }
+
+  .carousel {
+    width: auto;
+    animation: desktop-transition 300s infinite;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .carousel>img {
+    width: auto;
+    height: 100%;
+    height: 40vh;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
   }
 }
