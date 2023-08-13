@@ -109,5 +109,28 @@ background-color: #ffcb4dff;
 
 .purple{
   background-color: #8767acff;
+  z-index: 10;
 
+}
+
+.carousel{
+  width: 20%;
+  animation: posters-transition 300s infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel > img{
+  width: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes posters-transition {
+  from{
+    transform: translate(0, -1200vh);
+  }to{
+    transform: translate(0, -1200vh);
+  }
 }

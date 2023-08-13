@@ -37,7 +37,11 @@
   <div class="green bar"></div>
   <div class="blue bar"></div>
   <div class="purple bar"></div>
-
+  <section class="carousel">
+    <% posters.forEach((poster)=>{ %>
+      <img src="<%=poster[0].resolutions.original.url%>">
+      <% }) %>
+  </section>
 </body>
 
 </html>
