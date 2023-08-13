@@ -74,12 +74,16 @@ nav>ul>li {
 
 nav>ul>li>a {
   font-size: 30px;
-
+  color: #000;
+  text-decoration: none;
 }
 
 .login {
-  color: #fffcf4;
   background-color: #000;
+}
+
+.login>a{
+  color: #fffcf4 !important;
 }
 
 .bar {
