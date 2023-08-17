@@ -2,12 +2,18 @@ const fetch = require('node-fetch');
 const Programs = require('../models/programs')
 
 module.exports = {
-    programs,
+    index,
+    show,
     random
 }
 
-function programs(req,res,next){
-    res.send('Welcome to the programs page!')
+function index(req,res,next){
+    res.send('Welcome to the index page!')
+}
+
+function show(req,res,next){
+    const id = req.params.id
+    res.send(`Welcome to the ${id} page!`)
 }
 
 function random(req,res,next){
