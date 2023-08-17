@@ -1,0 +1,41 @@
+body {
+    background-color: #fffcf4;
+}
+
+.posters{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+.poster{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poster>img{
+    width: 15vw;
+    box-shadow: 0px 3px 5px #00000060
+}
+
+.program-title{
+    width: 15vw;
+    text-align: center;
+    padding: 10px 15px 10px 12.5px;
+    font-style: italic;
+    color: #fffcf4;
+    background-color: black;
+}
+
+.search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search>input{
+    margin: 0 10px;
+}

@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+<section class="posters">
+<% for (let i=0;i<programs.length;i++){ %>
+    <div class="poster">
+        <img src="<%=posters[i][0].resolutions.original.url%>">
+        <p class="program-title"><%= programs[i].name %></p>
+    </div>
+<% } %>
+</section>
+<section class="search">
+    <h2>Find Programs:</h2>
+    <input type="search">
+    <button type="submit">Search</button>
+</section>
+<%- include('../partials/footer.ejs') %>

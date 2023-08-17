@@ -6,10 +6,6 @@ body {
   flex-direction: column;
 }
 
-a {
-  cursor: pointer;
-}
-
 header {
   width: 100%;
   height: 100%;
@@ -84,6 +80,7 @@ nav>ul>li>a {
 
 .login>a{
   color: #fffcf4 !important;
+  font-weight: bold !important;
 }
 
 .bar {
@@ -116,7 +113,7 @@ nav>ul>li>a {
 .purple {
   background-color: #8767acff;
   z-index: 1;
-
+  box-shadow: 0px 3px 5px #00000060
 }
 
 .carousel {
@@ -153,6 +150,8 @@ nav>ul>li>a {
     transform: translate(0vw, 0);
   }
 }
+
+/* TODO: Make smaller media queries */
 
 @media only screen and (min-width: 1195px) {
   body {
