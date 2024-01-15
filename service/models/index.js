@@ -1,4 +1,4 @@
 module.exports = {
-    Battles: require('./Reviews'),
+    Reviews: require('./Reviews'),
     User: require('./Users')
 }
