@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-require('./config/database.js')
+require('./config/database');
 
 const { PORT } = process.env;
 
@@ -8,10 +8,11 @@ const express = require("express");
 
 const app = express();
 
-const reviewsRouter = require('./routes/reviews')
+const reviewsRouter = require('./routes/reviews');
+const authRouter = require('./routes/auth');
 
-const cors = require("cors")
-const morgan = require("morgan")
+const cors = require("cors");
+const morgan = require("morgan");
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
@@ -19,7 +20,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-app.use('/reviews', reviewsRouter)
+app.use('/reviews', reviewsRouter);
+app.use('/auth', authRouter);
 
 app.get("/", (req, res) => {
     res.send("Rabbt Ears");
