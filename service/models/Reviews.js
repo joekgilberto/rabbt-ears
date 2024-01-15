@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const ReviewSchema = new Schema({
@@ -7,19 +7,12 @@ const ReviewSchema = new Schema({
     title: { type: String, required: true },
     poster: { type: String, required: true },
     showId: { type: Number, required: true },
-    postingDate: {
-        type: Number,
-        required: true,
-        default: new Date()
-    },
     fav: {
         type: Boolean,
-        required: true,
         default: false
     },
     tags: {
         type: Array,
-        required: true,
         default: []
     },
     username: { type: String, required: true },
@@ -32,4 +25,4 @@ const ReviewSchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model("Review", ReviewSchema);
+module.exports = mongoose.model('Review', ReviewSchema);

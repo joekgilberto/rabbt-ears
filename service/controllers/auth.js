@@ -1,6 +1,6 @@
 const { User } = require('../models')
-const bcrypt = require("bcrypt");
-const { createUserToken } = require("../middleware/auth");
+const bcrypt = require('bcrypt');
+const { createUserToken } = require('../middleware/auth');
 
 module.exports = {
     signUp,
@@ -31,7 +31,7 @@ async function signUp(req, res, next) {
                 token: authenticatedUserToken,
             });
         } else {
-            throw new Error("Something went wrong")
+            throw new Error('Something went wrong')
         }
     } catch (err) {
         console.log(res.status(400).json({ error: err.message }));
@@ -59,7 +59,7 @@ async function login(req, res, next) {
 async function logout(req, res, next) {
     try {
         res.status(200).json({
-            token: ""
+            token: ''
         })
 
     } catch (err) {

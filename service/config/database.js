@@ -5,7 +5,7 @@ mongoose.set('strictQuery', true);
 mongoose.connect(DATABASE_URI)
 
 mongoose.connection
-    .on("open", () => console.log("You are connected to mongoose"))
-    .on("close", () => console.log("You are disconnected from mongoose"))
-    .on("error", (error) => console.log(error));
+    .on('open', () => console.log('You are connected to mongoose'))
+    .on('close', () => console.log('You are disconnected from mongoose'))
+    .on('error', (error) => console.log(error));
 
