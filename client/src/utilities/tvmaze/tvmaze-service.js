@@ -6,7 +6,7 @@ export async function getTenShows() {
 
         while (data.length < 10) {
             await tvmazeApi.index().then((result) => {
-                if (!data.includes) {
+                if (!data.includes(result)) {
                     data.push(result);
                 }
             });
