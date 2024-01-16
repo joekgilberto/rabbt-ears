@@ -3,14 +3,20 @@ import * as tvmazeApi from './tvmaze-api';
 export async function getTenShows() {
     try {
         const data = []
-
+        const used = []
         while (data.length < 10) {
-            await tvmazeApi.index().then((result) => {
-                if (!data.includes(result)) {
-                    data.push(result);
+            const randomId = Math.ceil(Math.random()*1000)
+
+            if (used.includes(randomId)){
+                continue;
+            } else {
+                const response = await tvmazeApi.show(randomId)
+                if (response) {
+                    data.push(response);
                 }
-            });
-        }
+                used.push(randomId)
+            };
+        };
 
         return data
     } catch (err) {
@@ -27,7 +33,7 @@ export async function getShow(id){
     }
 }
 
-export async function getShow(query){
+export async function searchShow(query){
     try {
         const data = await tvmazeApi.search(query)
         return data

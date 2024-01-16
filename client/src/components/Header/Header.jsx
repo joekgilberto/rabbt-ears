@@ -1,13 +1,14 @@
 import './Header.css';
+import { Link } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function Header() {
     return (
         <div className='Header'>
             {/* Add img tag for logo */}
-            <a href='/'>
+            <Link to='/'>
                 <h1>Rabbt Ears</h1>
-            </a>
+            </Link>
             <SearchBar />
             {/* Add user icon */}
         </div>

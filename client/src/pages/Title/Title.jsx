@@ -1,30 +1,32 @@
 import './Title.css';
+import { Link } from "react-router-dom";
 
 export default function Title() {
     return (
         <div className='Title'>
-            <a href='/'>
+            <Link to='/'>
                 <h1>Rabbt Ears</h1>
-                <ul>
-                    <li>
-                        <a href='/auth'>
-                            {/* Toggle between Login and Profile */}
-                            Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href='/feed'>
-                            Reviews
-                        </a>
-                    </li>
-                    <li>
-                        {/* Randomize random show */}
-                        <a href='/show/1'>
-                            Random
-                        </a>
-                    </li>
-                </ul>
-            </a>
+            </Link>
+            <ul>
+                <li>
+                    <Link to='/auth'>
+                        {/* Toggle between Login and Profile */}
+                        Login
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/feed'>
+                        Reviews
+                    </Link>
+                </li>
+                <li>
+                    {/* Randomize random show */}
+                    <Link to='/show/1'>
+                        Random
+                    </Link>
+                </li>
+            </ul>
+
         </div>
     );
 };

@@ -1,17 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = process.REACT_APP_TVMAZE_API_URL;
-const SEARCH_URL = process.REACT_APP_TVMAZE_SEARCH_URL;
-
-export async function rando(id) {
-    const randomId = Math.ceil(Math.random()*1000)
-    return axios
-        .get(`${BASE_URL}${randomId}`)
-        .then((res) => {
-            return res.data
-        })
-        .catch((err) => console.log(err));
-};
+const BASE_URL = process.env.REACT_APP_TVMAZE_API_URL;
+const SEARCH_URL = process.env.REACT_APP_TVMAZE_SEARCH_URL;
 
 export async function show(id) {
     return axios
