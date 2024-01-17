@@ -1,7 +1,7 @@
-import './SignUp.css';
+import './Register.css';
 import { useState } from 'react';
 
-export default function SignUp({ toggle }) {
+export default function Register({ toggle }) {
     const initState = {
         username: '',
         password: '',
@@ -28,12 +28,12 @@ export default function SignUp({ toggle }) {
     }
 
     return (
-        <div className='SignUp'>
+        <div className='Register'>
             <form onSubmit={handleSubmit}>
                 <input type='text' placeholder='Username' name='username' autoComplete='username' onChange={handleChange}></input>
                 <input type='password' placeholder='Password' name='password' autoComplete='password' onChange={handleChange}></input>
                 <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' onChange={handleChange}></input>
-                <button type='submit'>Sign Up</button>
+                <button type='submit'>Register</button>
                 <button onClick={toggle}>Login</button>
             </form>
         </div>

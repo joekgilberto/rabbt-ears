@@ -1,7 +1,7 @@
 import './Auth.css';
 import { useState } from 'react';
 import Login from '../../components/Login/Login';
-import SignUp from '../../components/SignUp/SignUp';
+import Register from '../../components/Register/Register';
 
 export default function Auth({ page }) {
     const [toggle, setToggle] = useState(false)
@@ -12,7 +12,7 @@ export default function Auth({ page }) {
 
     return (
         <div className='Auth'>
-            {!toggle?<Login toggle={handleChange} />:<SignUp toggle={handleChange} />}
+            {!toggle?<Login toggle={handleChange} />:<Register toggle={handleChange} />}
         </div>
     );
 };

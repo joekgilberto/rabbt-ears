@@ -32,7 +32,7 @@ export default function Login({ toggle }) {
                 <input type='text' placeholder='Username' name='username' autoComplete='username' onChange={handleChange}></input>
                 <input type='password' placeholder='Password' name='password' autoComplete='password' onChange={handleChange}></input>
                 <button type='submit'>Login</button>
-                <button onClick={toggle}>Sign Up</button>
+                <button onClick={toggle}>Register</button>
             </form>
         </div>
     );

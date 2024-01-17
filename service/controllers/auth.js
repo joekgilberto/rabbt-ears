@@ -3,14 +3,14 @@ const bcrypt = require('bcrypt');
 const { createUserToken } = require('../middleware/auth');
 
 module.exports = {
-    signUp,
+    register,
     login,
     logout,
     update,
     show
 }
 
-async function signUp(req, res, next) {
+async function register(req, res, next) {
     try {
 
         const salt = await bcrypt.genSalt(10);
