@@ -17,9 +17,9 @@ export async function getManyShows(length) {
             if (used.includes(randomId) || unusable.includes(randomId)) {
                 continue;
             } else {
-                const response = await tvmazeApi.show(randomId);
-                if (response) {
-                    data.push(response);
+                const res = await tvmazeApi.show(randomId);
+                if (res) {
+                    data.push(res);
                 }
                 used.push(randomId);
             };

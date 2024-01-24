@@ -1,7 +1,15 @@
 import './Register.css';
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { register,login } from '../../utilities/auth/auth-service';
+import { setUserToken, setUsername } from '../../utilities/local-storage';
 
 export default function Register({ toggle }) {
+
+    const navigate = useNavigate();
+
+    //TODO: put formData in slice
     const initState = {
         username: '',
         password: '',
@@ -16,13 +24,23 @@ export default function Register({ toggle }) {
         });
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         try {
-            // TODO: Make API call to user and store user information and token in slice
-            console.log(formData)
-        } catch (error) {
-            // TODO: Display error message
+            await register(formData).then(async(res)=>{
+                console.log(res);
+                const loginInfo = {username: formData.username, password: formData.password}
+                await login(loginInfo).then((finalRes)=>{
+                    setUserToken(finalRes.token);
+                    setUsername(res.user.username);
+                    setFormData(initState);
+                    console.log(finalRes);
+                    navigate('/feed');
+                })
+            });
+
+        } catch (err) {
+            console.log(err);
             setFormData(initState);
         }
     }

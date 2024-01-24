@@ -7,11 +7,11 @@ export default function Feed() {
     const [feedShows, setFeedShows] = useState(null)
 
     async function handleRequest(){        
-        await getManyShows(0).then((response)=>{
-            if (response){
-                setFeedShows(response)
+        await getManyShows(0).then((res)=>{
+            if (res){
+                setFeedShows(res)
             } else {
-                console.log(response)
+                console.log(res)
             }
         });
     }

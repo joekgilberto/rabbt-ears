@@ -1,7 +1,15 @@
 import './Login.css';
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { login } from '../../utilities/auth/auth-service';
+import { setUserToken, setUsername } from '../../utilities/local-storage';
 
 export default function Login({ toggle }) {
+
+    const navigate = useNavigate();
+
+    //TODO: put formData in slice
     const initState = {
         username: '',
         password: ''
@@ -15,13 +23,18 @@ export default function Login({ toggle }) {
         });
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         try {
-            // TODO: Make API call to user and store user information and token in slice
-            console.log(formData)
-        } catch (error) {
-            // TODO: Display error message
+            await login(formData).then((res)=>{
+                setUserToken(res.token);
+                setUsername(res.user.username);
+                setFormData(initState);
+                console.log(res)
+                navigate('/feed');
+            });
+        } catch (err) {
+            console.log(err);
             setFormData(initState);
         }
     }
