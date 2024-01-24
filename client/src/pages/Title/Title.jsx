@@ -3,7 +3,7 @@ import './Title.css';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { logout } from '../../utilities/auth/auth-service';
-import { getUserToken, clearUserToken, clearUsername } from '../../utilities/local-storage';
+import { getUserToken, clearUserToken } from '../../utilities/local-storage';
 
 export default function Title() {
 
@@ -18,7 +18,6 @@ export default function Title() {
             // setUserToken(res.token);
             console.log(res)
             clearUserToken();
-            clearUsername();
             setToken(getUserToken());
         })
     }

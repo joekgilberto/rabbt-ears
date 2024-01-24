@@ -3,7 +3,7 @@ import './Login.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { login } from '../../utilities/auth/auth-service';
-import { setUserToken, setUsername } from '../../utilities/local-storage';
+import { setUserToken } from '../../utilities/local-storage';
 
 export default function Login({ toggle }) {
 
@@ -28,7 +28,6 @@ export default function Login({ toggle }) {
         try {
             await login(formData).then((res)=>{
                 setUserToken(res.token);
-                setUsername(res.user.username);
                 setFormData(initState);
                 console.log(res)
                 navigate('/feed');
