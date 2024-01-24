@@ -11,18 +11,18 @@ export default function Title() {
                 <li>
                     <Link to='/auth'>
                         {/* Toggle between Login and Profile */}
-                        Login
+                        LOGIN
                     </Link>
                 </li>
                 <li>
                     <Link to='/feed'>
-                        Reviews
+                        FEED
                     </Link>
                 </li>
                 <li>
                     {/* Randomize random show */}
                     <Link to='/show/1'>
-                        Random
+                        RANDOM
                     </Link>
                 </li>
             </ul>

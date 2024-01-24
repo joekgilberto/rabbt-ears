@@ -1,13 +1,13 @@
 import './Feed.css';
 
 import { useEffect, useState } from 'react';
-import { getTenShows } from '../../utilities/tvmaze/tvmaze-service';
+import { getManyShows } from '../../utilities/tvmaze/tvmaze-service';
 
 export default function Feed() {
     const [feedShows, setFeedShows] = useState(null)
 
-    async function handleRequest(){
-        await getTenShows().then((response)=>{
+    async function handleRequest(){        
+        await getManyShows(0).then((response)=>{
             if (response){
                 setFeedShows(response)
             } else {
