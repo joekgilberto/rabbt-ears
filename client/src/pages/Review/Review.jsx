@@ -17,7 +17,6 @@ export default function Review() {
 
     useEffect(() => {
         dispatch(loadReview(id));
-        console.log(review)
     }, [dispatch]);
 
     if (loading) {
@@ -29,7 +28,6 @@ export default function Review() {
             {review._id ?
                 <>
                     <img src={review.poster} alt={review.title} />
-                    <h2>Review</h2>
                     <h2>{review.username}'s {review.title} review | {review.rating}{review.fav ? ' ★' : null}</h2>
                     <p>{review.review}</p>
 

@@ -12,3 +12,18 @@ export function randomShow(){
 
     return randomId;
 }
+
+export function noTags(string){
+
+    const pFilterOne = string.replace('<p>','');
+    const pFilterTwo = pFilterOne.replace('</p>','');
+    const bFilterOne = pFilterTwo.replace('<b>','');
+    const bFilterTwo = bFilterOne.replace('</b>','');
+    const iFilterOne = bFilterTwo.replace('<i>','');
+    const iFilterTwo = iFilterOne.replace('</i>','');
+    const spanFilterOne = iFilterTwo.replace('<span>','');
+    const spanFilterTwo = spanFilterOne.replace('</span>','');
+    const ampFilter = spanFilterTwo.replace('&amp;','&');
+
+    return ampFilter;
+}
