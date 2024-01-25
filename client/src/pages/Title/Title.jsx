@@ -29,29 +29,34 @@ export default function Title() {
 
     return (
         <div className='Title'>
-            <Link to='/'>
+            <div className='logo'>
+                <img src="https://i.imgur.com/fUPednw.png" alt="TV logo" />
                 <h1>Rabbt Ears</h1>
-            </Link>
+            </div>
             <nav>
                 {token ?
                     <Link to='/profile'>
-                        <p>PROFILE</p>
+                        <p className='auth-link'>PROFILE</p>
                     </Link>
                     :
                     <Link to='/auth'>
-                        <p>LOGIN</p>
+                        <p className='auth-link'>LOGIN</p>
                     </Link>
                 }
                 <Link to='/feed'>
-                    <p>FEED</p>
+                    <p className='title-link'>FEED</p>
                 </Link>
-                <p onClick={handleRandom}>RANDOM</p>
+                <p className='seperator'>|</p>
+                <p className='title-link' onClick={handleRandom}>RANDOM</p>
                 {token ?
-                    <p onClick={handleLogout}>LOGOUT</p>
+                    <>
+                        <p className='separator'>|</p>
+                        <p className='title-link' onClick={handleLogout}>LOGOUT</p>
+                    </>
                     :
                     null
                 }
-                </nav>
+            </nav>
         </div>
     );
 };
