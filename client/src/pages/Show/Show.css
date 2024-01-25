@@ -1,3 +1,8 @@
 .Show img{
     width: 300px;
 }
+
+.Show .show-tags{
+    display: flex;
+    gap: 40px;
+}

@@ -36,6 +36,13 @@ export default function Show() {
                     <img src={show.image.original} alt={show.name} />
                     <h2>{show.name} {!show.ended?`(${show.premiered.substring(0,4)} - Present)`:show.premiered.substring(0,4)===show.ended.substring(0,4)?`(${show.premiered.substring(0,4)})`:`(${show.premiered.substring(0,4)} - ${show.ended.substring(0,4)})`}</h2>
                     <p>{tools.noTags(show.summary)}</p>
+                    <div className='show-tags'>
+                    <p>{show.type}</p>
+                    {show.genres.map((genre,idx)=>{
+                        return <p key={idx}>{genre}</p>
+                    })}
+                    <p>{show.network.name}</p>
+                    </div>
                 </>
                 :
                 <Loading />

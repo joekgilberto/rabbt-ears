@@ -46,11 +46,9 @@ export default function Title() {
                 <Link to='/feed'>
                     <p className='title-link'>FEED</p>
                 </Link>
-                <p className='seperator'>|</p>
                 <p className='title-link' onClick={handleRandom}>RANDOM</p>
                 {token ?
                     <>
-                        <p className='separator'>|</p>
                         <p className='title-link' onClick={handleLogout}>LOGOUT</p>
                     </>
                     :
