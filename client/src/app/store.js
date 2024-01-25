@@ -8,6 +8,6 @@ export const store = configureStore({
   reducer: {
     feed: feedReducer,
     review: reviewReducer,
-    show: showReducer,
+    show: showReducer
   },
 });

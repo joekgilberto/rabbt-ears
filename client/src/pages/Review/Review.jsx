@@ -17,6 +17,7 @@ export default function Review() {
 
     useEffect(() => {
         dispatch(loadReview(id));
+        console.log(review)
     }, [dispatch]);
 
     if (loading) {
@@ -25,13 +26,20 @@ export default function Review() {
 
     return (
         <div className='Review'>
-            <img src={review.poster} alt={review.title} />
-            <h2>Review</h2>
-            <h2>{review.username}'s {review.title} review | {review.rating}{review.fav?' ★':null}</h2>
-            <p>{review.review}</p>
-            {review.tags.map((tag,idx)=>{
-                return <p key={idx}>{tag}</p>
-            })}
+            {review._id ?
+                <>
+                    <img src={review.poster} alt={review.title} />
+                    <h2>Review</h2>
+                    <h2>{review.username}'s {review.title} review | {review.rating}{review.fav ? ' ★' : null}</h2>
+                    <p>{review.review}</p>
+
+                    {review.tags.map((tag, idx) => {
+                        return <p key={idx}>{tag}</p>
+                    })}
+                </>
+                :
+                <Loading />
+            }
         </div>
     );
 };

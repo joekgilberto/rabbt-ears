@@ -1,0 +1,27 @@
+.Header{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+.Header h1{
+    width: 170px;
+}
+
+.Header nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Header nav p{
+    cursor: pointer;
+}
+
+.Header .auth{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}

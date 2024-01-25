@@ -28,9 +28,9 @@ export default function Feed() {
             <h2>Reviews</h2>
             {reviews ? reviews.map((review, id) => {
                 return (
-                    <Link to={`/reviews/${review._id}`}>
-                        <p key={id}>{review.title}</p>
-                        <p key={id}>{review.rating}</p>
+                    <Link key={id} to={`/reviews/${review._id}`}>
+                        <p>{review.title}</p>
+                        <p>{review.rating}</p>
                     </Link>
                 )
             }) : null}
@@ -38,8 +38,8 @@ export default function Feed() {
             <h2>Shows</h2>
             {shows ? shows.map((show, id) => {
                 return (
-                    <Link to={`/shows/${show.id}`}>
-                        <p key={id}>{show.name}</p>
+                    <Link key={id} to={`/shows/${show.id}`}>
+                        <p>{show.name}</p>
                     </Link>
                 )
             }) : null}

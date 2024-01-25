@@ -1,0 +1,8 @@
+.SearchBar{
+    width: 100%;
+    display: flex;
+}
+
+.SearchBar input{
+    width: 100%;
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from '../../utilities/auth/auth-service';
 import { getUserToken, clearUserToken } from '../../utilities/local-storage';
-import { randomShow } from '../../utilities/tools';
+import * as tools from '../../utilities/tools';
 
 export default function Title() {
 
@@ -15,15 +15,13 @@ export default function Title() {
         setToken(getUserToken());
     }, [token])
 
-    function handleRandom(){
-        const randomId = randomShow();
+    function handleRandom() {
+        const randomId = tools.randomShow();
         navigate(`/shows/${randomId}`);
     }
 
-    async function handleLogout(){
-        await logout().then((res)=>{
-            // setUserToken(res.token);
-            console.log(res)
+    async function handleLogout() {
+        await logout().then(() => {
             clearUserToken();
             setToken(getUserToken());
         })
@@ -34,36 +32,26 @@ export default function Title() {
             <Link to='/'>
                 <h1>Rabbt Ears</h1>
             </Link>
-            <ul>
-                <li>
-                    {token ?
-                        <Link to='/profile'>
-                            PROFILE
-                        </Link>
-                        :
-                        <Link to='/auth'>
-                            {/* Toggle between Login and Profile */}
-                            LOGIN
-                        </Link>
-                    }
-                </li>
-                <li>
-                    <Link to='/feed'>
-                        FEED
-                    </Link>
-                </li>
-                <li onClick={handleRandom}>
-                    RANDOM
-                </li>
+            <nav>
                 {token ?
-                        <li onClick={handleLogout}>
-                            LOGOUT
-                        </li>
-                        :
-                        null
-                    }
-            </ul>
-
+                    <Link to='/profile'>
+                        <p>PROFILE</p>
+                    </Link>
+                    :
+                    <Link to='/auth'>
+                        <p>LOGIN</p>
+                    </Link>
+                }
+                <Link to='/feed'>
+                    <p>FEED</p>
+                </Link>
+                <p onClick={handleRandom}>RANDOM</p>
+                {token ?
+                    <p onClick={handleLogout}>LOGOUT</p>
+                    :
+                    null
+                }
+                </nav>
         </div>
     );
 };

@@ -1,0 +1,21 @@
+.Title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Title{
+    margin: 0;
+}
+
+.Title nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Title nav p{
+    cursor: pointer;
+}

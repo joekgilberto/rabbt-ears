@@ -3,7 +3,7 @@ import './Register.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { register,login } from '../../utilities/auth/auth-service';
-import { setUserToken } from '../../utilities/local-storage';
+import { setUserToken, setUser } from '../../utilities/local-storage';
 
 export default function Register({ toggle }) {
 
@@ -32,6 +32,7 @@ export default function Register({ toggle }) {
                 const loginInfo = {username: formData.username, password: formData.password}
                 await login(loginInfo).then((finalRes)=>{
                     setUserToken(finalRes.token);
+                    setUser(finalRes.user);
                     setFormData(initState);
                     console.log(finalRes);
                     navigate('/feed');

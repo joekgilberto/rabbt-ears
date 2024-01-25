@@ -2,6 +2,8 @@ import './SearchBar.css';
 import { useState } from 'react';
 import { useNavigate } from "react-router";
 
+import * as tvmazeServices from '../../utilities/tvmaze/tvmaze-service';
+
 export default function SearchBar() {
     const navigate = useNavigate();
     // TODO: add searchString slice to Redux
@@ -26,11 +28,9 @@ export default function SearchBar() {
     }
 
     return (
-        <div className='SearchBar'>
-            <form onSubmit={handleSubmit}>
-                <input type='text' placeholder='Search a show...' value={searchString} onChange={handleChange} />
-                <button type='submit' >SEARCH</button>
-            </form>
-        </div>
+        <form className='SearchBar' onSubmit={handleSubmit}>
+            <input type='text' placeholder='Search a show...' value={searchString} onChange={handleChange} />
+            <button type='submit' >SEARCH</button>
+        </form>
     );
 };
