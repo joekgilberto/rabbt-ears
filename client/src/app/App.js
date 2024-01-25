@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
+
 import Title from '../pages/Title/Title';
 import Main from '../components/Main/Main';
 import Auth from '../pages/Auth/Auth';
