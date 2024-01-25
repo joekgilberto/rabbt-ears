@@ -6,24 +6,33 @@ import * as tvmazeServices from '../../utilities/tvmaze/tvmaze-service';
 
 export default function SearchBar() {
     const navigate = useNavigate();
-    // TODO: add searchString slice to Redux
     const [searchString, setSearchString] = useState('');
 
     function handleChange(e) {
-        // TODO: update searchString with reducer
         setSearchString(e.target.value);
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         try {
-            // TODO: Navigate to search results page with searchString in query
-            // TODO: clear searchString with reducer
+
+            await tvmazeServices.searchShow(searchString).then((res)=>{
+                let searchUrl = '/results/';
+
+                for (let i = 0; i < res.length; i++) {
+                    searchUrl += `${res[i].show.id}`;
+                    if (i < res.length - 1) {
+                        searchUrl += '&';
+                    }
+                }
+                
+                setSearchString('');
+                navigate(searchUrl);
+            })
+        } catch (err) {
+            console.log(err);
             setSearchString('');
-        } catch (error) {
-            // TODO: Navigate to feed page
-            // TODO: clear searchString with reducer
-            setSearchString('');
+            navigate('/feed');
         }
     }
 

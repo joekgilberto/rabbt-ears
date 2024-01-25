@@ -8,6 +8,7 @@ import Feed from '../pages/Feed/Feed';
 import Show from '../pages/Show/Show';
 import Review from '../pages/Review/Review';
 import Profile from '../pages/Profile/Profile';
+import SearchResults from '../pages/SearchResults/SearchResults';
 import Error from '../pages/Error/Error';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path='/reviews/:id' element={<Main page={<Review />} />} />
         <Route path='/shows/:id' element={<Main page={<Show />} />} />
         <Route path='/profile' element={<Main page={<Profile />} />} />
+        <Route path='/results/:id' element={<Main page={<SearchResults />} />} />
         <Route path='/*' element={<Main page={<Error />} />} />
       </Routes>
     </div>

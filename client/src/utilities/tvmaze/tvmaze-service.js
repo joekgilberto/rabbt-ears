@@ -1,13 +1,37 @@
 import * as tvmazeApi from './tvmaze-api';
 
-export async function getManyShows(length) {
+export async function getShow(id) {
+    try {
+        const data = await tvmazeApi.show(id);
+        return data;
+    } catch (err) {
+        return err;
+    }
+}
+
+export async function getShowList(searchQueries) { 
+    try {
+        const searchResults = [];
+
+        for(let id of searchQueries){
+            const data = await tvmazeApi.show(id);
+            searchResults.push(data);
+        }
+
+        return searchResults;
+    } catch(err) {
+        return err;
+    }
+}
+
+export async function getRandomShows(length) {
     try {
         const data = [];
         const used = [];
         const unusable = [0, 17, 36, 85, 113, 119, 121, 135, 173, 223, 264, 381, 389, 441, 442, 596, 606, 608, 639, 642, 715, 724, 783, 784, 852, 853, 876, 893, 925];
         let iterations = 10;
 
-        if (length > iterations){
+        if (length > iterations) {
             iterations = length;
         }
 
@@ -25,15 +49,6 @@ export async function getManyShows(length) {
             };
         };
 
-        return data;
-    } catch (err) {
-        return err;
-    }
-}
-
-export async function getShow(id) {
-    try {
-        const data = await tvmazeApi.show(id);
         return data;
     } catch (err) {
         return err;

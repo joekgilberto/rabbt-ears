@@ -11,7 +11,7 @@ export const loadFeed = createAsyncThunk(
         return await reviewServices.getAllReviews().then(async (reviewRes) => {
             data.reviews = reviewRes;
             const reviewCount = data.reviews.length;
-            return await tvmazeServices.getManyShows(reviewCount).then((showRes) => {
+            return await tvmazeServices.getRandomShows(reviewCount).then((showRes) => {
                 data.shows = showRes;
                 return data;
             })

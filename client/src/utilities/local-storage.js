@@ -13,11 +13,11 @@ function clearUserToken(){
 
 // Creates local storage for token
 function getUser(){
-    return localStorage.getItem("user");
+    return JSON.parse(localStorage.getItem("user"));
 };
 
 function setUser(user){
-    return localStorage.setItem("user", user);
+    return localStorage.setItem("user", JSON.stringify(user));
 };
 
 function clearUser(){
