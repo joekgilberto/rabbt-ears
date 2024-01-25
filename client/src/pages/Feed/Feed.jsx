@@ -1,6 +1,7 @@
 import './Feed.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadFeed, selectReviews, selectShows } from '../../features/feedSlice';
 
@@ -26,15 +27,21 @@ export default function Feed() {
         <div className='Feed'>
             <h2>Reviews</h2>
             {reviews ? reviews.map((review, id) => {
-                return (<>
-                    <p key={id}>{review.title}</p>
-                    <p key={id}>{review.rating}</p>
-                </>)
+                return (
+                    <Link to={`/reviews/${review._id}`}>
+                        <p key={id}>{review.title}</p>
+                        <p key={id}>{review.rating}</p>
+                    </Link>
+                )
             }) : null}
 
             <h2>Shows</h2>
             {shows ? shows.map((show, id) => {
-                return <p key={id}>{show.name}</p>
+                return (
+                    <Link to={`/shows/${show.id}`}>
+                        <p key={id}>{show.name}</p>
+                    </Link>
+                )
             }) : null}
         </div>
     );

@@ -11,5 +11,18 @@ function clearUserToken(){
     return localStorage.setItem("token", "");
 };
 
+// Creates local storage for token
+function getUser(){
+    return localStorage.getItem("user");
+};
+
+function setUser(user){
+    return localStorage.setItem("user", user);
+};
+
+function clearUser(){
+    return localStorage.setItem("user", "");
+};
+
 // Exports local storage functions
-export { getUserToken, setUserToken, clearUserToken };
+export { getUserToken, setUserToken, clearUserToken, getUser, setUser, clearUser };
