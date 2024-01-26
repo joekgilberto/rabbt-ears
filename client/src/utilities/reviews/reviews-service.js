@@ -28,6 +28,15 @@ export async function getAssociated(id) {
     }
 }
 
+export async function getUsersReview(id) {
+    try {
+        const res = await reviewsApi.users(id);
+        return res;
+    } catch (err) {
+        return err;
+    }
+}
+
 export async function createReview(data) {
     try {
         const token = getUserToken();

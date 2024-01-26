@@ -28,13 +28,11 @@ export default function Register({ toggle }) {
         e.preventDefault()
         try {
             await register(formData).then(async(res)=>{
-                console.log(res);
                 const loginInfo = {username: formData.username, password: formData.password}
                 await login(loginInfo).then((finalRes)=>{
                     setUserToken(finalRes.token);
                     setUser(finalRes.user);
                     setFormData(initState);
-                    console.log(finalRes);
                     navigate('/feed');
                 })
             });

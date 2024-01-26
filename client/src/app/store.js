@@ -4,12 +4,14 @@ import feedReducer from '../features/feedSlice';
 import reviewReducer from '../features/reviewSlice';
 import showReducer from '../features/showSlice';
 import searchReducer from '../features/searchSlice';
+import profileReducer from '../features/profileSlice';
 
 export const store = configureStore({
   reducer: {
     feed: feedReducer,
     review: reviewReducer,
     show: showReducer,
-    search: searchReducer
+    search: searchReducer,
+    profile: profileReducer
   },
 });

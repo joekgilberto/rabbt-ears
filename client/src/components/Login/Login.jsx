@@ -30,7 +30,6 @@ export default function Login({ toggle }) {
                 setUserToken(res.token);
                 setUser(res.user);
                 setFormData(initState);
-                console.log(res)
                 navigate('/feed');
             });
         } catch (err) {

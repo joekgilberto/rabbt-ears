@@ -19,7 +19,6 @@ export default function Show() {
 
     useEffect(() => {
         dispatch(loadShow(id));
-        console.log(show)
     }, [dispatch]);
 
     useEffect(() => {

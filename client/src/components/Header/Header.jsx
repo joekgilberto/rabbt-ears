@@ -2,8 +2,7 @@ import './Header.css';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from '../../utilities/auth/auth-service';
-import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';
+import { getUserToken } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
 import SearchBar from '../SearchBar/SearchBar';
@@ -20,14 +19,6 @@ export default function Header() {
     function handleRandom() {
         const randomId = tools.randomShow();
         navigate(`/shows/${randomId}`);
-    }
-
-    async function handleLogout() {
-        await logout().then((res) => {
-            console.log(res)
-            clearUserToken();
-            clearUser();
-        })
     }
 
     return (

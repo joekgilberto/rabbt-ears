@@ -29,6 +29,16 @@ export async function associated(id) {
         .catch((err) => console.log(err));
 };
 
+export async function users(id) {
+    return axios
+        .get(`${BASE_URL}users/${id}/`)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => console.log(err));
+};
+
+
 export async function create(data) {
     const config={
         headers: {

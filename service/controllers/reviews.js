@@ -1,4 +1,5 @@
 const { Reviews } = require('../models')
+const mongoose = require('mongoose');
 const { handleValidateOwnership } = require('../middleware/auth');
 
 module.exports = {
@@ -6,6 +7,7 @@ module.exports = {
     create,
     show,
     associated,
+    users,
     delete: destroy,
     update
 }
@@ -47,10 +49,18 @@ async function associated(req, res, next) {
     }
 };
 
+async function users(req, res, next){
+    try {
+        const ownedReviews = await Reviews.find({ user: req.params.id });
+        res.status(200).json(ownedReviews);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
 async function destroy(req, res, next) {
     try {
         handleValidateOwnership(req, await Reviews.findById(req.params.id))
-
         const deletedReview = await Reviews.findByIdAndRemove(req.params.id);
         res.status(200).json(deletedReview);
     } catch (error) {

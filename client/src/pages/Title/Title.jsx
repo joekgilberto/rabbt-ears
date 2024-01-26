@@ -3,7 +3,7 @@ import './Title.css';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from '../../utilities/auth/auth-service';
-import { getUserToken, clearUserToken } from '../../utilities/local-storage';
+import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
 export default function Title() {
@@ -23,6 +23,7 @@ export default function Title() {
     async function handleLogout() {
         await logout().then(() => {
             clearUserToken();
+            clearUser();
             setToken(getUserToken());
         })
     }

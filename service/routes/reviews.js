@@ -11,6 +11,8 @@ router.get('/:id', reviewsCtrl.show);
 
 router.get('/associated/:id', reviewsCtrl.associated);
 
+router.get('/users/:id', reviewsCtrl.users);
+
 router.post('/', requireToken, reviewsCtrl.create);
 
 router.put('/:id', requireToken, reviewsCtrl.update);

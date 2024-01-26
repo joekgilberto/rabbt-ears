@@ -11,7 +11,6 @@ export const loadShow = createAsyncThunk(
             data.show = showRes;
             return await reviewServices.getAssociated(id).then((reviewRes) => {
                 data.reviews = reviewRes;
-                console.log(data)
                 return data
             })
         })
