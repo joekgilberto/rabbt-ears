@@ -47,7 +47,8 @@ export default function Show() {
                         {show.genres.map((genre, idx) => {
                             return <p key={idx}>{genre}</p>
                         })}
-                        <p>{show.network.name}</p>
+                        <p>{show.network?show.network?.name:show.webChannel?.name}</p>
+                        {show.officialSite?<a href={show.officialSite} target='_blank'>Website</a>:null}
                     </div>
                 </>
                 :

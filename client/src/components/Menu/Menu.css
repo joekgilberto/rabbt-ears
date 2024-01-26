@@ -1,0 +1,107 @@
+.Menu {
+    height: 100%;
+    width: 100%;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-image: linear-gradient(45deg, #3177eeff, #a32ef1ff);
+    box-shadow: 0px 5px 5px #00000080;
+    z-index: 1;
+}
+
+.Menu .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.Menu .logo img {
+    height: 105px;
+    margin-top: 30px;
+    -webkit-filter: drop-shadow(0px 3px 3px #00000055);
+    filter: drop-shadow(0px 3px 3px #00000055);
+}
+
+.Menu .logo h1 {
+    margin: 0 20px 20px 20px;
+    color: #fff;
+    font-size: 70px;
+    text-align: center;
+    text-shadow: 0px 3px 3px #00000055;
+}
+
+.Menu nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Menu nav p {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+.Menu .auth-link {
+    color: #fff;
+    background-color: #000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    box-shadow: 0px 3px 3px #00000055;
+}
+
+.Menu .menu-link {
+    padding: 30px 0;
+    border-top: 2px solid #000;
+}
+
+@media screen and (min-width: 1050px) {
+    .Menu{
+        box-shadow: 5px 0px 5px #00000080;
+    }
+
+    .Menu .logo {
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .Menu .logo img {
+        margin: 0;
+    }
+
+    .Menu .logo h1 {
+        margin: 0;
+        font-size: 100px;
+    }
+
+    .Menu nav {
+        flex-direction: row;
+    }
+
+    .Menu nav p {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        padding: 10px 20px !important;
+    }
+
+    .Menu .menu-link {
+        border-left: 2px solid #000;
+        border-top: none;
+    }
+}

@@ -24,6 +24,7 @@ export function noTags(string){
     const spanFilterOne = iFilterTwo.replace('<span>','');
     const spanFilterTwo = spanFilterOne.replace('</span>','');
     const ampFilter = spanFilterTwo.replace('&amp;','&');
+    const spaceFilter = ampFilter.replace('&nbsp;',' ');
 
-    return ampFilter;
+    return spaceFilter;
 }

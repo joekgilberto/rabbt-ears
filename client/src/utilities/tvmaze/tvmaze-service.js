@@ -57,7 +57,8 @@ export async function getRandomShows(length) {
 
 export async function searchShow(query) {
     try {
-        const data = await tvmazeApi.search(query);
+        const encodedQuery = encodeURIComponent(query);
+        const data = await tvmazeApi.search(encodedQuery);
         return data;
     } catch (err) {
         return err;

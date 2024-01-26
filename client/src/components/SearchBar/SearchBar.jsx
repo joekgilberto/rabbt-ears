@@ -22,7 +22,7 @@ export default function SearchBar() {
                     for (let i = 0; i < res.length; i++) {
                         searchUrl += `${res[i].show.id}`;
                         if (i < res.length - 1) {
-                            searchUrl += '&';
+                            searchUrl += '%2C';
                         }
                     }
                     

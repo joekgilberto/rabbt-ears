@@ -16,9 +16,11 @@ export default function SearchResults() {
     const results = useSelector(selectResults);
 
     async function handleRequest() {
-        const queries = id.split('&');
+        const queries = id.split(',');
+        console.log(queries)
         await tvmazeServices.getShowList(queries).then((data) => {
             dispatch(addResults(data));
+            console.log(data)
         });
     }
 
@@ -37,8 +39,8 @@ export default function SearchResults() {
             {results?.length?
                 results.map((result, idx) => {
                     return (
-                        <Link key={idx} to={`/shows/${result.id}`}>
-                            <p>{result.name}</p>
+                        <Link key={idx} to={`/shows/${result?.id}`}>
+                            <p>{result?.name}</p>
                         </Link>
                     )
                 })

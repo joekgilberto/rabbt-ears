@@ -1,8 +1,20 @@
-.Show img{
+.Show img {
     width: 300px;
 }
 
-.Show .show-tags{
+.Show .show-tags {
     display: flex;
-    gap: 40px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Show .show-tags p,
+.Show .show-tags a {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 20px;
 }

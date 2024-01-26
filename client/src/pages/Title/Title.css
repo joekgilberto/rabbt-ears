@@ -1,64 +1,17 @@
-.Title{
+.Title {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 200px;
     background-image: linear-gradient(45deg, #3177eeff, #a32ef1ff);
+    position: fixed;
 }
 
-.Title .logo{
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-}
-
-.Title .logo img{
-    height: 105px;
-    -webkit-filter: drop-shadow(0px 3px 3px #00000055);
-    filter: drop-shadow(0px 3px 3px #00000055);
-}
-
-.Title .logo h1{
-    margin: 0;
-    color: #fff;
-    font-size: 100px;
-    text-shadow: 0px 3px 3px #00000055;
-}
-
-.Title nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Title nav p{
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: 500;
-}
-
-
-.Title .auth-link{
-    color: #fff;
-    background-color: #000;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    box-shadow: 0px 3px 3px #00000055;
-}
-
-.Title .auth-link,
-.Title .title-link{
-    width: 200px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Title .title-link{
-    border-left: 2px solid #000;
+@media screen and (min-width: 1050px) {
+    .Title {
+        display: grid;
+        grid-template-columns: auto 200px;
+        grid-template-rows: 1fr;
+    }
 }

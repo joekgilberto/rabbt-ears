@@ -6,6 +6,9 @@ import { logout } from '../../utilities/auth/auth-service';
 import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
+import Menu from '../../components/Menu/Menu';
+import Carousel from '../../components/Carousel/Carousel';
+
 export default function Title() {
 
     const navigate = useNavigate();
@@ -30,32 +33,8 @@ export default function Title() {
 
     return (
         <div className='Title'>
-            <div className='logo'>
-                <img src="https://i.imgur.com/fUPednw.png" alt="TV logo" />
-                <h1>Rabbt Ears</h1>
-            </div>
-            <nav>
-                {token ?
-                    <Link to='/profile'>
-                        <p className='auth-link'>PROFILE</p>
-                    </Link>
-                    :
-                    <Link to='/auth'>
-                        <p className='auth-link'>LOGIN</p>
-                    </Link>
-                }
-                <Link to='/feed'>
-                    <p className='title-link'>FEED</p>
-                </Link>
-                <p className='title-link' onClick={handleRandom}>RANDOM</p>
-                {token ?
-                    <>
-                        <p className='title-link' onClick={handleLogout}>LOGOUT</p>
-                    </>
-                    :
-                    null
-                }
-            </nav>
+            <Menu />
+            <Carousel />
         </div>
     );
 };

@@ -1,9 +1,7 @@
 import './Poster.css';
 
-export default function Poster() {
+export default function Poster({ source, altText }) {
     return (
-        <div className='Poster'>
-            <h2>Poster</h2>
-        </div>
+        <img className='Poster' src={source} alt={altText} />
     );
 };
