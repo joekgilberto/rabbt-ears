@@ -5,6 +5,7 @@ module.exports = {
     index,
     create,
     show,
+    associated,
     delete: destroy,
     update
 }
@@ -37,6 +38,15 @@ async function show(req, res, next) {
     }
 };
 
+async function associated(req, res, next) {
+    try {
+        const foundReviews = await Reviews.find({ showId: req.params.id });
+        res.status(200).json(foundReviews);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};
+
 async function destroy(req, res, next) {
     try {
         handleValidateOwnership(req, await Reviews.findById(req.params.id))
@@ -50,7 +60,7 @@ async function destroy(req, res, next) {
 
 async function update(req, res, next) {
     try {
-        // handleValidateOwnership(req, await Reviews.findById(req.params.id))
+        handleValidateOwnership(req, await Reviews.findById(req.params.id))
 
         const updatedReview = await Reviews.findByIdAndUpdate(
             req.params.id,

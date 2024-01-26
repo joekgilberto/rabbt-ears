@@ -1,12 +1,20 @@
 //Imports createAsyncThunk and createSlice from Redux's toolkit, and hurricaneServices from hurricane-service for API calls
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as tvmazeServices from '../utilities/tvmaze/tvmaze-service';
+import * as reviewServices from '../utilities/reviews/reviews-service';
 
 export const loadShow = createAsyncThunk(
     'show/loadShow',
     async (id) => {
-        const res = await tvmazeServices.getShow(id);
-        return res;
+        const data = { show: {}, reviews: [] };
+        return await tvmazeServices.getShow(id).then(async (showRes) => {
+            data.show = showRes;
+            return await reviewServices.getAssociated(id).then((reviewRes) => {
+                data.reviews = reviewRes;
+                console.log(data)
+                return data
+            })
+        })
     }
 );
 
@@ -14,6 +22,7 @@ export const showSlice = createSlice({
     name: 'show',
     initialState: {
         show: {},
+        reviews: [],
         isLoadingShow: false,
         hasShowError: false
     },
@@ -25,17 +34,21 @@ export const showSlice = createSlice({
             })
             .addCase(loadShow.fulfilled, (state, action) => {
                 state.isLoadingShow = false;
-                state.show = action.payload;
+                state.show = action.payload.show;
+                state.reviews = action.payload.reviews;
             })
             .addCase(loadShow.rejected, (state) => {
                 state.isLoadingShow = false;
                 state.hasShowError = true;
                 state.show = {};
+                state.reviews = [];
             })
     },
 });
 
 export const selectShow = (state) => state.show.show;
+
+export const selectReviews = (state) => state.show.reviews;
 
 export const isLoading = (state) => state.show.isLoadingShow;
 

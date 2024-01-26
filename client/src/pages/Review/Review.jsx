@@ -1,6 +1,7 @@
 import './Review.css';
 
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadReview, selectReview } from '../../features/reviewSlice';
 
@@ -27,7 +28,9 @@ export default function Review() {
         <div className='Review'>
             {review._id ?
                 <>
-                    <img src={review.poster} alt={review.title} />
+                    <Link to={`/shows/${review.showId}`}>
+                        <img src={review.poster} alt={review.title} />
+                    </Link>
                     <h2>{review.username}'s {review.title} review | {review.rating}{review.fav ? ' ★' : null}</h2>
                     <p>{review.review}</p>
 

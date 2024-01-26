@@ -34,11 +34,11 @@ export default function SearchResults() {
 
         <div className='SearchResults'>
             <h2>Search Results</h2>
-            {results ?
+            {results?.length?
                 results.map((result, idx) => {
                     return (
-                        <Link to={`/shows/${result.id}`}>
-                            <p key={idx}>{result.name}</p>
+                        <Link key={idx} to={`/shows/${result.id}`}>
+                            <p>{result.name}</p>
                         </Link>
                     )
                 })

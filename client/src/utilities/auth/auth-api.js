@@ -3,13 +3,8 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_AUTH_API_URL;
 
 export async function register(data) {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
     return axios
-        .post(`${BASE_URL}register/`,data,config)
+        .post(`${BASE_URL}register/`,data)
         .then((res) => {
             return res.data
         })
@@ -18,13 +13,8 @@ export async function register(data) {
 };
 
 export async function login(data) {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
     return axios
-        .post(`${BASE_URL}login/`,data,config)
+        .post(`${BASE_URL}login/`,data)
         .then((res) => {
             return res.data
         })
@@ -33,14 +23,8 @@ export async function login(data) {
 };
 
 export async function logout() {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
-    
     return axios
-        .get(`${BASE_URL}logout/`,config)
+        .get(`${BASE_URL}logout/`)
         .then((res) => {
             return res.data
         })
@@ -48,13 +32,8 @@ export async function logout() {
 };
 
 export async function show(id) {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
     return axios
-        .get(`${BASE_URL}${id}/`,config)
+        .get(`${BASE_URL}${id}/`)
         .then((res) => {
             return res.data
         })

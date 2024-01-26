@@ -3,9 +3,12 @@ import Header from '../Header/Header';
 
 export default function Main({ page }) {
     return (
+        <>
+        <Header />
         <main>
-            <Header />
+            
             {page}
         </main>
+        </>
     );
 };

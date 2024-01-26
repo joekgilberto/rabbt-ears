@@ -15,20 +15,23 @@ export default function SearchBar() {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-
-            await tvmazeServices.searchShow(searchString).then((res)=>{
-                let searchUrl = '/results/';
-
-                for (let i = 0; i < res.length; i++) {
-                    searchUrl += `${res[i].show.id}`;
-                    if (i < res.length - 1) {
-                        searchUrl += '&';
+            if(searchString.length){
+                await tvmazeServices.searchShow(searchString).then((res)=>{
+                    let searchUrl = '/results/';
+    
+                    for (let i = 0; i < res.length; i++) {
+                        searchUrl += `${res[i].show.id}`;
+                        if (i < res.length - 1) {
+                            searchUrl += '&';
+                        }
                     }
-                }
-                
-                setSearchString('');
-                navigate(searchUrl);
-            })
+                    
+                    setSearchString('');
+                    navigate(searchUrl);
+                })
+            } else {
+                navigate('/feed');
+            }
         } catch (err) {
             console.log(err);
             setSearchString('');

@@ -9,6 +9,8 @@ router.get('/', reviewsCtrl.index);
 
 router.get('/:id', reviewsCtrl.show);
 
+router.get('/associated/:id', reviewsCtrl.associated);
+
 router.post('/', requireToken, reviewsCtrl.create);
 
 router.put('/:id', requireToken, reviewsCtrl.update);

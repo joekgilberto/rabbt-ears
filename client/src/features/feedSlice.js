@@ -7,7 +7,6 @@ export const loadFeed = createAsyncThunk(
     'feed/loadFeed',
     async () => {
         const data = { reviews: [], shows: [] };
-
         return await reviewServices.getAllReviews().then(async (reviewRes) => {
             data.reviews = reviewRes;
             const reviewCount = data.reviews.length;

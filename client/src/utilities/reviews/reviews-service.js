@@ -19,6 +19,15 @@ export async function getReview(id) {
     }
 }
 
+export async function getAssociated(id) {
+    try {
+        const res = await reviewsApi.associated(id);
+        return res;
+    } catch (err) {
+        return err;
+    }
+}
+
 export async function createReview(data) {
     try {
         const token = getUserToken();

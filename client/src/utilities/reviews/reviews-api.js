@@ -3,13 +3,8 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_REVIEWS_API_URL;
 
 export async function index() {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
     return axios
-        .get(BASE_URL,config)
+        .get(BASE_URL)
         .then((res) => {
             return res.data
         })
@@ -17,13 +12,17 @@ export async function index() {
 };
 
 export async function show(id) {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
     return axios
-        .get(`${BASE_URL}${id}/`,config)
+        .get(`${BASE_URL}${id}/`)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => console.log(err));
+};
+
+export async function associated(id) {
+    return axios
+        .get(`${BASE_URL}associated/${id}/`)
         .then((res) => {
             return res.data
         })
