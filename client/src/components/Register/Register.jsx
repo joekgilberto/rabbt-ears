@@ -1,54 +1,59 @@
 import './Register.css';
 
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { register,login } from '../../utilities/auth/auth-service';
+import { useDispatch, useSelector } from 'react-redux';
+import { register, login } from '../../utilities/auth/auth-service';
 import { setUserToken, setUser } from '../../utilities/local-storage';
+import { updateCredentials, selectCredentials  } from '../../features/authSlice';
 
 export default function Register({ toggle }) {
 
     const navigate = useNavigate();
-
-    //TODO: put formData in slice
-    const initState = {
-        username: '',
-        password: '',
-        reEnterPassword: ''
-    }
-    const [formData, setFormData] = useState(initState)
+    const dispatch = useDispatch();
+    const credentials = useSelector(selectCredentials);
 
     function handleChange(e) {
-        setFormData({
-            ...formData,
+        dispatch(updateCredentials({
+            ...credentials,
             [e.target.name]: e.target.value
-        });
-    }
+        }));
+    };
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            await register(formData).then(async(res)=>{
-                const loginInfo = {username: formData.username, password: formData.password}
-                await login(loginInfo).then((finalRes)=>{
-                    setUserToken(finalRes.token);
-                    setUser(finalRes.user);
-                    setFormData(initState);
+            await register({credentials}).then(async(registerRes)=>{
+                await login({
+                    username: credentials.username,
+                    password: credentials.password
+                }).then((loginRes)=>{
+                    setUserToken(loginRes.token);
+                    setUser(loginRes.user);
+                    dispatch(updateCredentials({
+                        username: '',
+                        password: '',
+                        reEnterPassword: ''
+                    }));
                     navigate('/feed');
                 })
             });
 
         } catch (err) {
             console.log(err);
-            setFormData(initState);
+            dispatch(updateCredentials({
+                username: '',
+                password: '',
+                reEnterPassword: ''
+            }));
         }
     }
 
     return (
         <div className='Register'>
             <form onSubmit={handleSubmit}>
-                <input type='text' placeholder='Username' name='username' autoComplete='username' onChange={handleChange}></input>
-                <input type='password' placeholder='Password' name='password' autoComplete='password' onChange={handleChange}></input>
-                <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' onChange={handleChange}></input>
+                <input type='text' placeholder='Username' name='username' autoComplete='username' value={credentials.username} onChange={handleChange}></input>
+                <input type='password' placeholder='Password' name='password' autoComplete='password' value={credentials.password} onChange={handleChange}></input>
+                <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' value={credentials.reEnterPassword} onChange={handleChange}></input>
                 <button type='submit'>Register</button>
                 <button onClick={toggle}>Login</button>
             </form>

@@ -7,6 +7,11 @@
     animation: left-to-right 360s linear infinite;
 }
 
+.Carousel img{
+    width: 100% !important;
+    height: 100% !important;
+}
+
 @media screen and (min-width: 1050px) {
     .Carousel {
         max-height: 100vh;

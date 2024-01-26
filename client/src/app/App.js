@@ -6,6 +6,7 @@ import Main from '../components/Main/Main';
 import Auth from '../pages/Auth/Auth';
 import Feed from '../pages/Feed/Feed';
 import Show from '../pages/Show/Show';
+import New from '../pages/New/New';
 import Review from '../pages/Review/Review';
 import Profile from '../pages/Profile/Profile';
 import SearchResults from '../pages/SearchResults/SearchResults';
@@ -19,6 +20,7 @@ export default function App() {
         <Route path='/auth' element={<Auth />} />
         <Route path='/feed' element={<Main page={<Feed />} />} />
         <Route path='/reviews/:id' element={<Main page={<Review />} />} />
+        <Route path='/new' element={<Main page={<New />} />} />
         <Route path='/shows/:id' element={<Main page={<Show />} />} />
         <Route path='/profile' element={<Main page={<Profile />} />} />
         <Route path='/results/:id' element={<Main page={<SearchResults />} />} />

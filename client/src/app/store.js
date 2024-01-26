@@ -5,6 +5,7 @@ import reviewReducer from '../features/reviewSlice';
 import showReducer from '../features/showSlice';
 import searchReducer from '../features/searchSlice';
 import profileReducer from '../features/profileSlice';
+import authSlice from '../features/authSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     review: reviewReducer,
     show: showReducer,
     search: searchReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    auth: authSlice
   },
 });

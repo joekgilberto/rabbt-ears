@@ -1,4 +1,3 @@
-//Imports createAsyncThunk and createSlice from Redux's toolkit, and hurricaneServices from hurricane-service for API calls
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as reviewServices from '../utilities/reviews/reviews-service';
 

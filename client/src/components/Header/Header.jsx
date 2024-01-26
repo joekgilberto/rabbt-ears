@@ -2,7 +2,7 @@ import './Header.css';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { getUserToken } from '../../utilities/local-storage';
+import { getUserToken, getUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
 import SearchBar from '../SearchBar/SearchBar';
@@ -11,9 +11,11 @@ export default function Header() {
 
     const navigate = useNavigate();
     const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         setToken(getUserToken());
+        setUser(getUser())
     }, [token])
 
     function handleRandom() {
@@ -28,22 +30,22 @@ export default function Header() {
                 <h1>Rabbt Ears</h1>
             </Link>
             <nav>
-                <Link to='/'>
-                    <p>HOME</p>
-                </Link>
                 <Link to='/feed'>
                     <p>FEED</p>
+                </Link>
+                <Link to='/new'>
+                    <p>REVIEW</p>
                 </Link>
                 <p onClick={handleRandom}>RANDOM</p>
             </nav>
             <SearchBar />
             {token ?
                 <Link to='/profile'>
-                    <p className='auth'>PROFILE</p>
+                    <p className='header-profile'>{user.username[0].toUpperCase()}</p>
                 </Link>
                 :
                 <Link to='/auth'>
-                    <p className='auth'>LOGIN</p>
+                    <p className='header-auth'>LOGIN</p>
                 </Link>
             }
         </div>
