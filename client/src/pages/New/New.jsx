@@ -2,9 +2,11 @@ import './New.css';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { getUserToken } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadShow, selectNewReview, selectShow, updateNewReview } from '../../features/newReviewSlice';
+import * as reviewsServices from '../../utilities/reviews/reviews-service';
 
 import Loading from '../../components/Loading/Loading';
 import Tag from '../../components/Tag/Tag';
@@ -12,6 +14,7 @@ import Tag from '../../components/Tag/Tag';
 export default function New() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
     const [token, setToken] = useState(null);
     const [toggle, setToggle] = useState(false)
     const [bttn, setBttn] = useState('+')
@@ -31,7 +34,7 @@ export default function New() {
         'Dribble',
         'Exciting',
         'Family Fav',
-        'Fantastic',
+        'Fantastical',
         'Fascinating',
         'Formulaic',
         'Girl Power!',
@@ -142,21 +145,40 @@ export default function New() {
         }));
     }
 
-    function handleSubmit(e) {
-        console.log('hit')
+    async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(updateNewReview({
-            rating: 0,
-            review: '',
-            title: '',
-            poster: '',
-            showId: 0,
-            fav: false,
-            tags: [],
-            username: '',
-            user: ''
-        }));
-        dispatch(loadShow(id));
+        const showId = review.showId;
+        try {
+            await reviewsServices.createReview(review).then((res) => {
+                dispatch(updateNewReview({
+                    rating: 0,
+                    review: '',
+                    title: '',
+                    poster: '',
+                    showId: 0,
+                    fav: false,
+                    tags: [],
+                    username: '',
+                    user: ''
+                }));
+                dispatch(loadShow(id));
+                navigate(`/shows/${showId}`)
+            })
+        } catch (err) {
+            console.log(err);
+            dispatch(updateNewReview({
+                rating: 0,
+                review: '',
+                title: '',
+                poster: '',
+                showId: 0,
+                fav: false,
+                tags: [],
+                username: '',
+                user: ''
+            }));
+            dispatch(loadShow(id));
+        }
     }
 
     useEffect(() => {
@@ -221,7 +243,7 @@ export default function New() {
                     </form>
                     <div className='new-chosen-tags'>
                         {review.tags.map((tag, idx) => {
-                            return  <Tag key={idx} symbol={'-'} tag={tag} handleClick={handleUntag} />
+                            return <Tag key={idx} symbol={'-'} tag={tag} handleClick={handleUntag} />
                         })}
                     </div>
                 </>

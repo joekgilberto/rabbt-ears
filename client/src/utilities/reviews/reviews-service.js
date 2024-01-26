@@ -4,6 +4,7 @@ import { getUserToken } from '../local-storage';
 export async function getAllReviews() {
     try {
         const res = await reviewsApi.index();
+        res.reverse();
         return res;
     } catch (err) {
         return err;

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_REVIEWS_API_URL;
 
@@ -42,9 +42,10 @@ export async function users(id) {
 export async function create(data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
+    console.log(config)
     return axios
         .post(BASE_URL,data,config)
         .then((res) => {
@@ -57,7 +58,7 @@ export async function create(data) {
 export async function update(id,data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
@@ -72,7 +73,7 @@ export async function update(id,data) {
 export async function destroy(id) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
