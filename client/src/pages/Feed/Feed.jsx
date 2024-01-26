@@ -20,6 +20,10 @@ export default function Feed() {
         dispatch(loadFeed());
     }, [dispatch]);
 
+    useEffect(()=>{
+        console.log(shows)
+    },[shows])
+
     if (loading) {
         return <Loading />
     }
@@ -28,7 +32,7 @@ export default function Feed() {
         <div className='Feed'>
             <h2>Reviews</h2>
             <div className='feed-list'>
-                {reviews ? reviews.map((review, id) => {
+                {reviews?.length? reviews.map((review, id) => {
                     return (
                         <Link key={id} to={`/reviews/${review._id}`}>
                             <Poster source={review.poster} altText={review.title} desc={`${review.rating} | ${review.username}`} />
@@ -39,7 +43,7 @@ export default function Feed() {
 
             <h2>Shows</h2>
             <div className='feed-list'>
-                {shows ? shows.map((show, id) => {
+                {shows?.length? shows.map((show, id) => {
                     return (
                         <Link key={id} to={`/shows/${show.id}`}>
                             <Poster source={show.image.original} altText={show.name} desc={show.name} />

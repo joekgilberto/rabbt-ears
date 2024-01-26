@@ -1,6 +1,7 @@
 import './Show.css';
 
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadShow, selectShow, selectReviews } from '../../features/showSlice';
@@ -38,7 +39,10 @@ export default function Show() {
                     <h2>{show.name} {!show.ended ? `(${show.premiered.substring(0, 4)} - Present)` : show.premiered.substring(0, 4) === show.ended.substring(0, 4) ? `(${show.premiered.substring(0, 4)})` : `(${show.premiered.substring(0, 4)} - ${show.ended.substring(0, 4)})`}</h2>
                     <p>{tools.noTags(show.summary)}</p>
                     <div className='show reviews'>
-                    {reviews?.map((review, idx) => {
+                        <Link to={`/new/${show.id}`}>
+                            <p>+</p>
+                        </Link>
+                        {reviews?.map((review, idx) => {
                             return <p key={idx}>{review.rating} by {review.username}</p>
                         })}
                     </div>
@@ -47,8 +51,8 @@ export default function Show() {
                         {show.genres.map((genre, idx) => {
                             return <p key={idx}>{genre}</p>
                         })}
-                        <p>{show.network?show.network?.name:show.webChannel?.name}</p>
-                        {show.officialSite?<a href={show.officialSite} target='_blank'>Website</a>:null}
+                        <p>{show.network ? show.network?.name : show.webChannel?.name}</p>
+                        {show.officialSite ? <a href={show.officialSite} target='_blank'>Website</a> : null}
                     </div>
                 </>
                 :

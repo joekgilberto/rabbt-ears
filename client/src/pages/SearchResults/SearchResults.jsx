@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addResults, selectResults } from '../../features/searchSlice';
-import * as tvmazeServices from '../../utilities/tvmaze/tvmaze-service'
+import { isLoading, hasError, loadResults, selectResults } from '../../features/searchSlice';
 
 import Loading from '../../components/Loading/Loading';
 
@@ -13,24 +12,22 @@ export default function SearchResults() {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const loading = useSelector(isLoading);
+    const error = useSelector(hasError);
     const results = useSelector(selectResults);
 
-    async function handleRequest() {
-        const queries = id.split(',');
-        console.log(queries)
-        await tvmazeServices.getShowList(queries).then((data) => {
-            dispatch(addResults(data));
-            console.log(data)
-        });
+    useEffect(() => {
+        dispatch(loadResults(id));
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(loadResults(id));
+    }, [id]);
+
+
+    if (loading) {
+        return <Loading />
     }
-
-    useEffect(() => {
-        handleRequest()
-    }, [])
-
-    useEffect(() => {
-        handleRequest()
-    }, [id])
 
     return (
 

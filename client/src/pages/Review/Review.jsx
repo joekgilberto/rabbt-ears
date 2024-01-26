@@ -33,7 +33,9 @@ export default function Review() {
                     </Link>
                     <h2>{review.username}'s {review.title} review | {review.rating}{review.fav ? ' ★' : null}</h2>
                     <p>{review.review}</p>
-
+                    <Link to={`/new/${review.showId}`}>
+                        <p>+ Write your own</p>
+                    </Link>
                     {review.tags.map((tag, idx) => {
                         return <p key={idx}>{tag}</p>
                     })}
