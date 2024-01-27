@@ -32,15 +32,11 @@
 }
 
 .dot.one {
-    animation: expand 2s linear infinite;
+    animation: expand 1s linear infinite;
 }
 
 .dot.two {
-    animation: expand 2s .5s linear infinite;
-}
-
-.dot.three {
-    animation: expand 2s 1s linear infinite;
+    animation: expand 1s .5s linear infinite;
 }
 
 @keyframes expand {

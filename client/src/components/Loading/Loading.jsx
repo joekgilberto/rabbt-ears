@@ -7,7 +7,6 @@ export default function Loading() {
             <div className='dots'>
                 <div className='dot one'></div>
                 <div className='dot two'></div>
-                <div className='dot three'></div>
             </div>
         </div>
     );
