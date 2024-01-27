@@ -20,10 +20,6 @@ export default function Feed() {
         dispatch(loadFeed());
     }, [dispatch]);
 
-    useEffect(()=>{
-        console.log(shows)
-    },[shows])
-
     if (loading) {
         return <Loading />
     }

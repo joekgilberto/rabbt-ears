@@ -1,16 +1,17 @@
-import './New.css';
+import './Edit.css';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 import { getUserToken } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoading, hasError, loadShow, selectNewReview, selectShow, updateNewReview } from '../../features/newReviewSlice';
+import { isLoading, hasError, loadReview, selectEditReview, updateEditReview } from '../../features/editReviewSlice';
 import * as reviewsServices from '../../utilities/reviews/reviews-service';
 
 import Loading from '../../components/Loading/Loading';
 
-export default function New() {
+export default function Edit() {
+
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -72,17 +73,16 @@ export default function New() {
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
-    const review = useSelector(selectNewReview);
-    const show = useSelector(selectShow);
+    const review = useSelector(selectEditReview);
 
     function handleChange(e) {
         if (e.target.name === 'fav') {
-            dispatch(updateNewReview({
+            dispatch(updateEditReview({
                 ...review,
                 [e.target.name]: !review.fav
             }));
         } else {
-            dispatch(updateNewReview({
+            dispatch(updateEditReview({
                 ...review,
                 [e.target.name]: e.target.value
             }));
@@ -103,10 +103,20 @@ export default function New() {
         e.preventDefault();
         const addedTags = [...review.tags, e.target.value];
         addedTags.sort();
-        dispatch(updateNewReview({
+        dispatch(updateEditReview({
             ...review,
             tags: addedTags
         }));
+
+        const lessenedTags = [...tags];
+        const idx = lessenedTags.indexOf(e.target.value);
+
+        if (idx > -1) {
+            lessenedTags.splice(idx, 1);
+        }
+
+        lessenedTags.sort();
+        setTags(lessenedTags);
     }
 
     function handleUntag(e) {
@@ -124,7 +134,7 @@ export default function New() {
 
         lessenedTags.sort();
 
-        dispatch(updateNewReview({
+        dispatch(updateEditReview({
             ...review,
             tags: lessenedTags
         }));
@@ -132,10 +142,9 @@ export default function New() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const showId = review.showId;
         try {
-            await reviewsServices.createReview(review).then((res) => {
-                dispatch(updateNewReview({
+            await reviewsServices.updateReview(review._id,review).then((res) => {
+                dispatch(updateEditReview({
                     rating: 0,
                     review: '',
                     title: '',
@@ -146,12 +155,12 @@ export default function New() {
                     username: '',
                     user: ''
                 }));
-                dispatch(loadShow(id));
-                navigate(`/shows/${showId}`)
+                dispatch(loadReview(id));
+                navigate(`/reviews/${id}`)
             })
         } catch (err) {
             console.log(err);
-            dispatch(updateNewReview({
+            dispatch(updateEditReview({
                 rating: 0,
                 review: '',
                 title: '',
@@ -162,7 +171,7 @@ export default function New() {
                 username: '',
                 user: ''
             }));
-            dispatch(loadShow(id));
+            dispatch(loadReview(id));
         }
     }
 
@@ -171,24 +180,16 @@ export default function New() {
     }, [])
 
     useEffect(() => {
-        dispatch(loadShow(id));
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(loadShow(id));
-    }, [id]);
-
-    useEffect(() => {
         if (review.tags?.length) {
             for (let tag of review.tags) {
-                if (tags.includes(tag)) {
+                if(tags.includes(tag)){
                     const lessenedTags = [...tags];
                     const idx = lessenedTags.indexOf(tag);
-
+    
                     if (idx > -1) {
                         lessenedTags.splice(idx, 1);
                     }
-
+    
                     lessenedTags.sort();
                     setTags(lessenedTags);
                 }
@@ -196,52 +197,60 @@ export default function New() {
         }
     }, [review.tags])
 
+    useEffect(() => {
+        dispatch(loadReview(id));
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(loadReview(id));
+    }, [id]);
+
     if (loading) {
         return <Loading />
     }
 
     return (
-        <div className='New'>
-            {token && show.id ?
+        <div className='Edit'>
+            {token && review._id ?
                 <>
                     <form onSubmit={handleSubmit}>
-                        <h2>New {show.name} Review</h2>
+                        <h2>New {review.title} Review</h2>
                         <label>Rating
                             <select name='rating' onChange={handleChange}>
-                                <option>0.0</option>
-                                <option>0.5</option>
-                                <option>1.0</option>
-                                <option>1.5</option>
-                                <option>2.0</option>
-                                <option>2.5</option>
-                                <option>3.0</option>
-                                <option>3.5</option>
-                                <option>4.0</option>
-                                <option>4.5</option>
-                                <option>5.0</option>
+                                <option selected={review.rating===0}>0.0</option>
+                                <option selected={review.rating===.5}>0.5</option>
+                                <option selected={review.rating===1}>1.0</option>
+                                <option selected={review.rating===1.5}>1.5</option>
+                                <option selected={review.rating===2}>2.0</option>
+                                <option selected={review.rating===2.5}>2.5</option>
+                                <option selected={review.rating===3}>3.0</option>
+                                <option selected={review.rating===3.5}>3.5</option>
+                                <option selected={review.rating===4}>4.0</option>
+                                <option selected={review.rating===4.5}>4.5</option>
+                                <option selected={review.rating===5}>5.0</option>
                             </select>
                         </label>
                         <label>Favorite
-                            <input type='checkbox' name='fav' onChange={handleChange} />
+                            <input type='checkbox' name='fav' onChange={handleChange} defaultChecked={review.fav} />
                         </label>
                         <label>Tags
                             <button onClick={handleClick}>{bttn}</button>
                             {toggle ?
-                                <div className='new-potential-tags'>
+                                <div className='edit-potential-tags'>
                                     {tags.map((tag, idx) => {
-                                        return <button key={idx} className='new-tag' value={tag} onClick={handleTag}>+ {tag}</button>
+                                        return <button key={idx} className='edit-tag' value={tag} onClick={handleTag}>+ {tag}</button>
                                     })}
                                 </div>
                                 : null}
                         </label>
                         <label>Thoughts
-                            <textarea name='review' onChange={handleChange} />
+                            <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>
                         <button type='submit'>Post</button>
                     </form>
-                    <div className='new-chosen-tags'>
+                    <div className='edit-chosen-tags'>
                         {review.tags.map((tag, idx) => {
-                            return <button key={idx} className='new-tag' value={tag} onClick={handleUntag}>- {tag}</button>
+                            return <button key={idx} className='edit-tag' value={tag} onClick={handleUntag}>- {tag}</button>
                         })}
                     </div>
                 </>

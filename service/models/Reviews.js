@@ -21,7 +21,7 @@ const ReviewSchema = new Schema({
         default: []
     },
     username: { type: String, required: true },
-    user: {
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true

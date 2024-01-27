@@ -1,4 +1,5 @@
-main{
-    height: calc(100% - 100px);
-    width: 100%;
-  }
+main {
+  height: calc(100% - 100px);
+  width: 100%;
+  overflow-y: scroll;
+}

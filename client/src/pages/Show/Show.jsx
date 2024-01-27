@@ -35,7 +35,7 @@ export default function Show() {
         <div className='Show'>
             {show.id ?
                 <>
-                    <img src={show.image.original} alt={show.name} />
+                    <img src={show.image?.original} alt={show.name} />
                     <h2>{show.name} {!show.ended ? `(${show.premiered.substring(0, 4)} - Present)` : show.premiered.substring(0, 4) === show.ended.substring(0, 4) ? `(${show.premiered.substring(0, 4)})` : `(${show.premiered.substring(0, 4)} - ${show.ended.substring(0, 4)})`}</h2>
                     <p>{tools.noTags(show.summary)}</p>
                     <div className='show reviews'>
@@ -43,7 +43,11 @@ export default function Show() {
                             <p>+</p>
                         </Link>
                         {reviews?.map((review, idx) => {
-                            return <p key={idx}>{review.rating} by {review.username}</p>
+                            return (
+                                <Link key={idx} to={`/reviews/${review._id}`}>
+                                    <p>{review.rating} by {review.username}</p>
+                                </Link>
+                            )
                         })}
                     </div>
                     <div className='show-tags'>

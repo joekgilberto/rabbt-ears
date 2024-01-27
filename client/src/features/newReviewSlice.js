@@ -2,6 +2,17 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import * as tvmazeServices from '../utilities/tvmaze/tvmaze-service';
 import { getUser } from '../utilities/local-storage';
 
+const initReview = {
+    rating: 0,
+    review: '',
+    title: '',
+    poster: '',
+    showId: 0,
+    fav: false,
+    tags: [],
+    username: '',
+}
+
 export const loadShow = createAsyncThunk(
     'newReview/loadShow',
     async (id) => {
@@ -18,31 +29,13 @@ const newReviewSlice = createSlice({
     name: 'newReview',
     initialState: {
         show: {},
-        newReview: {
-            rating: 0,
-            review: '',
-            title: '',
-            poster: '',
-            showId: 0,
-            fav: false,
-            tags: [],
-            username: '',
-            user: ''
-        },
+        newReview: initReview,
         isLoadingShow: false,
         hasShowError: false
     },
     reducers: {
         updateNewReview(state, action) {
-            state.newReview.rating = action.payload.rating;
-            state.newReview.review = action.payload.review;
-            state.newReview.title = action.payload.title;
-            state.newReview.poster = action.payload.poster;
-            state.newReview.showId = action.payload.showId;
-            state.newReview.fav = action.payload.fav;
-            state.newReview.tags = action.payload.tags;
-            state.newReview.username = action.payload.username;
-            state.newReview.user = action.payload.user;
+            state.newReview = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -58,17 +51,12 @@ const newReviewSlice = createSlice({
                 state.newReview.poster = action.payload.show.image.original;
                 state.newReview.showId = action.payload.show.id;
                 state.newReview.username = action.payload.user.username;
-                state.newReview.user = action.payload.user._id;
             })
             .addCase(loadShow.rejected, (state) => {
                 state.isLoadingShow = false;
                 state.hasShowError = true;
                 state.show = {};
-                state.newReview.title = '';
-                state.newReview.poster = '';
-                state.newReview.showId = 0;
-                state.newReview.username = '';
-                state.newReview.user = '';
+                state.newReview = initReview;
             })
     },
 })
@@ -79,8 +67,8 @@ export const selectShow = (state) => state.newReview.show;
 
 export const { updateNewReview } = newReviewSlice.actions
 
-export const isLoading = (state) => state.search.isLoadingShow;
+export const isLoading = (state) => state.newReview.isLoadingShow;
 
-export const hasError = (state) => state.search.hasShowError;
+export const hasError = (state) => state.newReview.hasShowError;
 
 export default newReviewSlice.reducer;

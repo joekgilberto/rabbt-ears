@@ -30,9 +30,6 @@ export default function Header() {
                 <h1>Rabbt Ears</h1>
             </Link>
             <nav>
-                <Link to='/'>
-                    <p>HOME</p>
-                </Link>
                 <Link to='/feed'>
                     <p>FEED</p>
                 </Link>

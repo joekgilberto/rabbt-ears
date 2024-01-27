@@ -45,7 +45,6 @@ export async function create(data) {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
-    console.log(config)
     return axios
         .post(BASE_URL,data,config)
         .then((res) => {

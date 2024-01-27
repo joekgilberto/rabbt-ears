@@ -3,19 +3,21 @@ import { configureStore } from '@reduxjs/toolkit';
 import feedReducer from '../features/feedSlice';
 import reviewReducer from '../features/reviewSlice';
 import newReviewReducer from '../features/newReviewSlice';
+import editReviewReducer from '../features/editReviewSlice';
 import showReducer from '../features/showSlice';
 import searchReducer from '../features/searchSlice';
+import authReducer from '../features/authSlice';
 import profileReducer from '../features/profileSlice';
-import authSlice from '../features/authSlice';
 
 export const store = configureStore({
   reducer: {
     feed: feedReducer,
     review: reviewReducer,
     newReview: newReviewReducer,
+    editReview: editReviewReducer,
     show: showReducer,
     search: searchReducer,
-    profile: profileReducer,
-    auth: authSlice
+    auth: authReducer,
+    profile: profileReducer
   },
 });

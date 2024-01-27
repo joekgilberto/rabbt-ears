@@ -43,7 +43,7 @@ async function createUserToken(req, user){
 };
 
 function handleValidateOwnership(req, document){
-    const ownerId = document.owner._id || document.owner;
+    const ownerId = document.owner;
     
     if (!req.user._id.equals(ownerId)) {
       throw Error('Unauthorized Access');
