@@ -18,3 +18,32 @@ a {
 .italic {
   font-style: italic;
 }
+
+.zero{
+  background-color: #b0c2cbff;
+}
+
+.point-five{
+  background-color: #ff4d4dff;
+}
+
+.one{
+  background-color: #ff9900ff;
+}
+
+.two{
+  background-color: #ffdf00ff;
+}
+
+
+.three{
+  background-color: #6fc3ffff;
+}
+
+.four{
+  background-color: #51d542ff;
+}
+
+.five{
+  background-color: #ffa5ffff;
+}

@@ -1,4 +1,7 @@
-# Getting Started with Create React App and Redux
+# LINKS
+https://commons.wikimedia.org/wiki/File:Pencil_-_The_Noun_Project.svg
+https://commons.wikimedia.org/wiki/File:Trash_(89060)_-_The_Noun_Project.svg
+https://commons.wikimedia.org/wiki/File:Star-front-premium.png
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 

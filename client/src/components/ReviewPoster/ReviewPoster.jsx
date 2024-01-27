@@ -1,20 +1,30 @@
 import './ReviewPoster.css';
 
-export default function ReviewPoster({ source, altText, rating, user }) {
+export default function ReviewPoster({ source, altText, rating, fav, user }) {
     return (
         <div className='ReviewPoster'>
-            <img src={source} alt={altText} />
+            <div className='poster-div'>
+                <img className='poster' src={source} alt={altText} />
+
+                {fav ?
+                    <img className={`fav${rating === 0 ? ' zero'
+                    : rating === .5 ? ' point-five'
+                        : rating === 1 || rating === 1.5 ? ' one'
+                            : rating === 2 || rating === 2.5 ? ' two'
+                                : rating === 3 || rating === 3.5 ? ' three'
+                                    : rating === 4 || rating === 4.5 ? ' four'
+                                        : ' five'}`} src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
+                    :
+                    null}
+            </div>
             <div className='text'>
-                <p className='rating' style={
-                    rating === 0 ? { backgroundColor: '#b0c2cbff' }
-                        : rating > 0 && rating < 1 ? { backgroundColor: '#ff4d4dff' }
-                            : rating >= 1 && rating < 2 ? { backgroundColor: '#ff9900ff' }
-                                : rating >= 2 && rating < 3 ? { backgroundColor: '#ffdf00ff' }
-                                    : rating >= 3 && rating < 4 ? { backgroundColor: '#6fc3ffff' }
-                                        : rating >= 4 && rating < 5 ? { backgroundColor: '#51d542ff' }
-                                            : rating === 5 ? { backgroundColor: '#ffa5ffff' }
-                                                : { color: '#000', backgroundColor: '#fff' }
-                }>{rating.toString().length < 3 ? `${rating}.0` : rating}</p>
+                <p className={`rating${rating === 0 ? ' zero'
+                    : rating === .5 ? ' point-five'
+                        : rating === 1 || rating === 1.5 ? ' one'
+                            : rating === 2 || rating === 2.5 ? ' two'
+                                : rating === 3 || rating === 3.5 ? ' three'
+                                    : rating === 4 || rating === 4.5 ? ' four'
+                                        : ' five'}`}>{rating.toString().length < 3 ? `${rating}.0` : rating}</p>
                 <p className='user'>{user}</p>
             </div>
         </div >

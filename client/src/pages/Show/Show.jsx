@@ -36,7 +36,6 @@ export default function Show() {
             {show.id ?
                 <>
                     <img src={show.image? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
-                        console.log('hit')
                         currentTarget.onerror = null;
                         currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                     }} />

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadReview, selectReview } from '../../features/reviewSlice';
 import { getUser } from '../../utilities/local-storage';
+import * as tools from '../../utilities/tools';
 
 import Loading from '../../components/Loading/Loading';
 import Delete from '../../components/Delete/Delete';
@@ -52,23 +53,45 @@ export default function Review() {
                     <Delete user={user} review={review} setDestroy={setDestroy} />
                     :
                     <>
-                        <Link to={`/shows/${review.showId}`}>
+                        <Link className='review-poster' to={`/shows/${review.showId}`}>
+                            {[...tools.enter(review.title)].map((title, idx) => {
+                                return <h2 key='idx' className='review-show'>{title}</h2>
+                            })}
                             <img src={review.poster} alt={review.title} />
                         </Link>
-                        <h2>{review.username}'s {review.title} review | {review.rating}{review.fav ? ' ★' : null}</h2>
-                        {user?._id === review.owner ?
-                            <>
-                                <button onClick={handleEdit}>Edit</button>
-                                <button onClick={handleDelete}>Delete</button>
-                            </>
-                            : null}
-                        <p>{review.review}</p>
-                        <Link to={`/new/${review.showId}`}>
-                            <p>+ Write your own</p>
-                        </Link>
-                        {review.tags.map((tag, idx) => {
-                            return <p key={idx}>{tag}</p>
-                        })}
+                        <div className='review-body'>
+                            <div className='review-header'>
+                                <h1 className='review-title'>{review.username}'s review</h1>
+                                <h1 className={`review-rating${review.rating === 0 ? ' zero'
+                                    : review.rating === .5 ? ' point-five'
+                                        : review.rating === 1 || review.rating === 1.5 ? ' one'
+                                            : review.rating === 2 || review.rating === 2.5 ? ' two'
+                                                : review.rating === 3 || review.rating === 3.5 ? ' three'
+                                                    : review.rating === 4 || review.rating === 4.5 ? ' four'
+                                                        : ' five'}`}>
+                                    {review.rating}
+                                    {review.fav ?
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
+                                        : null}
+                                </h1>
+                            </div>
+                            <p className='review-thoughts'>{review.review}</p>
+                            <div className='review-tags'>
+                                {review.tags.map((tag, idx) => {
+                                    return <p key={idx}>{tag}</p>
+                                })}
+                            </div>
+                            {user?._id === review.owner ?
+                                <div className='review-buttons'>
+                                    <button className='review-edit' onClick={handleEdit}>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Pencil_-_The_Noun_Project.svg/640px-Pencil_-_The_Noun_Project.svg.png' alt='edit pencil' />
+                                    </button>
+                                    <button className='review-delete' onClick={handleDelete}>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trash_%2889060%29_-_The_Noun_Project.svg/1024px-Trash_%2889060%29_-_The_Noun_Project.svg.png?20180419152003' alt='edit pencil' />
+                                    </button>
+                                </div>
+                                : null}
+                        </div>
                     </>
 
                 :

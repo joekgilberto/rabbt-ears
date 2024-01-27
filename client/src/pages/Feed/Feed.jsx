@@ -39,7 +39,7 @@ export default function Feed() {
                 {reviews?.length? reviews.map((review, id) => {
                     return (
                         <Link key={id} to={`/reviews/${review._id}`}>
-                            <ReviewPoster source={review.poster} altText={review.title} rating={review.rating} user={review.username} />
+                            <ReviewPoster source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} user={review.username} />
                         </Link>
                     )
                 }) : null}

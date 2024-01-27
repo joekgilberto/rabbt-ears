@@ -1,3 +1,134 @@
-.Review img {
+.Review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.Review .review-poster{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Review .review-show{
     width: 300px;
+    margin: 0;
+    color: #fff;
+    font-style: italic;
+    text-align: center;
+    text-shadow: 0 2px 2px #00000060;
+}
+
+
+.Review .review-poster img {
+    width: 300px;
+    height: 450px;
+    margin-top: 10px;
+    object-fit: cover;
+    box-shadow: 0 3px 3px #00000060;
+}
+
+.Review .review-header{
+    width: 100%;
+    display: flex;
+    box-shadow: 0 3px 3px #00000060;
+}
+
+.Review .review-header h1{
+    margin: 0;
+}
+
+.Review .review-title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 400;
+    background-color: #000;
+}
+
+.Review .review-show{
+    font-weight: 800;
+}
+
+.Review .review-rating{
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-left: 5px;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 600;
+    text-shadow: 0 2px 2px #00000060;
+}
+
+.Review .review-rating img{
+    height: 40px;
+}
+
+.Review .review-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.Review .review-buttons button{
+    width: 60px;
+    height: 60px;
+    margin: 5px 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px #00000060;
+    border: none;
+    border-radius: 50%;
+}
+
+.Review .review-edit img{
+    height: 30px;
+}
+
+.Review .review-delete img{
+    height: 40px;
+}
+
+.Review .review-delete{
+    color: red;
+}
+
+.Review .review-thoughts{
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-shadow: 0px 2px 2px #00000060;
+    text-align: center;
+}
+
+.Review .review-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+
+.Review .review-tags p {
+    margin: 10px 20px;
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px #00000060;
+    border-radius: 20px;
 }

@@ -28,3 +28,14 @@ export function noTags(string){
 
     return spaceFilter;
 }
+
+export function enter(title){
+    if (title.includes(': ')){
+        let titleArr = title.split(': ');
+        titleArr[0] += ':'
+        console.log(titleArr);
+        return titleArr;
+    } else {
+        return [title];
+    }
+}
