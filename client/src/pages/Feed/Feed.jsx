@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadFeed, selectReviews, selectShows } from '../../features/feedSlice';
 
 import Loading from '../../components/Loading/Loading';
-import Poster from '../../components/Poster/Poster';
+import ReviewPoster from '../../components/ReviewPoster/ReviewPoster';
+import ShowPoster from '../../components/ShowPoster/ShowPoster';
 
 export default function Feed() {
 
@@ -26,23 +27,23 @@ export default function Feed() {
 
     return (
         <div className='Feed'>
-            <h2>Reviews</h2>
+            <h2>REVIEWS</h2>
             <div className='feed-list'>
                 {reviews?.length? reviews.map((review, id) => {
                     return (
                         <Link key={id} to={`/reviews/${review._id}`}>
-                            <Poster source={review.poster} altText={review.title} desc={`${review.rating} | ${review.username}`} />
+                            <ReviewPoster source={review.poster} altText={review.title} rating={review.rating} user={review.username} />
                         </Link>
                     )
                 }) : null}
             </div>
 
-            <h2>Shows</h2>
+            <h2>SHOWS</h2>
             <div className='feed-list'>
                 {shows?.length? shows.map((show, id) => {
                     return (
                         <Link key={id} to={`/shows/${show.id}`}>
-                            <Poster source={show.image.original} altText={show.name} desc={show.name} />
+                            <ShowPoster source={show.image.original} altText={show.name} title={show.name} />
                         </Link>
                     )
                 }) : null}

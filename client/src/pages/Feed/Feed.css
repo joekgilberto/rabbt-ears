@@ -1,5 +1,25 @@
+.Feed{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    gap: 15px;
+}
+
+.Feed h2{
+    width: 200px;
+    margin: 20px 20px 0 20px;
+    padding: 5px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #000;
+    box-shadow: 0 2px 2px #00000060;
+}
+
 .Feed .feed-list{
     display: flex;
+    padding: 0 20px;
     gap: 20px;
     overflow-x: scroll;
 }

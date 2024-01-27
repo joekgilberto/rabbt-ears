@@ -1,0 +1,32 @@
+.ReviewPoster img{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 2px 2px #00000060;
+}
+
+.ReviewPoster .text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.ReviewPoster .rating{
+    margin: 5px 0;
+    padding: 0 10px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 2px #00000060;
+    border-radius: 15px;
+}
+
+.ReviewPoster .user{
+    margin: 5px 0;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 2px #00000060;
+}
