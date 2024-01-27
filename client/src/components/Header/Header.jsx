@@ -10,6 +10,7 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Header() {
 
     const navigate = useNavigate();
+    const [toggle, setToggle] = useState(false)
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(null)
 
@@ -23,28 +24,40 @@ export default function Header() {
         navigate(`/shows/${randomId}`);
     }
 
+    function handleSearch() {
+        setToggle(!toggle)
+    }
+
     return (
         <div className='Header'>
-            {/* Add img tag for logo */}
-            <Link to='/'>
-                <h1>Rabbt Ears</h1>
-            </Link>
             <nav>
-                <Link to='/feed'>
-                    <p>FEED</p>
+                <Link to='/'>
+                    <img src='https://i.imgur.com/fUPednw.png' alt='Rabbt Ears logo' />
                 </Link>
-                <p onClick={handleRandom}>RANDOM</p>
+                {toggle ?
+                    <div className='pop-search'>
+                        <p onClick={handleSearch}>X</p>
+                        <SearchBar />
+                    </div>
+                    :
+                    <>
+                        <Link className='feed' to='/feed'>
+                            <p>FEED</p>
+                        </Link>
+                        <p className='random' onClick={handleRandom}>RANDOM</p>
+                        <p className='search' onClick={handleSearch}>SEARCH</p>
+                        {token ?
+                            <Link to='/profile'>
+                                <p className='header-profile'>{user.username[0].toUpperCase()}</p>
+                            </Link>
+                            :
+                            <Link to='/auth'>
+                                <p className='header-auth'>LOGIN</p>
+                            </Link>
+                        }
+                    </>
+                }
             </nav>
-            <SearchBar />
-            {token ?
-                <Link to='/profile'>
-                    <p className='header-profile'>{user.username[0].toUpperCase()}</p>
-                </Link>
-                :
-                <Link to='/auth'>
-                    <p className='header-auth'>LOGIN</p>
-                </Link>
-            }
-        </div>
+        </div >
     );
 };

@@ -1,8 +1,25 @@
 .SearchBar{
     width: 100%;
+    height: 30px;
     display: flex;
+    gap: 15px;
 }
 
 .SearchBar input{
     width: 100%;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #fff;
+    background-color: transparent;
+}
+
+.SearchBar input::placeholder {
+    color: #fff;
+  }
+
+.SearchBar button{
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+    background-color: #fff;
 }

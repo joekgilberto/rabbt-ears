@@ -35,7 +35,6 @@ export default function SearchResults() {
             <h2>Search Results</h2>
             {results?.length?
                 results.map((result, idx) => {
-                    console.log(result)
                     return (
                         <Link key={idx} to={`/shows/${result?.id}`}>
                             <p>{result?.name}</p>
