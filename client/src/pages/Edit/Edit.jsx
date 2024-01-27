@@ -246,7 +246,7 @@ export default function Edit() {
                         <label>Thoughts
                             <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>
-                        <button type='submit'>Post</button>
+                        <button type='submit'>Save</button>
                     </form>
                     <div className='edit-chosen-tags'>
                         {review.tags.map((tag, idx) => {

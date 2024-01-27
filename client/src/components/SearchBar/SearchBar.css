@@ -8,9 +8,10 @@
 .SearchBar input{
     width: 100%;
     color: #fff;
+    font-size: 18px;
+    background-color: transparent;
     border: none;
     border-bottom: 2px solid #fff;
-    background-color: transparent;
 }
 
 .SearchBar input::placeholder {

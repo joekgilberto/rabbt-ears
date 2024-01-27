@@ -1,0 +1,61 @@
+.Loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Loading h1 {
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 0 2px 2px #00000060;
+    text-align: center;
+    animation: translucent 2s linear infinite;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.dot {
+    width: 25px;
+    height: 25px;
+    box-shadow: 0 2px 2px #00000060;
+    background-color: #ffffff70;
+    border-radius: 50%;
+    animation: expand 2s linear infinite;
+}
+
+.dot.one {
+    animation: expand 2s linear infinite;
+}
+
+.dot.two {
+    animation: expand 2s .5s linear infinite;
+}
+
+.dot.three {
+    animation: expand 2s 1s linear infinite;
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(100%);
+        background-color: #ffffff70;
+    }
+
+    50% {
+        transform: scale(150%);
+        background-color: #fff;
+    }
+
+    100% {
+        transform: scale(100%);
+        background-color: #ffffff70;
+    }
+}
