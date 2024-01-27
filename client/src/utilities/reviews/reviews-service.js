@@ -23,6 +23,7 @@ export async function getReview(id) {
 export async function getAssociated(id) {
     try {
         const res = await reviewsApi.associated(id);
+        res.reverse();
         return res;
     } catch (err) {
         return err;
@@ -32,6 +33,7 @@ export async function getAssociated(id) {
 export async function getUsersReview(id) {
     try {
         const res = await reviewsApi.users(id);
+        res.reverse();
         return res;
     } catch (err) {
         return err;

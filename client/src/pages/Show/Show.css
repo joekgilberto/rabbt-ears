@@ -1,5 +1,6 @@
 .Show img {
     width: 300px;
+    box-shadow: 0 2px 2px #00000060;
 }
 
 .Show .show-tags {

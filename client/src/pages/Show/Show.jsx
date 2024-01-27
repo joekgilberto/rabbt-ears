@@ -35,7 +35,11 @@ export default function Show() {
         <div className='Show'>
             {show.id ?
                 <>
-                    <img src={show.image?.original} alt={show.name} />
+                    <img src={show.image? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
+                        console.log('hit')
+                        currentTarget.onerror = null;
+                        currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
+                    }} />
                     <h2>{show.name} {!show.ended ? `(${show.premiered.substring(0, 4)} - Present)` : show.premiered.substring(0, 4) === show.ended.substring(0, 4) ? `(${show.premiered.substring(0, 4)})` : `(${show.premiered.substring(0, 4)} - ${show.ended.substring(0, 4)})`}</h2>
                     <p>{tools.noTags(show.summary)}</p>
                     <div className='show reviews'>

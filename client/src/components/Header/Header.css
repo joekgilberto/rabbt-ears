@@ -3,10 +3,28 @@
     display: flex;
 }
 
-.Header img {
-    max-width: 75px;
+.Header .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Header .logo.disappear{
+    height: 75px;
+    margin-left: 15px;
+}
+
+.Header .logo.disappear img{
+    display: none;
+}
+
+.Header .logo img {
     height: 75px;
     padding: 15px;
+}
+
+.Header .logo h1 {
+    display: none;
 }
 
 .Header nav {
@@ -14,7 +32,7 @@
     display: flex;
     align-items: center;
     color: #fff;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     background-color: #000;
     box-shadow: 0 2px 2px #00000060;
@@ -35,7 +53,7 @@
 }
 
 .pop-search{
-    min-width: calc(100% - 75px);
+    min-width: calc(100% - 15px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,4 +87,45 @@
     color: #fff;
     border: 2px solid #fff;
     border-radius: 50%;
+}
+
+@media screen and (min-width: 420px) {
+    .Header nav {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .Header .logo.disappear{
+        height: auto;
+        margin-left: 0;
+    }
+
+    .Header .logo.disappear img{
+        display: block;
+    }
+
+    .Header .logo h1 {
+        width: 160px;
+        display: block;
+        margin: 0;
+    }
+    
+    .pop-search{
+        min-width: calc(100% - 235px);
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .Header .logo h1 {
+        width: 210px;
+        font-size: 36px;
+    }
+    .Header nav p {
+        font-size: 22px;
+    }
+
+    .pop-search{
+        min-width: calc(100% - 285px);
+    }
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 import * as tvmazeServices from '../../utilities/tvmaze/tvmaze-service';
 
-export default function SearchBar() {
+export default function SearchBar({ setToggle }) {
     const navigate = useNavigate();
     const [searchString, setSearchString] = useState('');
 
@@ -15,18 +15,19 @@ export default function SearchBar() {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            if(searchString.length){
-                await tvmazeServices.searchShow(searchString).then((res)=>{
+            if (searchString.length) {
+                await tvmazeServices.searchShow(searchString).then((res) => {
                     let searchUrl = '/results/';
-    
+
                     for (let i = 0; i < res.length; i++) {
                         searchUrl += `${res[i].show.id}`;
                         if (i < res.length - 1) {
                             searchUrl += '%2C';
                         }
                     }
-                    
+
                     setSearchString('');
+                    setToggle(false);
                     navigate(searchUrl);
                 })
             } else {
@@ -35,7 +36,6 @@ export default function SearchBar() {
         } catch (err) {
             console.log(err);
             setSearchString('');
-            navigate('/feed');
         }
     }
 

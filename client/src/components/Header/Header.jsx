@@ -31,13 +31,14 @@ export default function Header() {
     return (
         <div className='Header'>
             <nav>
-                <Link to='/'>
+                <Link className={`logo${toggle?' disappear':''}`} to='/'>
                     <img src='https://i.imgur.com/fUPednw.png' alt='Rabbt Ears logo' />
+                    <h1>Rabbt Ears</h1>
                 </Link>
                 {toggle ?
-                    <div className='pop-search'>
-                        <p onClick={handleSearch}>X</p>
-                        <SearchBar />
+                    <div className={`pop-search${toggle?' disappear':''}`}>
+                        <p onClick={handleSearch} >X</p>
+                        <SearchBar setToggle={setToggle} />
                     </div>
                     :
                     <>
