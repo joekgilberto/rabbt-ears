@@ -1,0 +1,146 @@
+.Edit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+}
+
+.Edit h1 {
+    width: 100%;
+    margin: 0;
+    padding-bottom: 10px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    border-bottom: 3px solid #fff;
+}
+
+.Edit form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    overflow-y: scroll;
+}
+
+.Edit .edit-poster {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 3px 3px #00000060;
+}
+
+.Edit label {
+    width: 180px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #000;
+    box-shadow: 0 3px 3px #00000060;
+}
+
+.Edit label p {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding-bottom: 3px;
+    font-size: 40px;
+}
+
+.Edit label.edit-thoughts {
+    width: 250px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Edit label select {
+    color: #fff;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+}
+
+.Edit img {
+    width: 30px;
+    height: 30px;
+}
+
+.Edit img.white {
+    filter: brightness(0) invert(1);
+}
+
+.Edit label textarea {
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.Edit label select:focus,
+.Edit label textarea:focus {
+    outline: none;
+}
+
+.Edit .edit-put{
+    display: flex;
+    width: 180px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 3px 3px #00000060;
+}
+
+.Edit .edit-potential-tags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Edit .edit-chosen-tags{
+    width: calc(100% + 40px);
+    height: auto;
+    min-height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: auto;
+    padding: 10px;
+    background-color: #000;
+    border-top: 2px solid #fff;
+    overflow-x: scroll;
+}
+
+.Edit .edit-tag {
+    margin: 10px 5px;
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px #00000060;
+    border: none;
+    border-radius: 20px;
+}

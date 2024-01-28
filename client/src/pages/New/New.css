@@ -18,10 +18,6 @@
     border-bottom: 3px solid #fff;
 }
 
-.New .new-show-name {
-    font-style: italic;
-}
-
 .New form {
     width: 100%;
     display: flex;
@@ -90,6 +86,7 @@
     width: 100%;
     height: 100px;
     color: #fff;
+    font-size: 20px;
     background-color: transparent;
     border: none;
 }
@@ -124,6 +121,7 @@
 .New .new-chosen-tags{
     width: calc(100% + 40px);
     height: auto;
+    min-height: 100px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -135,7 +133,7 @@
 }
 
 .New .new-tag {
-    margin: 10px 20px;
+    margin: 10px 5px;
     padding: 5px 15px;
     font-size: 20px;
     font-weight: 800;

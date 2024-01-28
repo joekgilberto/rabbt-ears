@@ -204,7 +204,7 @@ export default function New() {
         <div className='New'>
             {token && show.id ?
                 <>
-                    <h1>New <span className='new-show-name'>{show.name}</span> Review</h1>
+                    <h1>New <span className='italic'>{show.name}</span> Review</h1>
                     <form onSubmit={handleSubmit}>
                         <img className='new-poster' src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
                             currentTarget.onerror = null;

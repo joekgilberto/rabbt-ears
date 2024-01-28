@@ -26,6 +26,8 @@ export function noTags(string) {
     const ampFilter = spanFilterTwo.replace('&amp;', '&');
     const spaceFilter = ampFilter.replace('&nbsp;', ' ');
 
+    console.log(spaceFilter)
+    
     return spaceFilter;
 }
 
