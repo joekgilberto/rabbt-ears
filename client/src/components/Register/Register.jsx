@@ -51,9 +51,9 @@ export default function Register({ toggle }) {
     return (
         <div className='Register'>
             <form onSubmit={handleSubmit}>
-                <input type='text' placeholder='Username' name='username' autoComplete='username' value={credentials.username} onChange={handleChange}></input>
-                <input type='password' placeholder='Password' name='password' autoComplete='password' value={credentials.password} onChange={handleChange}></input>
-                <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' value={credentials.reEnterPassword} onChange={handleChange}></input>
+                <input type='text' placeholder='Username' name='username' autoComplete='username' maxlength='12' value={credentials.username} onChange={handleChange}></input>
+                <input type='password' placeholder='Password' name='password' autoComplete='password' minLength='8' value={credentials.password} onChange={handleChange}></input>
+                <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' minLength='8' value={credentials.reEnterPassword} onChange={handleChange}></input>
                 <button type='submit'>Register</button>
                 <button onClick={toggle}>Login</button>
             </form>

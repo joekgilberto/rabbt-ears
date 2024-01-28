@@ -37,15 +37,15 @@ export default function Show() {
         <div className='Show'>
             {show.id ?
                 <>
-                    <img src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
+                    <img className='show-poster' src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
                         currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                     }} />
                     <div className='show-header'>
                         {show.premiered ?
-                            <h1><span className='bold'>{show.name}</span>{!show.ended ? `(${show.premiered.substring(0, 4)} - Present)` : show.premiered.substring(0, 4) === show.ended.substring(0, 4) ? `(${show.premiered.substring(0, 4)})` : `(${show.premiered.substring(0, 4)} - ${show.ended.substring(0, 4)})`}</h1>
+                            <h1><span className='bold show-title'>{show.name}</span>{!show.ended ? `(${show.premiered.substring(0, 4)} - Present)` : show.premiered.substring(0, 4) === show.ended.substring(0, 4) ? `(${show.premiered.substring(0, 4)})` : `(${show.premiered.substring(0, 4)} - ${show.ended.substring(0, 4)})`}</h1>
                             :
-                            <h1><span className='bold'>{show.name}</span></h1>
+                            <h1><span className='bold show-title'>{show.name}</span></h1>
                         }
                         <h2 className={`${average === 0 ? 'zero'
                             : average === .5 ? ' point-five'
@@ -74,7 +74,7 @@ export default function Show() {
                             null}
 
                         {show.officialSite ?
-                            <a href={show.officialSite} target='_blank'><Tag text={'Website'} /></a>
+                            <a className='website' href={show.officialSite} target='_blank'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Noun_Project_website_icon_3077870.svg/96px-Noun_Project_website_icon_3077870.svg.png?20200710140656' alt='website'/><p>Website</p></a>
                             :
                             null}
                     </div>

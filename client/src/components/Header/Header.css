@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0
 }
 
 .Header .logo.disappear{
@@ -127,5 +128,12 @@
 
     .pop-search{
         min-width: calc(100% - 285px);
+    }
+}
+
+@media screen and (min-width: 735px) {
+    .Header .logo {
+        gap: 10px;
+        margin: 0 10px;
     }
 }

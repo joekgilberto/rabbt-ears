@@ -15,12 +15,7 @@ export default function SearchResults() {
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
-    const searchTerm = useSelector(selectSearchTerm);
     const results = useSelector(selectResults);
-
-    useEffect(() => {
-        dispatch(loadResults(id));
-    }, [dispatch]);
 
     useEffect(() => {
         dispatch(loadResults(id));
@@ -36,7 +31,7 @@ export default function SearchResults() {
         <div className='SearchResults'>
             {results?.length ?
                 <>
-                    <h1>Results for "{searchTerm}" </h1>
+                    <h1>Results for "{id}" </h1>
                     <div className='results'>
                         {results.map((result, idx) => {
                             return (

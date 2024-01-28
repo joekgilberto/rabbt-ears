@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
+    grid-row: 1 / span 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +21,7 @@
 }
 
 .Menu .logo img {
-    height: 105px;
+    height: 75px;
     margin-top: 30px;
     -webkit-filter: drop-shadow(0px 3px 3px #00000055);
     filter: drop-shadow(0px 3px 3px #00000055);
@@ -30,7 +30,7 @@
 .Menu .logo h1 {
     margin: 0 20px 20px 20px;
     color: #fff;
-    font-size: 70px;
+    font-size: 30px;
     text-align: center;
     text-shadow: 0px 3px 3px #00000055;
 }
@@ -48,9 +48,9 @@
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 10px 20px;
+    padding: 5px 20px;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500;
 }
 
@@ -64,12 +64,44 @@
 }
 
 .Menu .menu-link {
-    padding: 30px 0;
+    padding: 20px 0;
     border-top: 2px solid #000;
 }
 
+@media screen and (min-height: 835px) {
+    .Menu {
+        grid-row: 1 / span 1;
+    }
+}
+
+@media screen and (min-width: 310px) {
+    .Menu .logo h1 {
+        font-size: 50px;
+    }
+
+    .Menu nav p {
+        font-size: 30px;
+        padding: 10px 20px;
+    }
+
+
+    .Menu .menu-link {
+        padding: 30px 0;
+    }
+}
+
+@media screen and (min-width: 420px) {
+    .Menu .logo h1 {
+        font-size: 70px;
+    }
+
+    .Menu .logo img {
+        height: 105px;
+    }
+}
+
 @media screen and (min-width: 1050px) {
-    .Menu{
+    .Menu {
         box-shadow: 5px 0px 5px #00000080;
     }
 

@@ -58,7 +58,7 @@ export default function Review() {
                             {[...tools.enter(review.title)].map((title, idx) => {
                                 return <h2 key='idx' className='review-show'>{title}</h2>
                             })}
-                            <img src={review.poster} alt={review.title} onError={({ currentTarget }) => {
+                            <img src={review.poster?review.poster:'none'} alt={review.title} onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                             }} />

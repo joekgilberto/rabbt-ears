@@ -2,11 +2,14 @@ import './SearchBar.css';
 import { useState } from 'react';
 import { useNavigate } from "react-router";
 
-import * as tvmazeServices from '../../utilities/tvmaze/tvmaze-service';
+import { useDispatch } from 'react-redux';
+import { loadResults } from '../../features/searchSlice';
 
 export default function SearchBar({ setToggle }) {
-    const navigate = useNavigate();
+
     const [searchString, setSearchString] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function handleChange(e) {
         setSearchString(e.target.value);
@@ -16,20 +19,8 @@ export default function SearchBar({ setToggle }) {
         e.preventDefault()
         try {
             if (searchString.length) {
-                await tvmazeServices.searchShow(searchString).then((res) => {
-                    let searchUrl = `/results/${searchString}%2B`;
-
-                    for (let i = 0; i < res.length; i++) {
-                        searchUrl += `${res[i].show.id}`;
-                        if (i < res.length - 1) {
-                            searchUrl += '%2C';
-                        }
-                    }
-
-                    setSearchString('');
-                    setToggle(false);
-                    navigate(searchUrl);
-                })
+                dispatch(loadResults(searchString))
+                navigate(`/results/${searchString}`)
             } else {
                 navigate('/feed');
             }

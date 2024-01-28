@@ -4,7 +4,7 @@ export default function ReviewPoster({ source, altText, rating, fav, user }) {
     return (
         <div className='ReviewPoster'>
             <div className='poster-div'>
-                <img className='poster' src={source} alt={altText} onError={({ currentTarget }) => {
+                <img className='poster' src={source?source:'none'} alt={altText} onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                 }} />

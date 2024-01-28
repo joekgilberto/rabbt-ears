@@ -8,7 +8,7 @@
     overflow-y: scroll;
 }
 
-.Show img {
+.Show .show-poster {
     width: 300px;
     height: 450px;
     margin-top: 10px;
@@ -35,9 +35,13 @@
     align-items: flex-start;
     padding: 15px;
     color: #fff;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
     background-color: #000;
+}
+
+.Show .show-title{
+    font-size: 28px;
 }
 
 .Show h2 {
@@ -67,6 +71,25 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.Show .website{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 20px;
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px #00000060;
+    border-radius: 20px;
+}
+
+.Show .website img{
+    height: 100%;
 }
 
 .Show h3 {
