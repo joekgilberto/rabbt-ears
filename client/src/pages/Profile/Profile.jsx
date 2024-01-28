@@ -34,6 +34,17 @@ export default function Profile() {
                         <h2>{user.username[0]}</h2>
                     </div>
                     <h1>{user.username}</h1>
+                    <p className={`count${reviews.length < 5 ? ' point-five' :
+                        51 >= 5 && reviews.length < 25 ? ' one' :
+                            reviews.length >= 25 && reviews.length < 50 ? ' three' :
+                                reviews.length >= 50 && reviews.length < 100 ? ' four' :
+                                    ' five'}`}>
+                        {reviews.length < 5 ? 'Pilot Epiosde' :
+                            reviews.length >= 5 && reviews.length < 25 ? 'Series Order' :
+                                reviews.length >= 25 && reviews.length < 50 ? 'Syndicated' :
+                                    reviews.length >= 50 && reviews.length < 100 ? 'Channel Surfer' :
+                                        'A TV Guide'}
+                        <span className='divider'>|</span>{reviews.length} Reviews</p>
                     <div className='profile-content'>
                         <h3>Favorites</h3>
                         <div className='profile-list'>

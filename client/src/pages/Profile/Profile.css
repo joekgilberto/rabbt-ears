@@ -29,6 +29,45 @@
 .Profile h1{
     color: #fff;
     text-shadow: 0 2px 2px #00000060;
+    margin: 10px 0 0 0;
+}
+
+.Profile .count{
+    margin: 10px 0 0 0;
+    padding: 5px 15px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    text-shadow: 0 2px 2px #00000060;
+    border-radius: 20px;
+    box-shadow: 0 2px 2px #00000060;
+}
+
+.Profile .divider{
+    margin: 0 10px;
+    color: #000;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.Profile .point-five .divider{
+    color: #bc2a2a;
+}
+
+.Profile .one .divider{
+    color: #de7702;
+}
+
+.Profile .three .divider{
+    color: #1b91e5;
+}
+
+.Profile .four .divider{
+    color: #2ea021;
+}
+
+.Profile .five .divider{
+    color: #fe73fe;
 }
 
 .Profile .profile-content{
