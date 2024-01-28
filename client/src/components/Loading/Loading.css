@@ -31,11 +31,11 @@
     animation: expand 2s linear infinite;
 }
 
-.dot.one {
+.dot.first {
     animation: expand 1s linear infinite;
 }
 
-.dot.two {
+.dot.second {
     animation: expand 1s .5s linear infinite;
 }
 

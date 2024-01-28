@@ -6,8 +6,10 @@
 }
 
 body {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
+  max-width: -webkit-fill-available;
+  max-height: -webkit-fill-available;
   margin: 0;
   background-image: linear-gradient(45deg, #3177eeff, #a32ef1ff);
   -webkit-font-smoothing: antialiased;

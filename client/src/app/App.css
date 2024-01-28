@@ -15,35 +15,39 @@ a {
   text-decoration: none;
 }
 
+.bold {
+  font-weight: 800;
+}
+
 .italic {
   font-style: italic;
 }
 
 .zero{
-  background-color: #b0c2cbff;
+  background-color: #b0c2cbff !important;
 }
 
 .point-five{
-  background-color: #ff4d4dff;
+  background-color: #ff4d4dff !important;
 }
 
 .one{
-  background-color: #ff9900ff;
+  background-color: #ff9900ff !important;
 }
 
 .two{
-  background-color: #ffdf00ff;
+  background-color: #ffdf00ff !important;
 }
 
 
 .three{
-  background-color: #6fc3ffff;
+  background-color: #6fc3ffff !important;
 }
 
 .four{
-  background-color: #51d542ff;
+  background-color: #51d542ff !important;
 }
 
 .five{
-  background-color: #ffa5ffff;
+  background-color: #ffa5ffff !important;
 }

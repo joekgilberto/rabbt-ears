@@ -10,6 +10,7 @@ import * as tools from '../../utilities/tools';
 
 import Loading from '../../components/Loading/Loading';
 import Delete from '../../components/Delete/Delete';
+import Tag from '../../components/Tag/Tag';
 
 export default function Review() {
 
@@ -61,24 +62,24 @@ export default function Review() {
                         </Link>
                         <div className='review-body'>
                             <div className='review-header'>
-                                <h1 className='review-title'>{review.username}'s review</h1>
-                                <h1 className={`review-rating${review.rating === 0 ? ' zero'
+                                <h1>{review.username}'s review</h1>
+                                <h2 className={`${review.rating === 0 ? 'zero'
                                     : review.rating === .5 ? ' point-five'
-                                        : review.rating === 1 || review.rating === 1.5 ? ' one'
-                                            : review.rating === 2 || review.rating === 2.5 ? ' two'
-                                                : review.rating === 3 || review.rating === 3.5 ? ' three'
-                                                    : review.rating === 4 || review.rating === 4.5 ? ' four'
-                                                        : ' five'}`}>
+                                        : review.rating === 1 || review.rating === 1.5 ? 'one'
+                                            : review.rating === 2 || review.rating === 2.5 ? 'two'
+                                                : review.rating === 3 || review.rating === 3.5 ? 'three'
+                                                    : review.rating === 4 || review.rating === 4.5 ? 'four'
+                                                        : 'five'}`}>
                                     {review.rating}
                                     {review.fav ?
                                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
                                         : null}
-                                </h1>
+                                </h2>
                             </div>
                             <p className='review-thoughts'>{review.review}</p>
                             <div className='review-tags'>
                                 {review.tags.map((tag, idx) => {
-                                    return <p key={idx}>{tag}</p>
+                                    return <Tag key={idx} text={tag} />
                                 })}
                             </div>
                             {user?._id === review.owner ?
