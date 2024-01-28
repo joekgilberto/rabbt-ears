@@ -17,7 +17,7 @@ export default function SearchBar({ setToggle }) {
         try {
             if (searchString.length) {
                 await tvmazeServices.searchShow(searchString).then((res) => {
-                    let searchUrl = '/results/';
+                    let searchUrl = `/results/${searchString}%2B`;
 
                     for (let i = 0; i < res.length; i++) {
                         searchUrl += `${res[i].show.id}`;

@@ -4,9 +4,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoading, hasError, loadResults, selectResults } from '../../features/searchSlice';
+import { isLoading, hasError, loadResults, selectSearchTerm, selectResults } from '../../features/searchSlice';
 
 import Loading from '../../components/Loading/Loading';
+import ShowPoster from '../../components/ShowPoster/ShowPoster';
 
 export default function SearchResults() {
 
@@ -14,6 +15,7 @@ export default function SearchResults() {
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
+    const searchTerm = useSelector(selectSearchTerm);
     const results = useSelector(selectResults);
 
     useEffect(() => {
@@ -32,15 +34,19 @@ export default function SearchResults() {
     return (
 
         <div className='SearchResults'>
-            <h2>Search Results</h2>
-            {results?.length?
-                results.map((result, idx) => {
-                    return (
-                        <Link key={idx} to={`/shows/${result?.id}`}>
-                            <p>{result?.name}</p>
-                        </Link>
-                    )
-                })
+            {results?.length ?
+                <>
+                    <h1>Results for "{searchTerm}" </h1>
+                    <div className='results'>
+                        {results.map((result, idx) => {
+                            return (
+                                <Link key={idx} to={`/shows/${result?.id}`}>
+                                    <ShowPoster source={result.image?.original} title={result.name} />
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </>
                 :
                 <Loading />}
         </div>

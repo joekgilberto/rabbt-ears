@@ -50,7 +50,7 @@ export default function Feed() {
                 {shows?.length? shows.map((show, id) => {
                     return (
                         <Link key={id} to={`/shows/${show.id}`}>
-                            <ShowPoster source={show.image.original} altText={show.name} title={show.name} />
+                            <ShowPoster source={show.image.original} title={show.name} />
                         </Link>
                     )
                 }) : null}
