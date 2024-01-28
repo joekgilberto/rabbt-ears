@@ -24,8 +24,8 @@ export default function Delete({ user, review, setDestroy }) {
         navigate(`/reviews/edit/${review._id}`);
     }
 
-    async function handleDelete(e){
-        await reviewsServices.destroyReview(review._id).then((res)=>{
+    async function handleDelete(e) {
+        await reviewsServices.destroyReview(review._id).then((res) => {
             navigate('/feed');
         })
     }
@@ -34,11 +34,13 @@ export default function Delete({ user, review, setDestroy }) {
         <div className='Delete'>
             {user._id === review.owner ?
                 <>
-                    <h2>Pause!</h2>
-                    <p>Are you sure your want to delete your {review.rating} review of {review.title}?</p>
-                    <button onClick={handleCancel}>Cancel</button>
-                    <button onClick={handleEdit}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <h1>Pause!</h1>
+                    <p className='delete-message'>Are you sure your want to delete your <span className='bold'>{review.rating.toString().length < 3 ? `${review.rating}.0` : review.rating}</span> review of <span className='italic bold'>{review.title}</span>?</p>
+                    <div className='delete-options'>
+                        <button onClick={handleCancel}>Cancel</button>
+                        <button className='delete-edit' onClick={handleEdit}>Edit</button>
+                        <button className='delete-delete' onClick={handleDelete}>Delete</button>
+                    </div>
                 </>
                 :
                 <Loading />}

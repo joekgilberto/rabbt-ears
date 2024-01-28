@@ -1,3 +1,11 @@
+.ReviewPoster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+}
+
 .ReviewPoster .poster-div {
     width: 200px;
     height: 300px;

@@ -20,7 +20,6 @@ export default function ProfilePoster({ source, altText, rating, fav }) {
                     :
                     null}
             </div>
-            <div className='text'>
                 <p className={`rating${rating === 0 ? ' zero'
                     : rating === .5 ? ' point-five'
                         : rating === 1 || rating === 1.5 ? ' one'
@@ -28,7 +27,6 @@ export default function ProfilePoster({ source, altText, rating, fav }) {
                                 : rating === 3 || rating === 3.5 ? ' three'
                                     : rating === 4 || rating === 4.5 ? ' four'
                                         : ' five'}`}>{rating.toString().length < 3 ? `${rating}.0` : rating}</p>
-            </div>
         </div >
     );
 };

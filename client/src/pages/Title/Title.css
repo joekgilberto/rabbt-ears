@@ -7,7 +7,7 @@
     position: fixed;
 }
 
-@media screen and (min-width: 1050px) {
+@media screen and (min-width: 700px) {
     .Title {
         display: grid;
         grid-template-columns: auto 200px;

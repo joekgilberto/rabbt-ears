@@ -1,3 +1,11 @@
+.ProfilePoster{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+}
+
 .ProfilePoster .poster-div {
     width: 200px;
     height: 300px;
@@ -27,20 +35,13 @@
     z-index: 1;
 }
 
-.ProfilePoster .text {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    font-size: 22px;
-}
-
 .ProfilePoster .rating {
     margin: 5px 0;
     padding: 0 10px;
     font-weight: 800;
     text-align: center;
     color: #fff;
+    font-size: 22px;
     text-shadow: 0 2px 2px #00000080;
     box-shadow: 0 2px 2px #00000060;
     border-radius: 15px;
