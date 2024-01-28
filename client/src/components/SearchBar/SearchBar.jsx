@@ -21,6 +21,7 @@ export default function SearchBar({ setToggle }) {
             if (searchString.length) {
                 dispatch(loadResults(searchString))
                 navigate(`/results/${searchString}`)
+                setSearchString('')
             } else {
                 navigate('/feed');
             }

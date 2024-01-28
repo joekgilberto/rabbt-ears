@@ -17,6 +17,18 @@ export default function New() {
     const [token, setToken] = useState(null);
     const [toggle, setToggle] = useState(false)
     const [bttn, setBttn] = useState('+')
+    const [initReview, setInitReview] = useState({
+        rating: 0,
+        review: '',
+        title: '',
+        poster: '',
+        showId: 0,
+        fav: false,
+        tags: [],
+        username: '',
+        user: ''
+    })
+    const [fav, setFav] = useState(false);
     const [tags, setTags] = useState([
         'Absolute Boys Content',
         'Addicted',
@@ -99,6 +111,14 @@ export default function New() {
         setToggle(!toggle);
     }
 
+    function handleFav(e){
+        dispatch(updateNewReview({
+            ...review,
+            fav: !fav
+        }));
+        setFav(!fav);
+    }
+
     function handleTag(e) {
         e.preventDefault();
         const addedTags = [...review.tags, e.target.value];
@@ -135,33 +155,13 @@ export default function New() {
         const showId = review.showId;
         try {
             await reviewsServices.createReview(review).then((res) => {
-                dispatch(updateNewReview({
-                    rating: 0,
-                    review: '',
-                    title: '',
-                    poster: '',
-                    showId: 0,
-                    fav: false,
-                    tags: [],
-                    username: '',
-                    user: ''
-                }));
+                dispatch(updateNewReview(initReview));
                 dispatch(loadShow(id));
                 navigate(`/shows/${showId}`)
             })
         } catch (err) {
             console.log(err);
-            dispatch(updateNewReview({
-                rating: 0,
-                review: '',
-                title: '',
-                poster: '',
-                showId: 0,
-                fav: false,
-                tags: [],
-                username: '',
-                user: ''
-            }));
+            dispatch(updateNewReview(initReview));
             dispatch(loadShow(id));
         }
     }
@@ -204,8 +204,12 @@ export default function New() {
         <div className='New'>
             {token && show.id ?
                 <>
+                    <h1>New <span className='new-show-name'>{show.name}</span> Review</h1>
                     <form onSubmit={handleSubmit}>
-                        <h2>New {show.name} Review</h2>
+                        <img className='new-poster' src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
+                        }} />
                         <label>Rating
                             <select name='rating' onChange={handleChange}>
                                 <option>0.0</option>
@@ -221,23 +225,23 @@ export default function New() {
                                 <option>5.0</option>
                             </select>
                         </label>
-                        <label>Favorite
-                            <input type='checkbox' name='fav' onChange={handleChange} />
+                        <label onClick={handleFav}>Favorite
+                            <img className={!fav?'white':''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
-                        <label>Tags
-                            <button onClick={handleClick}>{bttn}</button>
-                            {toggle ?
+                        <label onClick={handleClick}>Tags
+                            <p>{bttn}</p>
+                        </label>
+                        {toggle ?
                                 <div className='new-potential-tags'>
                                     {tags.map((tag, idx) => {
                                         return <button key={idx} className='new-tag' value={tag} onClick={handleTag}>+ {tag}</button>
                                     })}
                                 </div>
                                 : null}
-                        </label>
-                        <label>Thoughts
+                        <label className='new-thoughts'>Thoughts
                             <textarea name='review' onChange={handleChange} />
                         </label>
-                        <button type='submit'>Post</button>
+                        <button className='new-post' type='submit'>Post</button>
                     </form>
                     <div className='new-chosen-tags'>
                         {review.tags.map((tag, idx) => {
