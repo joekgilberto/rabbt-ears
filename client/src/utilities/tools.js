@@ -14,21 +14,27 @@ export function randomShow() {
 }
 
 export function noTags(string) {
+    let filtered = string
 
-    const pFilterOne = string.replace('<p>', '');
-    const pFilterTwo = pFilterOne.replace('</p>', '');
-    const bFilterOne = pFilterTwo.replace('<b>', '');
-    const bFilterTwo = bFilterOne.replace('</b>', '');
-    const iFilterOne = bFilterTwo.replace('<i>', '');
-    const iFilterTwo = iFilterOne.replace('</i>', '');
-    const spanFilterOne = iFilterTwo.replace('<span>', '');
-    const spanFilterTwo = spanFilterOne.replace('</span>', '');
-    const ampFilter = spanFilterTwo.replace('&amp;', '&');
-    const spaceFilter = ampFilter.replace('&nbsp;', ' ');
+    const tags = ['<p>', '</p>', '<b>', '</b>', '<i>', '</i>', '<span>', '</span>']
+    const inserts = [
+        { symbol: '&amp;', replacement: '&' },
+        { symbol: '&nbsp;', replacement: ' ' }
+    ]
 
-    console.log(spaceFilter)
-    
-    return spaceFilter;
+    for (let tag of tags) {
+        while (filtered.indexOf(tag) !== -1) {
+            filtered = filtered.replace(tag, '');
+        }
+    }
+
+    for (let insert of inserts) {
+        while (filtered.indexOf(insert.symbol) !== -1) {
+            filtered = filtered.replace(insert.symbol, insert.replacement);
+        }
+    }
+
+    return filtered;
 }
 
 export function enter(title) {
@@ -42,15 +48,15 @@ export function enter(title) {
     }
 }
 
-export function average(reviews){
-    if(!reviews.length){
+export function average(reviews) {
+    if (!reviews.length) {
         return 'N/A'
     }
 
     let sum = 0;
-    for (let review of reviews){
+    for (let review of reviews) {
         sum += review.rating;
     }
-    const average = sum/reviews.length;
+    const average = sum / reviews.length;
     return average;
 }
