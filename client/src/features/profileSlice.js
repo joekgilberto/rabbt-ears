@@ -5,11 +5,18 @@ import { getUser } from '../utilities/local-storage';
 export const loadProfile = createAsyncThunk(
     'profile/loadProfile',
     async () => {
-        const data = { user: {}, reviews: {} }
+        const data = { user: {}, reviews: {}, favs:[] }
         const user = getUser();
         data.user = user;
         return await reviewServices.getUsersReview(user._id).then((res) => {
             data.reviews = res;
+
+            for (let review of res){
+                if (review.fav){
+                    data.favs.push(review);
+                }
+            }
+
             return data;
         });
     }
@@ -20,6 +27,7 @@ export const profileSlice = createSlice({
     initialState: {
         user: {},
         reviews: [],
+        favs: [],
         isLoadingProfile: false,
         hasProfileError: false
     },
@@ -33,12 +41,14 @@ export const profileSlice = createSlice({
                 state.isLoadingProfile = false;
                 state.user = action.payload.user;
                 state.reviews = action.payload.reviews;
+                state.favs = action.payload.favs;
             })
             .addCase(loadProfile.rejected, (state) => {
                 state.isLoadingProfile = false;
                 state.hasProfileError = true;
                 state.user = {};
                 state.reviews = [];
+                state.favs = [];
             })
     },
 });
@@ -46,6 +56,8 @@ export const profileSlice = createSlice({
 export const selectUser = (state) => state.profile.user;
 
 export const selectReviews = (state) => state.profile.reviews;
+
+export const selectFavs = (state) => state.profile.favs;
 
 export const isLoading = (state) => state.review.isLoadingProfile;
 
