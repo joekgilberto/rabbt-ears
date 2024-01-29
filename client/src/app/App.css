@@ -23,31 +23,42 @@ a {
   font-style: italic;
 }
 
-.zero{
+.zero {
   background-color: #b0c2cbff !important;
 }
 
-.point-five{
+.point-five {
   background-color: #ff4d4dff !important;
 }
 
-.one{
+.one {
   background-color: #ff9900ff !important;
 }
 
-.two{
+.two {
   background-color: #ffdf00ff !important;
 }
 
 
-.three{
+.three {
   background-color: #6fc3ffff !important;
 }
 
-.four{
+.four {
   background-color: #51d542ff !important;
 }
 
-.five{
+.five {
   background-color: #ffa5ffff !important;
+}
+
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-2.5px);
+  }
 }

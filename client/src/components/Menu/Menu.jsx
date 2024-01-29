@@ -2,7 +2,7 @@ import './Menu.css';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from '../../utilities/auth/auth-service';
+import * as authServices from '../../utilities/auth/auth-service';
 import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
@@ -21,7 +21,7 @@ export default function Menu() {
     }
 
     async function handleLogout() {
-        await logout().then(() => {
+        await authServices.logout().then(() => {
             clearUserToken();
             clearUser();
             setToken(getUserToken());

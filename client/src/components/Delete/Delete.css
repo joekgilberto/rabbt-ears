@@ -49,11 +49,7 @@
     animation: .5s rise forwards;
 }
 
-@keyframes rise {
-    0%{
-        transform: translateY(0);
-    }
-    100%{
-        transform: translateY(-2.5px);
-    }
+.Delete .delete-button{
+    color: #fff;
+    background-color: #ff4d4dff !important;
 }

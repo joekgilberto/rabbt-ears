@@ -38,8 +38,8 @@ export default function Delete({ user, review, setDestroy }) {
                     <p className='delete-message'>Are you sure your want to delete your <span className='bold'>{review.rating.toString().length < 3 ? `${review.rating}.0` : review.rating}</span> review of <span className='italic bold'>{review.title}</span>?</p>
                     <div className='delete-options'>
                         <button onClick={handleCancel}>Cancel</button>
-                        <button className='delete-edit' onClick={handleEdit}>Edit</button>
-                        <button className='delete-delete' onClick={handleDelete}>Delete</button>
+                        <button onClick={handleEdit}>Edit</button>
+                        <button className='delete-button' onClick={handleDelete}>Delete</button>
                     </div>
                 </>
                 :

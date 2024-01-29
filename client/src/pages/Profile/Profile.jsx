@@ -1,9 +1,11 @@
 import './Profile.css';
 
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadProfile, selectUser, selectReviews, selectFavs } from '../../features/profileSlice';
+import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';
+import * as authServices from '../../utilities/auth/auth-service';
 
 import Loading from '../../components/Loading/Loading';
 import ShowPoster from '../../components/ShowPoster/ShowPoster';
@@ -11,12 +13,21 @@ import ProfilePoster from '../../components/ProfilePoster/ProfilePoster';
 
 export default function Profile() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
     const user = useSelector(selectUser);
     const reviews = useSelector(selectReviews);
     const favs = useSelector(selectFavs);
+
+    async function handleLogout() {
+        await authServices.logout().then(() => {
+            clearUserToken();
+            clearUser();
+            navigate('/feed')
+        })
+    }
 
     useEffect(() => {
         dispatch(loadProfile());
@@ -69,6 +80,9 @@ export default function Profile() {
                                     )
                                 }) :
                                 <p>None yet</p>}
+                        </div>
+                        <div className='profile-logout'>
+                            <button onClick={handleLogout}>Logout</button>
                         </div>
                     </div>
                 </>
