@@ -119,19 +119,18 @@
     }
 
     .Header .logo h1 {
-        width: 160px;
         display: block;
-        margin: 0;
+        margin: 0 10px 0 0;
+        white-space: nowrap;
     }
 
     .pop-search {
-        min-width: calc(100% - 235px);
+        min-width: calc(100% - 230.27px);
     }
 }
 
 @media screen and (min-width: 700px) {
     .Header .logo h1 {
-        width: 210px;
         font-size: 36px;
     }
 
@@ -140,7 +139,7 @@
     }
 
     .pop-search {
-        min-width: calc(100% - 285px);
+        min-width: calc(100% - 278.69px);
     }
 }
 
@@ -150,7 +149,21 @@
         margin: 0 10px !important;
     }
 
+    .Header .logo h1 {
+        font-size: 40px;
+    }
+
+    .Header .logo img {
+        height: 100px;
+    }
+
     .pop-search {
-        min-width: calc(100% - 315px);
+        min-width: calc(100% - 355.2px);
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .Header nav p {
+        font-size: 26px;
     }
 }
