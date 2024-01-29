@@ -20,56 +20,56 @@ export default function Edit() {
     const [bttn, setBttn] = useState('+')
     const [fav, setFav] = useState(false);
     const [tags, setTags] = useState([
-        'Absolute Boys Content',
-        'Addicted',
-        'Annoying',
-        'Background Noise',
-        'Bingeable',
-        'Classic TV',
-        'Chilling (EEK!)',
-        'Comfort Show',
-        'Criminally Good',
-        'Date Night TV',
-        'Drama Queen',
-        'Drawn To It',
-        'Dribble',
-        'Exciting',
-        'Family Fav',
-        'Fantastical',
-        'Fascinating',
-        'Formulaic',
-        'Girl Power!',
-        'Good Enough',
-        'Grinds My Gears',
-        'Heroic',
-        'Historic Television',
-        'Insightful',
-        'Legends Only',
-        'Lil\' Silly',
-        'LOL Out Loud Funny',
-        'Masterpiece',
-        'Meh',
-        'Messy',
-        'Must Watch',
-        'Nothing Like It',
-        'Obsessed',
-        'Out Of This World',
-        'Poorly Written',
-        'Revolutionary',
-        'Serious',
-        'Sludge',
-        'Spooky',
-        'Stupid',
-        'Tearjerker',
-        'Terrible',
-        'Thrilling',
-        'Too Much',
-        'Too Real',
-        'Totally Tubular',
-        'Trash TV',
-        'Trendsetter',
-        'Tropey',
-        'Zany'
+        { text: 'Absolute Boys Content', symbol: '+' },
+        { text: 'Addicted', symbol: '+' },
+        { text: 'Annoying', symbol: '+' },
+        { text: 'Background Noise', symbol: '+' },
+        { text: 'Bingeable', symbol: '+' },
+        { text: 'Classic TV', symbol: '+' },
+        { text: 'Chilling (EEK!)', symbol: '+' },
+        { text: 'Comfort Show', symbol: '+' },
+        { text: 'Criminally Good', symbol: '+' },
+        { text: 'Date Night TV', symbol: '+' },
+        { text: 'Drama Queen', symbol: '+' },
+        { text: 'Drawn To It', symbol: '+' },
+        { text: 'Dribble', symbol: '+' },
+        { text: 'Exciting', symbol: '+' },
+        { text: 'Family Fav', symbol: '+' },
+        { text: 'Fantastical', symbol: '+' },
+        { text: 'Fascinating', symbol: '+' },
+        { text: 'Formulaic', symbol: '+' },
+        { text: 'Girl Power!', symbol: '+' },
+        { text: 'Good Enough', symbol: '+' },
+        { text: 'Grinds My Gears', symbol: '+' },
+        { text: 'Heroic', symbol: '+' },
+        { text: 'Historic Television', symbol: '+' },
+        { text: 'Insightful', symbol: '+' },
+        { text: 'Legends Only', symbol: '+' },
+        { text: 'Lil\' Silly', symbol: '+' },
+        { text: 'LOL Out Loud Funny', symbol: '+' },
+        { text: 'Masterpiece', symbol: '+' },
+        { text: 'Meh', symbol: '+' },
+        { text: 'Messy', symbol: '+' },
+        { text: 'Must Watch', symbol: '+' },
+        { text: 'Nothing Like It', symbol: '+' },
+        { text: 'Obsessed', symbol: '+' },
+        { text: 'Out Of This World', symbol: '+' },
+        { text: 'Poorly Written', symbol: '+' },
+        { text: 'Revolutionary', symbol: '+' },
+        { text: 'Serious', symbol: '+' },
+        { text: 'Sludge', symbol: '+' },
+        { text: 'Spooky', symbol: '+' },
+        { text: 'Stupid', symbol: '+' },
+        { text: 'Tearjerker', symbol: '+' },
+        { text: 'Terrible', symbol: '+' },
+        { text: 'Thrilling', symbol: '+' },
+        { text: 'Too Much', symbol: '+' },
+        { text: 'Too Real', symbol: '+' },
+        { text: 'Totally Tubular', symbol: '+' },
+        { text: 'Trash TV', symbol: '+' },
+        { text: 'Trendsetter', symbol: '+' },
+        { text: 'Tropey', symbol: '+' },
+        { text: 'Zany', symbol: '+' }
     ])
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
@@ -112,43 +112,36 @@ export default function Edit() {
 
     function handleTag(e) {
         e.preventDefault();
-        const addedTags = [...review.tags, e.target.value];
-        addedTags.sort();
-        dispatch(updateEditReview({
-            ...review,
-            tags: addedTags
-        }));
 
-        const lessenedTags = [...tags];
-        const idx = lessenedTags.indexOf(e.target.value);
+        if (tags[e.target.id].symbol === '+') {
+            const addedTags = [...review.tags, e.target.value];
+            addedTags.sort();
+            dispatch(updateEditReview({
+                ...review,
+                tags: addedTags
+            }));
 
-        if (idx > -1) {
-            lessenedTags.splice(idx, 1);
+            tags[e.target.id] = { text: e.target.value, symbol: '-' };
+            console.log(tags[e.target.id])
+
+        } else if (tags[e.target.id].symbol === '-') {
+            const lessenedTags = [...review.tags];
+            const idx = lessenedTags.indexOf(e.target.value);
+
+            if (idx > -1) {
+                lessenedTags.splice(idx, 1);
+            }
+
+            lessenedTags.sort();
+
+            dispatch(updateEditReview({
+                ...review,
+                tags: lessenedTags
+            }));
+
+            tags[e.target.id] = { text: e.target.value, symbol: '+' };
+
         }
-
-        lessenedTags.sort();
-        setTags(lessenedTags);
-    }
-
-    function handleUntag(e) {
-        e.preventDefault();
-        const addedTags = [...tags, e.target.value];
-        addedTags.sort();
-        setTags(addedTags);
-
-        const lessenedTags = [...review.tags];
-        const idx = lessenedTags.indexOf(e.target.value);
-
-        if (idx > -1) {
-            lessenedTags.splice(idx, 1);
-        }
-
-        lessenedTags.sort();
-
-        dispatch(updateEditReview({
-            ...review,
-            tags: lessenedTags
-        }));
     }
 
     async function handleSubmit(e) {
@@ -193,16 +186,10 @@ export default function Edit() {
     useEffect(() => {
         if (review.tags?.length) {
             for (let tag of review.tags) {
-                if (tags.includes(tag)) {
-                    const lessenedTags = [...tags];
-                    const idx = lessenedTags.indexOf(tag);
+                const idx = tags.map(t => t.text).indexOf(tag);
 
-                    if (idx > -1) {
-                        lessenedTags.splice(idx, 1);
-                    }
-
-                    lessenedTags.sort();
-                    setTags(lessenedTags);
+                if (idx > -1) {
+                    tags[idx] = {...tags[idx], symbol:'-'}
                 }
             }
         }
@@ -262,9 +249,9 @@ export default function Edit() {
                             <p>{bttn}</p>
                         </label>
                         {toggle ?
-                            <div className='edit-potential-tags'>
+                            <div className='edit-tags'>
                                 {tags.map((tag, idx) => {
-                                    return <button key={idx} className='edit-tag' value={tag} onClick={handleTag}>+ {tag}</button>
+                                    return <button key={idx} id={idx} className={`edit-tag${tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
                                 })}
                             </div>
                             : null}
@@ -273,11 +260,6 @@ export default function Edit() {
                         </label>
                         <button className='edit-put' type='submit'>Save</button>
                     </form>
-                    <div className='edit-chosen-tags'>
-                        {review.tags.map((tag, idx) => {
-                            return <button key={idx} className='edit-tag' value={tag} onClick={handleUntag}>- {tag}</button>
-                        })}
-                    </div>
                 </>
                 :
                 <Loading />}

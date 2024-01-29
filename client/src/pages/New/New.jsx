@@ -31,56 +31,56 @@ export default function New() {
     })
     const [fav, setFav] = useState(false);
     const [tags, setTags] = useState([
-        'Absolute Boys Content',
-        'Addicted',
-        'Annoying',
-        'Background Noise',
-        'Bingeable',
-        'Classic TV',
-        'Chilling (EEK!)',
-        'Comfort Show',
-        'Criminally Good',
-        'Date Night TV',
-        'Drama Queen',
-        'Drawn To It',
-        'Dribble',
-        'Exciting',
-        'Family Fav',
-        'Fantastical',
-        'Fascinating',
-        'Formulaic',
-        'Girl Power!',
-        'Good Enough',
-        'Grinds My Gears',
-        'Heroic',
-        'Historic Television',
-        'Insightful',
-        'Legends Only',
-        'Lil\' Silly',
-        'LOL Out Loud Funny',
-        'Masterpiece',
-        'Meh',
-        'Messy',
-        'Must Watch',
-        'Nothing Like It',
-        'Obsessed',
-        'Out Of This World',
-        'Poorly Written',
-        'Revolutionary',
-        'Serious',
-        'Sludge',
-        'Spooky',
-        'Stupid',
-        'Tearjerker',
-        'Terrible',
-        'Thrilling',
-        'Too Much',
-        'Too Real',
-        'Totally Tubular',
-        'Trash TV',
-        'Trendsetter',
-        'Tropey',
-        'Zany'
+        {text: 'Absolute Boys Content', symbol: '+'},
+        {text: 'Addicted', symbol: '+'},
+        {text: 'Annoying', symbol: '+'},
+        {text: 'Background Noise', symbol: '+'},
+        {text: 'Bingeable', symbol: '+'},
+        {text: 'Classic TV', symbol: '+'},
+        {text: 'Chilling (EEK!)', symbol: '+'},
+        {text: 'Comfort Show', symbol: '+'},
+        {text: 'Criminally Good', symbol: '+'},
+        {text: 'Date Night TV', symbol: '+'},
+        {text: 'Drama Queen', symbol: '+'},
+        {text: 'Drawn To It', symbol: '+'},
+        {text: 'Dribble', symbol: '+'},
+        {text: 'Exciting', symbol: '+'},
+        {text: 'Family Fav', symbol: '+'},
+        {text: 'Fantastical', symbol: '+'},
+        {text: 'Fascinating', symbol: '+'},
+        {text: 'Formulaic', symbol: '+'},
+        {text: 'Girl Power!', symbol: '+'},
+        {text: 'Good Enough', symbol: '+'},
+        {text: 'Grinds My Gears', symbol: '+'},
+        {text: 'Heroic', symbol: '+'},
+        {text: 'Historic Television', symbol: '+'},
+        {text: 'Insightful', symbol: '+'},
+        {text: 'Legends Only', symbol: '+'},
+        {text: 'Lil\' Silly', symbol: '+'},
+        {text: 'LOL Out Loud Funny', symbol: '+'},
+        {text: 'Masterpiece', symbol: '+'},
+        {text: 'Meh', symbol: '+'},
+        {text: 'Messy', symbol: '+'},
+        {text: 'Must Watch', symbol: '+'},
+        {text: 'Nothing Like It', symbol: '+'},
+        {text: 'Obsessed', symbol: '+'},
+        {text: 'Out Of This World', symbol: '+'},
+        {text: 'Poorly Written', symbol: '+'},
+        {text: 'Revolutionary', symbol: '+'},
+        {text: 'Serious', symbol: '+'},
+        {text: 'Sludge', symbol: '+'},
+        {text: 'Spooky', symbol: '+'},
+        {text: 'Stupid', symbol: '+'},
+        {text: 'Tearjerker', symbol: '+'},
+        {text: 'Terrible', symbol: '+'},
+        {text: 'Thrilling', symbol: '+'},
+        {text: 'Too Much', symbol: '+'},
+        {text: 'Too Real', symbol: '+'},
+        {text: 'Totally Tubular', symbol: '+'},
+        {text: 'Trash TV', symbol: '+'},
+        {text: 'Trendsetter', symbol: '+'},
+        {text: 'Tropey', symbol: '+'},
+        {text: 'Zany', symbol: '+'}
     ])
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
@@ -122,33 +122,34 @@ export default function New() {
 
     function handleTag(e) {
         e.preventDefault();
-        const addedTags = [...review.tags, e.target.value];
-        addedTags.sort();
-        dispatch(updateNewReview({
-            ...review,
-            tags: addedTags
-        }));
-    }
 
-    function handleUntag(e) {
-        e.preventDefault();
-        const addedTags = [...tags, e.target.value];
-        addedTags.sort();
-        setTags(addedTags);
+        if (tags[e.target.id].symbol === '+'){
+            const addedTags = [...review.tags, e.target.value];
+            addedTags.sort();
+            dispatch(updateNewReview({
+                ...review,
+                tags: addedTags
+            }));
 
-        const lessenedTags = [...review.tags];
-        const idx = lessenedTags.indexOf(e.target.value);
+            tags[e.target.id] = {text: e.target.value, symbol: '-'};
 
-        if (idx > -1) {
-            lessenedTags.splice(idx, 1);
+        } else if (tags[e.target.id].symbol === '-'){
+            const lessenedTags = [...review.tags];
+            const idx = lessenedTags.indexOf(e.target.value);
+    
+            if (idx > -1) {
+                lessenedTags.splice(idx, 1);
+            }
+    
+            lessenedTags.sort();
+    
+            dispatch(updateNewReview({
+                ...review,
+                tags: lessenedTags
+            }));
+
+            tags[e.target.id] = {text: e.target.value, symbol: '+'};
         }
-
-        lessenedTags.sort();
-
-        dispatch(updateNewReview({
-            ...review,
-            tags: lessenedTags
-        }));
     }
 
     async function handleSubmit(e) {
@@ -239,9 +240,9 @@ export default function New() {
                             <p>{bttn}</p>
                         </label>
                         {toggle ?
-                            <div className='new-potential-tags'>
+                            <div className='new-tags'>
                                 {tags.map((tag, idx) => {
-                                    return <button key={idx} className='new-tag' value={tag} onClick={handleTag}>+ {tag}</button>
+                                    return <button key={idx} id={idx} className={`new-tag${tag.symbol==='+'?' plus':tag.symbol==='-'?' minus':''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
                                 })}
                             </div>
                             : null}
@@ -250,11 +251,6 @@ export default function New() {
                         </label>
                         <button className='new-post' type='submit'>Post</button>
                     </form>
-                    <div className='new-chosen-tags'>
-                        {review.tags.map((tag, idx) => {
-                            return <button key={idx} className='new-tag' value={tag} onClick={handleUntag}>- {tag}</button>
-                        })}
-                    </div>
                 </>
                 :
                 <Loading />}

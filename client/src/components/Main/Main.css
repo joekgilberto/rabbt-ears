@@ -3,3 +3,9 @@ main {
   width: 100%;
   overflow-y: scroll;
 }
+
+@media screen and (min-width: 735px) {
+  main {
+    height: calc(100% - 100px);
+  }
+}

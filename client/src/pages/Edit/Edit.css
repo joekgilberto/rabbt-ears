@@ -111,40 +111,35 @@
     box-shadow: 0px 3px 3px #00000060;
 }
 
-.Edit .edit-potential-tags{
+.Edit .edit-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.Edit .edit-chosen-tags{
-    width: calc(100% + 40px);
-    height: auto;
-    min-height: 100px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: auto;
-    padding: 10px;
-    background-color: #000;
-    border-top: 2px solid #fff;
-    overflow-x: scroll;
-}
-
 .Edit .edit-tag {
-    margin: 10px 5px;
+    margin: 10px 5px !important;
     padding: 5px 15px;
     font-size: 20px;
     font-weight: 800;
-    text-align: center;
     white-space: nowrap;
-    background-color: #fff;
+    text-align: center;
     box-shadow: 0px 2px 2px #00000060;
     border: none;
     border-radius: 20px;
 }
 
-.Edit .edit-tag:hover{
+.Edit .edit-tag:hover {
     animation: .5s rise forwards;
+}
+
+.Edit .edit-tag.plus {
+    color: #000;
+    background-color: #fff;
+}
+
+.Edit .edit-tag.minus {
+    color: #fff;
+    background-color: #000;
 }

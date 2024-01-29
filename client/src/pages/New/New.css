@@ -96,7 +96,7 @@
     outline: none;
 }
 
-.New .new-post{
+.New .new-post {
     display: flex;
     width: 180px;
     justify-content: center;
@@ -111,39 +111,35 @@
     box-shadow: 0px 3px 3px #00000060;
 }
 
-.New .new-potential-tags{
+.New .new-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.New .new-chosen-tags{
-    width: calc(100% + 40px);
-    height: auto;
-    min-height: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    padding: 20px;
-    background-color: #000;
-    border-top: 2px solid #fff;
 }
 
 .New .new-tag {
-    margin: 10px 5px;
+    margin: 10px 5px !important;
     padding: 5px 15px;
     font-size: 20px;
     font-weight: 800;
+    white-space: nowrap;
     text-align: center;
-    background-color: #fff;
     box-shadow: 0px 2px 2px #00000060;
     border: none;
     border-radius: 20px;
 }
 
-.New .new-tag:hover{
+.New .new-tag:hover {
     animation: .5s rise forwards;
+}
+
+.New .new-tag.plus {
+    color: #000;
+    background-color: #fff;
+}
+
+.New .new-tag.minus {
+    color: #fff;
+    background-color: #000;
 }
