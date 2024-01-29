@@ -37,7 +37,7 @@ export default function Header() {
                 </Link>
                 {toggle ?
                     <div className={`pop-search${toggle?' disappear':''}`}>
-                        <p onClick={handleSearch} >X</p>
+                        <p onClick={handleSearch}>X</p>
                         <SearchBar setToggle={setToggle} />
                     </div>
                     :

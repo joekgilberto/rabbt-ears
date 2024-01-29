@@ -91,7 +91,7 @@
 }
 
 .Auth input::placeholder{
-    color: #fff;
+    color: #000;
     font-weight: 600;
 
 }
@@ -124,10 +124,35 @@
     }
 }
 
+@media screen and (min-width: 475px) {
+    .Auth .auth-buttons{
+        grid-template-columns: repeat(2, 175px);
+    }
+
+    .Auth button {
+        font-size: 26px;
+    }
+
+    .Auth input {
+        font-size: 24px;
+    }
+}
+
 @media screen and (min-width: 700px) {
     .Auth {
         display: grid;
         grid-template-columns: auto 200px;
         grid-template-rows: 1fr;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .Auth .auth-content {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .Auth .auth-content img {
+        height: 192px;
     }
 }
