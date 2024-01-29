@@ -48,12 +48,12 @@ export default function Header() {
                         <p className='random' onClick={handleRandom}>RANDO</p>
                         <p className='search' onClick={handleSearch}>SEARCH</p>
                         {token ?
-                            <Link to='/profile'>
+                            <Link className='header-auth' to='/profile'>
                                 <p className='header-profile'>{user.username[0].toUpperCase()}</p>
                             </Link>
                             :
-                            <Link to='/auth'>
-                                <p className='header-auth'>LOGIN</p>
+                            <Link className='header-auth' to='/auth'>
+                                <p className='header-login'>LOGIN</p>
                             </Link>
                         }
                     </>

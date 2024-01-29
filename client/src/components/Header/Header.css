@@ -78,6 +78,12 @@
     background-color: #a32ef1ff;
 }
 
+.Header .header-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .Header .header-profile {
     width: 40px;
     height: 40px;
@@ -90,14 +96,14 @@
     border-radius: 50%;
 }
 
-.Header .header-auth {
+.Header .header-login {
     width: auto;
     height: 75px;
     padding: 0 10px;
 }
 
 @media screen and (min-width: 380px) {
-    .Header .header-auth {
+    .Header .header-login {
         padding: 0 20px;
     }
 }
@@ -164,6 +170,28 @@
 
 @media screen and (min-width: 840px) {
     .Header nav p {
-        font-size: 26px;
+        font-size: 24px;
+    }
+
+    .Header nav p,
+    .Header nav a {
+        max-width: 130px;
+    }
+
+    .Header .logo,
+    .Header .header-auth,
+    .Header .header-auth p {
+        max-width: none;
+    }
+
+    .Header .header-auth {
+        width: 100%;
+        justify-content: flex-end;
+        padding-right: 10px;
+    }
+
+    .Header .header-profile {
+        width: 60px;
+        height: 60px;
     }
 }
