@@ -147,7 +147,7 @@
 @media screen and (min-width: 735px) {
     .Header .logo {
         gap: 10px;
-        margin: 0 10px;
+        margin: 0 10px !important;
     }
 
     .pop-search {
