@@ -8,11 +8,15 @@
 }
 
 .Loading h1 {
-    color: #fff;
-    font-size: 50px;
-    text-shadow: 0 2px 2px #00000060;
-    text-align: center;
-    animation: translucent 2s linear infinite;
+    width: auto !important;
+    color: #fff !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+    font-size: 50px !important;
+    text-shadow: 0 2px 2px #00000060 !important;
+    text-align: center !important;
+    border: none !important;
+    background-color: transparent !important;
 }
 
 .dots {

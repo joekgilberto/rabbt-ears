@@ -1,13 +1,12 @@
 import './Main.css';
 import Header from '../Header/Header';
 
-export default function Main({ page }) {
+export default function Main({ children }) {
     return (
         <>
         <Header />
         <main>
-            
-            {page}
+            {children}
         </main>
         </>
     );

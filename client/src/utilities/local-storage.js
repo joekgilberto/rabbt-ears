@@ -1,6 +1,10 @@
 // Creates local storage for token
 function getUserToken(){
-    return localStorage.getItem("token");
+    if(localStorage.getItem("token")){
+        return JSON.parse(localStorage.getItem("token"));
+    } else {
+        return "";
+    }
 };
 
 function setUserToken(token){
@@ -13,7 +17,11 @@ function clearUserToken(){
 
 // Creates local storage for token
 function getUser(){
-    return JSON.parse(localStorage.getItem("user"));
+    if(localStorage.getItem("user")){
+        return JSON.parse(localStorage.getItem("user"));
+    } else {
+        return "";
+    }
 };
 
 function setUser(user){

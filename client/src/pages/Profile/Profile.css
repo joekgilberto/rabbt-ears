@@ -1,4 +1,4 @@
-.Profile{
+.Profile {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -6,7 +6,7 @@
     padding-top: 20px;
 }
 
-.Profile h2{
+.Profile h2 {
     width: 80px;
     height: 80px;
     display: flex;
@@ -21,18 +21,18 @@
     border-radius: 50%;
 }
 
-.Profile .circle{
+.Profile .circle {
     border: 8px solid #000;
     border-radius: 50%;
 }
 
-.Profile h1{
+.Profile h1 {
     color: #fff;
     text-shadow: 0 2px 2px #00000060;
     margin: 10px 0 0 0;
 }
 
-.Profile .count{
+.Profile .count {
     margin: 10px 0 15px 0;
     padding: 5px 15px;
     color: #fff;
@@ -43,34 +43,34 @@
     box-shadow: 0 2px 2px #00000060;
 }
 
-.Profile .divider{
+.Profile .divider {
     margin: 0 10px;
     color: #000;
     font-weight: 600;
     text-shadow: none;
 }
 
-.Profile .point-five .divider{
+.Profile .point-five .divider {
     color: #bc2a2a;
 }
 
-.Profile .one .divider{
+.Profile .one .divider {
     color: #de7702;
 }
 
-.Profile .three .divider{
+.Profile .three .divider {
     color: #1b91e5;
 }
 
-.Profile .four .divider{
+.Profile .four .divider {
     color: #2ea021;
 }
 
-.Profile .five .divider{
+.Profile .five .divider {
     color: #fe73fe;
 }
 
-.Profile .profile-content{
+.Profile .profile-content {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@
     padding-bottom: 20px;
 }
 
-.Profile h3{
+.Profile h3 {
     width: 200px;
     margin: 20px 20px 0 20px;
     padding: 5px;
@@ -90,21 +90,21 @@
     box-shadow: 0 2px 2px #00000060;
 }
 
-.Profile .profile-list{
+.Profile .profile-list {
     display: flex;
     padding: 0 20px;
     gap: 20px;
     overflow-x: scroll;
 }
 
-.Profile .profile-logout{
+.Profile .profile-logout {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
 
-.Profile .profile-logout button{
+.Profile .profile-logout button {
     margin: 10px 20px;
     padding: 5px 15px;
     color: #697595;
@@ -117,6 +117,6 @@
     border-radius: 20px;
 }
 
-.Profile .profile-logout button:hover{
-animation: .5s rise forwards;
+.Profile .profile-logout button:hover {
+    animation: .5s rise forwards;
 }

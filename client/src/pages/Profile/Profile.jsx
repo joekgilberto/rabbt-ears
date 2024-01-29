@@ -62,8 +62,8 @@ export default function Profile() {
                             {favs?.length ?
                                 favs.map((fav, idx) => {
                                     return (
-                                        <Link to={`/shows/${fav.showId}`}>
-                                            <ShowPoster key={idx} source={fav.poster} title={fav.title} />
+                                        <Link key={idx} to={`/shows/${fav.showId}`}>
+                                            <ShowPoster source={fav.poster} title={fav.title} />
                                         </Link>
                                     )
                                 }) :
@@ -74,8 +74,8 @@ export default function Profile() {
                             {reviews?.length ?
                                 reviews.map((review, idx) => {
                                     return (
-                                        <Link to={`/reviews/${review._id}`}>
-                                            <ProfilePoster key={idx} source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} />
+                                        <Link key={idx} to={`/reviews/${review._id}`}>
+                                            <ProfilePoster source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} />
                                         </Link>
                                     )
                                 }) :
