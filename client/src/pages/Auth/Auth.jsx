@@ -24,7 +24,7 @@ export default function Auth() {
 
     async function handleLogin(e) {
         e.preventDefault()
-        if (toggle === false) {
+        if (!toggle) {
             try {
                 await authServices.login({
                     username: credentials.username,
