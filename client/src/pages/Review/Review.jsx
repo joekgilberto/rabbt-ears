@@ -58,7 +58,7 @@ export default function Review() {
                             {[...tools.enter(review.title)].map((title, idx) => {
                                 return <h2 key='idx' className='review-show'>{title}</h2>
                             })}
-                            <img src={review.poster?review.poster:'none'} alt={review.title} onError={({ currentTarget }) => {
+                            <img src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                             }} />
@@ -81,6 +81,16 @@ export default function Review() {
                             </div>
                             <p className='review-thoughts'>{review.review}</p>
                             <div className='review-tags'>
+                                {review.finished ?
+                                    <p className={`finished ${review.rating === 0 ? 'zero'
+                                    : review.rating === .5 ? ' point-five'
+                                        : review.rating === 1 || review.rating === 1.5 ? 'one'
+                                            : review.rating === 2 || review.rating === 2.5 ? 'two'
+                                                : review.rating === 3 || review.rating === 3.5 ? 'three'
+                                                    : review.rating === 4 || review.rating === 4.5 ? 'four'
+                                                        : 'five'}`}>Finished <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Check_Mark_%2889605%29_-_The_Noun_Project.svg/1024px-Check_Mark_%2889605%29_-_The_Noun_Project.svg.png?20180419151324' alt='checkmark' /></p>
+                                    :
+                                    null}
                                 {review.tags.map((tag, idx) => {
                                     return <Tag key={idx} text={tag} />
                                 })}

@@ -1,5 +1,5 @@
 import './Tag.css';
 
 export default function Tag({text}) {
-    return (<p className='Tag'>{text} </p>);
+    return (<p className='Tag'>{text}</p>);
 };

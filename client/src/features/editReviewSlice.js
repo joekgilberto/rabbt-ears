@@ -7,6 +7,7 @@ const initReview = {
     title: '',
     poster: '',
     showId: 0,
+    finished: false,
     fav: false,
     tags: [],
     username: '',

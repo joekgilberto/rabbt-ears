@@ -12,6 +12,10 @@ const ReviewSchema = new Schema({
     title: { type: String, required: true },
     poster: { type: String, required: true },
     showId: { type: Number, required: true },
+    finished: {
+        type: Boolean,
+        default: false
+    },
     fav: {
         type: Boolean,
         default: false

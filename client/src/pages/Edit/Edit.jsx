@@ -77,17 +77,10 @@ export default function Edit() {
     const review = useSelector(selectEditReview);
 
     function handleChange(e) {
-        if (e.target.name === 'fav') {
-            dispatch(updateEditReview({
-                ...review,
-                [e.target.name]: !review.fav
-            }));
-        } else {
-            dispatch(updateEditReview({
-                ...review,
-                [e.target.name]: e.target.value
-            }));
-        }
+        dispatch(updateEditReview({
+            ...review,
+            [e.target.name]: e.target.value
+        }));
     };
 
     function handleClick(e) {
@@ -98,6 +91,15 @@ export default function Edit() {
             setBttn('+');
         }
         setToggle(!toggle);
+    }
+
+    function handleFinish(e) {
+        console.log(review.finished)
+        console.log(!review.finished)
+        dispatch(updateEditReview({
+            ...review,
+            finished: !review.finished
+        }));
     }
 
     function handleFav(e) {
@@ -247,6 +249,12 @@ export default function Edit() {
                                 <option selected={review.rating === 5}>5.0</option>
                             </select>
                         </label>
+                        <label onChange={handleFinish}>Finished
+                            <div className='container'>
+                                <input className='checkbox' type='checkbox' name='finished' defaultChecked={review.finished} />
+                                <span className='checkmark'></span>
+                            </div>
+                        </label>
                         <label onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
@@ -254,12 +262,12 @@ export default function Edit() {
                             <p>{bttn}</p>
                         </label>
                         {toggle ?
-                                <div className='edit-potential-tags'>
-                                    {tags.map((tag, idx) => {
-                                        return <button key={idx} className='edit-tag' value={tag} onClick={handleTag}>+ {tag}</button>
-                                    })}
-                                </div>
-                                : null}
+                            <div className='edit-potential-tags'>
+                                {tags.map((tag, idx) => {
+                                    return <button key={idx} className='edit-tag' value={tag} onClick={handleTag}>+ {tag}</button>
+                                })}
+                            </div>
+                            : null}
                         <label className='edit-thoughts'>Thoughts
                             <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>

@@ -23,6 +23,7 @@ export default function New() {
         title: '',
         poster: '',
         showId: 0,
+        finished: false,
         fav: false,
         tags: [],
         username: '',
@@ -88,17 +89,10 @@ export default function New() {
     const show = useSelector(selectShow);
 
     function handleChange(e) {
-        if (e.target.name === 'fav') {
-            dispatch(updateNewReview({
-                ...review,
-                [e.target.name]: !review.fav
-            }));
-        } else {
-            dispatch(updateNewReview({
-                ...review,
-                [e.target.name]: e.target.value
-            }));
-        }
+        dispatch(updateNewReview({
+            ...review,
+            [e.target.name]: e.target.value
+        }));
     };
 
     function handleClick(e) {
@@ -111,7 +105,14 @@ export default function New() {
         setToggle(!toggle);
     }
 
-    function handleFav(e){
+    function handleFinish(e) {
+        dispatch(updateNewReview({
+            ...review,
+            finished: !review.finished
+        }));
+    }
+
+    function handleFav(e) {
         dispatch(updateNewReview({
             ...review,
             fav: !fav
@@ -225,19 +226,25 @@ export default function New() {
                                 <option>5.0</option>
                             </select>
                         </label>
+                        <label onChange={handleFinish}>Finished
+                            <div className='container'>
+                                <input className='checkbox' type='checkbox' name='finished' />
+                                <span className='checkmark'></span>
+                            </div>
+                        </label>
                         <label onClick={handleFav}>Favorite
-                            <img className={!fav?'white':''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
+                            <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
                         <label onClick={handleClick}>Tags
                             <p>{bttn}</p>
                         </label>
                         {toggle ?
-                                <div className='new-potential-tags'>
-                                    {tags.map((tag, idx) => {
-                                        return <button key={idx} className='new-tag' value={tag} onClick={handleTag}>+ {tag}</button>
-                                    })}
-                                </div>
-                                : null}
+                            <div className='new-potential-tags'>
+                                {tags.map((tag, idx) => {
+                                    return <button key={idx} className='new-tag' value={tag} onClick={handleTag}>+ {tag}</button>
+                                })}
+                            </div>
+                            : null}
                         <label className='new-thoughts'>Thoughts
                             <textarea name='review' onChange={handleChange} />
                         </label>
