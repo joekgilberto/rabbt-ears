@@ -68,12 +68,6 @@
     border-top: 2px solid #000;
 }
 
-@media screen and (min-height: 835px) {
-    .Menu {
-        grid-row: 1 / span 1;
-    }
-}
-
 @media screen and (min-width: 310px) {
     .Menu .logo h1 {
         font-size: 50px;
