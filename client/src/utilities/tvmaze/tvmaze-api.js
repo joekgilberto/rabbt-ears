@@ -9,7 +9,9 @@ export async function show(id) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 export async function search(query) {
@@ -18,5 +20,7 @@ export async function search(query) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };

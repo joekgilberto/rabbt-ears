@@ -67,7 +67,7 @@ export default function Profile() {
                                         </Link>
                                     )
                                 }) :
-                                <p>No favorites</p>}
+                                <p className='none-yet'>No favorites</p>}
                         </div>
                         <h3>Reviews</h3>
                         <div className='profile-list'>
@@ -79,7 +79,7 @@ export default function Profile() {
                                         </Link>
                                     )
                                 }) :
-                                <p>None yet</p>}
+                                <p className='none-yet'>None yet</p>}
                         </div>
                         <div className='profile-logout'>
                             <button onClick={handleLogout}>Logout</button>

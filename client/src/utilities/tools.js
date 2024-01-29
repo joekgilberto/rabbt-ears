@@ -60,3 +60,17 @@ export function average(reviews) {
     const average = sum / reviews.length;
     return average;
 }
+
+export function errorToObject(key, value) {
+    if (value instanceof Error) {
+        var error = {};
+
+        Object.getOwnPropertyNames(value).forEach(function (propName) {
+            error[propName] = value[propName];
+        });
+
+        return error;
+    }
+
+    return value;
+}

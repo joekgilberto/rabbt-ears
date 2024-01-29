@@ -4,21 +4,25 @@ const BASE_URL = process.env.REACT_APP_AUTH_API_URL;
 
 export async function register(data) {
     return axios
-        .post(`${BASE_URL}register/`,data)
+        .post(`${BASE_URL}register/`, data)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 
 };
 
 export async function login(data) {
     return axios
-        .post(`${BASE_URL}login/`,data)
+        .post(`${BASE_URL}login/`, data)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 
 };
 
@@ -28,7 +32,9 @@ export async function logout() {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 export async function show(id) {
@@ -37,20 +43,24 @@ export async function show(id) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
-export async function update(id,data) {
-    const config={
+export async function update(id, data) {
+    const config = {
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
     return axios
-        .put(`${BASE_URL}${id}/`,data,config)
+        .put(`${BASE_URL}${id}/`, data, config)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 
 };

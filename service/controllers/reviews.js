@@ -50,7 +50,8 @@ async function associated(req, res, next) {
 
 async function users(req, res, next){
     try {
-        const ownedReviews = await Reviews.find({ user: req.params.id });
+        console.log(req.params.id)
+        const ownedReviews = await Reviews.find({ owner: req.params.id });
         res.status(200).json(ownedReviews);
     } catch (error) {
         res.status(400).json(error);

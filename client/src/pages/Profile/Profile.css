@@ -97,6 +97,20 @@
     overflow-x: scroll;
 }
 
+.Profile .none-yet{
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 0 2px 2px #00000060;
+    background-color: #00000030;
+}
+
 .Profile .profile-logout {
     display: flex;
     justify-content: center;

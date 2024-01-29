@@ -4,7 +4,9 @@ function getUserToken(){
 };
 
 function setUserToken(token){
-    return localStorage.setItem("token", token);
+    if(token){
+        return localStorage.setItem("token", token);
+    }
 };
 
 function clearUserToken(){
@@ -21,7 +23,9 @@ function getUser(){
 };
 
 function setUser(user){
-    return localStorage.setItem("user", JSON.stringify(user));
+    if(user){
+        return localStorage.setItem("user", JSON.stringify(user));
+    }
 };
 
 function clearUser(){

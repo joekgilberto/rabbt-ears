@@ -8,7 +8,9 @@ export async function index() {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 export async function show(id) {
@@ -17,7 +19,9 @@ export async function show(id) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 export async function associated(id) {
@@ -26,7 +30,9 @@ export async function associated(id) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 export async function users(id) {
@@ -35,51 +41,59 @@ export async function users(id) {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 };
 
 
 export async function create(data) {
-    const config={
+    const config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
-        .post(BASE_URL,data,config)
+        .post(BASE_URL, data, config)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 
 };
 
-export async function update(id,data) {
-    const config={
+export async function update(id, data) {
+    const config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
-        .put(`${BASE_URL}${id}/`,data,config)
+        .put(`${BASE_URL}${id}/`, data, config)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            return err
+        });
 
 };
 
 export async function destroy(id) {
-    const config={
+    const config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
-        .delete(`${BASE_URL}${id}/`,config)
+        .delete(`${BASE_URL}${id}/`, config)
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err));
-    
+        .catch((err) => {
+            return err
+        });
+
 }

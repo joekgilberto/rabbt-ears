@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as authServices from '../../utilities/auth/auth-service';
 import { setUserToken, setUser } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCredentials, selectCredentials } from '../../features/authSlice';
+import { updateCredentials, setLoginError, setRegisterError, selectCredentials } from '../../features/authSlice';
 import { getUserToken, getUser } from '../../utilities/local-storage';
 
 import Carousel from '../../components/Carousel/Carousel';
@@ -19,6 +19,13 @@ export default function Auth() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    function handleThrowErr(res, cb) {
+        if (res.code === 'ERR_BAD_REQUEST') {
+            dispatch(cb(res));
+            throw Error;
+        }
+    }
+
     async function handleLogin(e) {
         e.preventDefault();
 
@@ -28,6 +35,8 @@ export default function Auth() {
                     username: credentials.username,
                     password: credentials.password
                 }).then((res) => {
+                    handleThrowErr(res, setLoginError)
+                    dispatch(setLoginError({}));
                     setUserToken(res.token);
                     setUser(res.user);
                     dispatch(updateCredentials({
@@ -55,11 +64,18 @@ export default function Auth() {
 
         if (toggle) {
             try {
-                await authServices.register({ credentials }).then(async (registerRes) => {
+                console.log(credentials)
+                await authServices.register({
+                    username: credentials.username,
+                    password: credentials.password
+                }).then(async (registerRes) => {
+                    handleThrowErr(registerRes, setRegisterError);
                     await authServices.login({
                         username: credentials.username,
                         password: credentials.password
                     }).then((loginRes) => {
+                        handleThrowErr(loginRes, setRegisterError);
+                        dispatch(setRegisterError({},));
                         setUserToken(loginRes.token);
                         setUser(loginRes.user);
                         dispatch(updateCredentials({
@@ -70,7 +86,6 @@ export default function Auth() {
                         navigate('/feed');
                     })
                 });
-
             } catch (err) {
                 console.log(err);
                 dispatch(updateCredentials({
