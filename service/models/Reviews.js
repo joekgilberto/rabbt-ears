@@ -8,7 +8,7 @@ const ReviewSchema = new Schema({
         maximum: 5,
         required: true
     },
-    review: { type: String, required: true },
+    review: { type: String },
     title: { type: String, required: true },
     poster: { type: String, required: true },
     showId: { type: Number, required: true },

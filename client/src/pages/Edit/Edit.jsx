@@ -29,6 +29,7 @@ export default function Edit() {
         { text: 'Chilling (EEK!)', symbol: '+' },
         { text: 'Comfort Show', symbol: '+' },
         { text: 'Criminally Good', symbol: '+' },
+        { text: 'Dark', symbol: '+' },
         { text: 'Date Night TV', symbol: '+' },
         { text: 'Drama Queen', symbol: '+' },
         { text: 'Drawn To It', symbol: '+' },
@@ -50,11 +51,13 @@ export default function Edit() {
         { text: 'Masterpiece', symbol: '+' },
         { text: 'Meh', symbol: '+' },
         { text: 'Messy', symbol: '+' },
+        { text: 'Mind Bending', symbol: '+' },
         { text: 'Must Watch', symbol: '+' },
         { text: 'Nothing Like It', symbol: '+' },
         { text: 'Obsessed', symbol: '+' },
         { text: 'Out Of This World', symbol: '+' },
         { text: 'Poorly Written', symbol: '+' },
+        { text: 'Revisit Often', symbol: '+' },
         { text: 'Revolutionary', symbol: '+' },
         { text: 'Serious', symbol: '+' },
         { text: 'Sludge', symbol: '+' },
@@ -69,6 +72,7 @@ export default function Edit() {
         { text: 'Trash TV', symbol: '+' },
         { text: 'Trendsetter', symbol: '+' },
         { text: 'Tropey', symbol: '+' },
+        { text: 'Well Written', symbol: '+' },
         { text: 'Zany', symbol: '+' }
     ])
     const dispatch = useDispatch();

@@ -53,7 +53,7 @@ export default function Show() {
                                     : average === 2 || average === 2.5 ? 'two'
                                         : average === 3 || average === 3.5 ? 'three'
                                             : average === 4 || average === 4.5 ? 'four'
-                                                : 'five'}`}>{reviews.length ? average : 'TBD'}</h2>
+                                                : 'five'}`}>{reviews.length ? average.toString().length > 3 ? average.toString().substring(0, 3) : average : 'TBD'}</h2>
                     </div>
                     {show.summary ?
                         <p className='show-synopsis'>{tools.noTags(show.summary)}</p>
@@ -74,7 +74,7 @@ export default function Show() {
                             null}
 
                         {show.officialSite ?
-                            <a className='website' href={show.officialSite} target='_blank'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Noun_Project_website_icon_3077870.svg/96px-Noun_Project_website_icon_3077870.svg.png?20200710140656' alt='website'/><p>Website</p></a>
+                            <a className='website' href={show.officialSite} target='_blank'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Noun_Project_website_icon_3077870.svg/96px-Noun_Project_website_icon_3077870.svg.png?20200710140656' alt='website' /><p>Website</p></a>
                             :
                             null}
                     </div>
@@ -83,7 +83,7 @@ export default function Show() {
                         <Link to={`/new/${show.id}`}>
                             <p className='new-review'>+</p>
                         </Link>
-                        {reviews.length? reviews.map((review, idx) => {
+                        {reviews.length ? reviews.map((review, idx) => {
                             return (
                                 <Link key={idx} to={`/reviews/${review._id}`}>
                                     <p className={`review ${review.rating === 0 ? 'zero'
@@ -97,8 +97,8 @@ export default function Show() {
                                 </Link>
                             )
                         })
-                    :
-                    null}
+                            :
+                            null}
                     </div>
                 </>
                 :
