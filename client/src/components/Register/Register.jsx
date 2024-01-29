@@ -5,7 +5,7 @@ import { updateCredentials, selectCredentials } from '../../features/authSlice';
 
 import Loading from '../Loading/Loading';
 
-export default function Register() {
+export default function Register({ handleSubmit }) {
 
     const dispatch = useDispatch();
     const credentials = useSelector(selectCredentials);
@@ -20,10 +20,11 @@ export default function Register() {
     return (
         <div className='Register'>
             {credentials ?
-                <form>
-                    <input type='text' placeholder='Username' name='username' autoComplete='username' maxlength='12' value={credentials.username} onChange={handleChange}></input>
+                <form onSubmit={handleSubmit}>
+                    <input type='text' placeholder='Username' name='username' autoComplete='username' maxLength='12' value={credentials.username} onChange={handleChange}></input>
                     <input type='password' placeholder='Password' name='password' autoComplete='password' minLength='8' value={credentials.password} onChange={handleChange}></input>
                     <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' minLength='8' value={credentials.reEnterPassword} onChange={handleChange}></input>
+                    <input className='auth-submit' type='submit'></input>
                 </form>
                 :
                 <Loading />}

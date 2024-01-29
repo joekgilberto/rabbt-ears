@@ -1,10 +1,6 @@
 // Creates local storage for token
 function getUserToken(){
-    if(localStorage.getItem("token")){
-        return JSON.parse(localStorage.getItem("token"));
-    } else {
-        return "";
-    }
+    return localStorage.getItem("token");
 };
 
 function setUserToken(token){

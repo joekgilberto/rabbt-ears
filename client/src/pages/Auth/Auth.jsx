@@ -6,6 +6,7 @@ import * as authServices from '../../utilities/auth/auth-service';
 import { setUserToken, setUser } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCredentials, selectCredentials } from '../../features/authSlice';
+import { getUserToken, getUser } from '../../utilities/local-storage';
 
 import Carousel from '../../components/Carousel/Carousel';
 import Login from '../../components/Login/Login';
@@ -18,12 +19,9 @@ export default function Auth() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function handleToggle(e) {
-        setToggle(!toggle)
-    }
-
     async function handleLogin(e) {
-        e.preventDefault()
+        e.preventDefault();
+
         if (!toggle) {
             try {
                 await authServices.login({
@@ -53,7 +51,8 @@ export default function Auth() {
     }
 
     async function handleRegister(e) {
-        e.preventDefault()
+        e.preventDefault();
+
         if (toggle) {
             try {
                 await authServices.register({ credentials }).then(async (registerRes) => {
@@ -86,8 +85,10 @@ export default function Auth() {
     }
 
     useEffect(() => {
-        console.log(toggle)
-    }, [toggle])
+        if (getUserToken() && getUser()) {
+            navigate('/profile');
+        }
+    }, [])
 
     return (
         <div className='Auth'>
@@ -101,7 +102,7 @@ export default function Auth() {
                         <button className='login-button' onClick={handleLogin}>Login</button>
                         <button className='register-button' onClick={handleRegister}>Register</button>
                     </div>
-                    {!toggle ? <Login selected={toggle} /> : <Register selected={!toggle} />}
+                    {!toggle ? <Login handleSubmit={handleLogin} /> : <Register handleSubmit={handleRegister} />}
                 </div>
             </div>
             <Carousel />
