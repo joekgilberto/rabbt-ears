@@ -118,16 +118,16 @@ export default function Edit() {
         e.preventDefault();
 
         if (tags[e.target.id].symbol === '+') {
-            const addedTags = [...review.tags, e.target.value];
-            addedTags.sort();
-            dispatch(updateEditReview({
-                ...review,
-                tags: addedTags
-            }));
+            if (review.tags.length < 5) {
+                const addedTags = [...review.tags, e.target.value];
+                addedTags.sort();
+                dispatch(updateEditReview({
+                    ...review,
+                    tags: addedTags
+                }));
 
-            tags[e.target.id] = { text: e.target.value, symbol: '-' };
-            console.log(tags[e.target.id])
-
+                tags[e.target.id] = { text: e.target.value, symbol: '-' };
+            }
         } else if (tags[e.target.id].symbol === '-') {
             const lessenedTags = [...review.tags];
             const idx = lessenedTags.indexOf(e.target.value);
@@ -193,7 +193,7 @@ export default function Edit() {
                 const idx = tags.map(t => t.text).indexOf(tag);
 
                 if (idx > -1) {
-                    tags[idx] = {...tags[idx], symbol:'-'}
+                    tags[idx] = { ...tags[idx], symbol: '-' }
                 }
             }
         }
@@ -249,20 +249,22 @@ export default function Edit() {
                         <label onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
-                        <label onClick={handleClick}>Tags
-                            <p>{bttn}</p>
-                        </label>
-                        {toggle ?
-                            <div className='edit-tags'>
-                                {tags.map((tag, idx) => {
-                                    return <button key={idx} id={idx} className={`edit-tag${tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
-                                })}
-                            </div>
-                            : null}
                         <label className='edit-thoughts'>Thoughts
                             <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>
-                        <button className='edit-put' type='submit'>Save</button>
+                        <div className='edit-tags-put'>
+                            <label className='edit-tag-label' onClick={handleClick}>Tags
+                                <p>{bttn}</p>
+                            </label>
+                            {toggle ?
+                                <div className='edit-tags'>
+                                    {tags.map((tag, idx) => {
+                                        return <button key={idx} id={idx} className={`edit-tag${tag.symbol === '+' && review.tags.length >= 5 ? ' disable' : tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
+                                    })}
+                                </div>
+                                : null}
+                            <button className='edit-put' type='submit'>Save</button>
+                        </div>
                     </form>
                 </>
                 :

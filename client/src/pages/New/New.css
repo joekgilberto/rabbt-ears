@@ -73,7 +73,7 @@
     border: none;
 }
 
-.New img {
+.New label img {
     width: 30px;
     height: 30px;
 }
@@ -96,19 +96,11 @@
     outline: none;
 }
 
-.New .new-post {
+.New .new-tags-post{
     display: flex;
-    width: 180px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #fff;
-    border: none;
-    box-shadow: 0px 3px 3px #00000060;
 }
 
 .New .new-tags {
@@ -142,4 +134,118 @@
 .New .new-tag.minus {
     color: #fff;
     background-color: #000;
+}
+
+.New .new-tag.disable {
+    color: #697595;
+    background-color: #bcc7e8;
+    animation: none !important;
+}
+
+.New .new-post {
+    display: flex;
+    width: 180px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 3px 3px #00000060;
+}
+
+@media screen and (min-width: 760px) {
+    .New form {
+        display: grid;
+        grid-template-columns: 200px repeat(3, 1fr);
+        grid-template-rows: 52px 208px fit-content(100%);
+        gap: 20px;
+    }
+
+    .New .new-poster{
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 3;
+    }
+
+    .New label{
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+    }
+
+    .New label select{
+        font-size: 20px;
+    }
+
+
+    .New label.new-thoughts{
+        width: 100%;
+        height: 100%;
+        grid-column: 2 / span 3;
+        grid-row: 2 / span 2;
+        display: flex;
+        justify-content: stretch;
+    }
+
+    .New label.new-thoughts textarea{
+        width: 100% !important;
+        height: 100%;
+    }
+
+    .New label.new-tag-label{
+        grid-column: 2 / span 1;
+        grid-row: 4 / span 1;
+    }
+
+    .New .new-tags-post{
+        width: 100%;
+        grid-column: 1 / span 4;
+        grid-row: 4 / span 1;
+        display: grid;
+        grid-template-columns: 200px repeat(6, 1fr);
+        grid-template-rows: 50px fit-content(100%);
+        gap: 20px 20px;
+    }
+
+    .New label.new-tag-label{
+        grid-column: 3 / span 2;
+        grid-row: 1 / span 1;
+    }
+
+    .New button.new-post{
+        width: 100%;
+        grid-column: 5 / span 2;
+        grid-row: 1 / span 1;
+        margin-top: 0;
+    }
+
+    .New .new-tags{
+        width: 100%;
+        grid-column: 1 / span 7;
+        grid-row: 2 / span 1;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .New form {
+        grid-template-columns: 300px repeat(3, 1fr);
+        grid-template-rows: 52px 358px fit-content(100%);
+    }
+
+    .New label,
+    .New label select{
+        font-size: 24px;
+    }
+
+    .New .new-poster{
+        width: 300px;
+        height: 450px;
+    }
+
+    .New .new-tags-post{
+        grid-template-columns: 300px repeat(6, 1fr);
+    }
 }

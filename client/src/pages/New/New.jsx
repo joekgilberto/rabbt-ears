@@ -126,32 +126,33 @@ export default function New() {
     function handleTag(e) {
         e.preventDefault();
 
-        if (tags[e.target.id].symbol === '+'){
-            const addedTags = [...review.tags, e.target.value];
-            addedTags.sort();
-            dispatch(updateNewReview({
-                ...review,
-                tags: addedTags
-            }));
+        if (tags[e.target.id].symbol === '+') {
+            if (review.tags.length < 5) {
+                const addedTags = [...review.tags, e.target.value];
+                addedTags.sort();
+                dispatch(updateNewReview({
+                    ...review,
+                    tags: addedTags
+                }));
 
-            tags[e.target.id] = {text: e.target.value, symbol: '-'};
-
-        } else if (tags[e.target.id].symbol === '-'){
+                tags[e.target.id] = { text: e.target.value, symbol: '-' };
+            }
+        } else if (tags[e.target.id].symbol === '-') {
             const lessenedTags = [...review.tags];
             const idx = lessenedTags.indexOf(e.target.value);
-    
+
             if (idx > -1) {
                 lessenedTags.splice(idx, 1);
             }
-    
+
             lessenedTags.sort();
-    
+
             dispatch(updateNewReview({
                 ...review,
                 tags: lessenedTags
             }));
 
-            tags[e.target.id] = {text: e.target.value, symbol: '+'};
+            tags[e.target.id] = { text: e.target.value, symbol: '+' };
         }
     }
 
@@ -182,24 +183,6 @@ export default function New() {
     useEffect(() => {
         dispatch(loadShow(id));
     }, [id]);
-
-    useEffect(() => {
-        if (review.tags?.length) {
-            for (let tag of review.tags) {
-                if (tags.includes(tag)) {
-                    const lessenedTags = [...tags];
-                    const idx = lessenedTags.indexOf(tag);
-
-                    if (idx > -1) {
-                        lessenedTags.splice(idx, 1);
-                    }
-
-                    lessenedTags.sort();
-                    setTags(lessenedTags);
-                }
-            }
-        }
-    }, [review.tags])
 
     if (loading) {
         return <Loading />
@@ -239,20 +222,22 @@ export default function New() {
                         <label onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
-                        <label onClick={handleClick}>Tags
-                            <p>{bttn}</p>
-                        </label>
-                        {toggle ?
-                            <div className='new-tags'>
-                                {tags.map((tag, idx) => {
-                                    return <button key={idx} id={idx} className={`new-tag${tag.symbol==='+'?' plus':tag.symbol==='-'?' minus':''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
-                                })}
-                            </div>
-                            : null}
                         <label className='new-thoughts'>Thoughts
                             <textarea name='review' onChange={handleChange} />
                         </label>
-                        <button className='new-post' type='submit'>Post</button>
+                        <div className='new-tags-post'>
+                            <label className='new-tag-label' onClick={handleClick}>Tags
+                                <p>{bttn}</p>
+                            </label>
+                            {toggle ?
+                                <div className='new-tags'>
+                                    {tags.map((tag, idx) => {
+                                        return <button key={idx} id={idx} className={`new-tag${tag.symbol === '+' && review.tags.length >= 5 ? ' disable' : tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
+                                    })}
+                                </div>
+                                : null}
+                            <button className='new-post' type='submit'>Post</button>
+                        </div>
                     </form>
                 </>
                 :
