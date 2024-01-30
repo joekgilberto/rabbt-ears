@@ -22,17 +22,16 @@ export default function OtherProfile() {
     const reviews = useSelector(selectReviews);
     const favs = useSelector(selectFavs);
 
-    async function handleLogout() {
-        await authServices.logout().then(() => {
-            clearUserToken();
-            clearUser();
-            navigate('/feed')
-        })
-    }
-
     useEffect(() => {
         dispatch(loadOtherProfile(id));
     }, [dispatch]);
+
+    useEffect(()=>{
+        console.log(error)
+        if(error){
+            navigate('/error');
+        }
+    },[error])
 
     if (loading) {
         return <Loading />
@@ -81,9 +80,6 @@ export default function OtherProfile() {
                                     )
                                 }) :
                                 <p className='none-yet'>None yet</p>}
-                        </div>
-                        <div className='other-profile-logout'>
-                            <button onClick={handleLogout}>Logout</button>
                         </div>
                     </div>
                 </>

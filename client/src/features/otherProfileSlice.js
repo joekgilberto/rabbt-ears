@@ -6,19 +6,26 @@ export const loadOtherProfile = createAsyncThunk(
     'otherProfile/loadOtherProfile',
     async (id) => {
         const data = { user: {}, reviews: {}, favs:[] }
-        const user = authServices.getUser(id);
-        data.user = user;
-        return await reviewServices.getUsersReview(user._id).then((res) => {
-            data.reviews = res;
-
-            for (let review of res){
-                if (review.fav){
-                    data.favs.push(review);
-                }
+        return await authServices.getUser(id).then(async (userRes)=>{
+            if (userRes.length){
+                data.user = userRes[0];
+            } else {
+                throw Error('User not found.')
             }
 
-            return data;
-        });
+            return await reviewServices.getUsersReview(userRes[0]._id).then((reviewRes) => {
+                data.reviews = reviewRes;
+    
+                for (let review of reviewRes){
+                    if (review.fav){
+                        data.favs.push(review);
+                    }
+                }
+    
+                return data;
+            });
+        })
+
     }
 );
 
@@ -59,8 +66,8 @@ export const selectReviews = (state) => state.otherProfile.reviews;
 
 export const selectFavs = (state) => state.otherProfile.favs;
 
-export const isLoading = (state) => state.review.isLoadingOtherProfile;
+export const isLoading = (state) => state.otherProfile.isLoadingOtherProfile;
 
-export const hasError = (state) => state.review.hasOtherProfileError;
+export const hasError = (state) => state.otherProfile.hasOtherProfileError;
 
 export default otherProfileSlice.reducer;

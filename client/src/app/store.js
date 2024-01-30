@@ -8,6 +8,7 @@ import showReducer from '../features/showSlice';
 import searchReducer from '../features/searchSlice';
 import authReducer from '../features/authSlice';
 import profileReducer from '../features/profileSlice';
+import otherProfileReducer from '../features/otherProfileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,7 +19,8 @@ export const store = configureStore({
     show: showReducer,
     search: searchReducer,
     auth: authReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    otherProfile: otherProfileReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,
