@@ -45,7 +45,7 @@ export default function Menu() {
                     </Link>
                 }
                 <Link to='/feed'>
-                    <p className='menu-link'>FEED</p>
+                    <p className='menu-link feed'>FEED</p>
                 </Link>
                 <p className='menu-link' onClick={handleRandom}>RANDOM</p>
                 {token ?

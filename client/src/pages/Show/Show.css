@@ -166,7 +166,7 @@
     box-shadow: 0px 2px 2px #00000060;
 }
 
-@media screen and (min-width:1000px) {
+@media screen and (min-width: 940px) {
     .Show {
         display: grid;
         grid-template-columns: 300px 1fr;

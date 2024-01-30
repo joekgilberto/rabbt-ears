@@ -115,7 +115,7 @@
     font-size: 24px;
     font-weight: 600;
     text-shadow: 0px 2px 2px #00000060;
-    text-align: center;
+    text-align: center;padding: ;
 }
 
 .Review .review-tags {
@@ -148,7 +148,7 @@
     filter: brightness(0) invert(1) drop-shadow(0px 2px 2px #00000060);
 }
 
-@media screen and (min-width:1000px) {
+@media screen and (min-width: 725px) {
     .Review {
         display: grid;
         grid-template-columns: 300px 1fr;
@@ -162,6 +162,7 @@
         grid-row: 1 / span 1;
         flex-direction: column-reverse;
         gap: 10px;
+        align-self: flex-start;
     }
 
     .Review h2{
@@ -173,5 +174,9 @@
         grid-row: 1 / span 1;
         align-self: flex-start;
         margin-top: 10px;
+    }
+
+    .Review .review-thoughts{
+        padding: 30px 0;
     }
 }

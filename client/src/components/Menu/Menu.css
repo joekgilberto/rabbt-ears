@@ -68,6 +68,10 @@
     border-top: 2px solid #000;
 }
 
+.Menu .menu-link.feed {
+    border-top: none !important;
+}
+
 @media screen and (min-width: 310px) {
     .Menu .logo h1 {
         font-size: 50px;
@@ -129,5 +133,9 @@
     .Menu .menu-link {
         border-left: 2px solid #000;
         border-top: none;
+    }
+
+    .Menu .menu-link.feed {
+        border-left: none !important;
     }
 }
