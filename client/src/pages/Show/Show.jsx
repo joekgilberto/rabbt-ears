@@ -54,7 +54,7 @@ export default function Show() {
                                         : average === 2 || average === 2.5 ? 'two'
                                             : average === 3 || average === 3.5 ? 'three'
                                                 : average === 4 || average === 4.5 ? 'four'
-                                                    : 'five'}`}>{reviews.length ? average.toString().length > 3 ? average.toString().substring(0, 3) : average : 'TBD'}</h2>
+                                                    : 'five'}`}>{reviews.length ? average.toString().length > 3 ? average.toString().substring(0, 3) : average.toString().length < 3 ? `${average}.0` : average : 'TBD'}</h2>
                         </div>
                         {show.summary ?
                             <p className='show-synopsis'>{tools.noTags(show.summary)}</p>
@@ -95,7 +95,7 @@ export default function Show() {
                                                     : review.rating === 2 || review.rating === 2.5 ? 'two'
                                                         : review.rating === 3 || review.rating === 3.5 ? 'three'
                                                             : review.rating === 4 || review.rating === 4.5 ? 'four'
-                                                                : 'five'}`}>{review.rating}</p>
+                                                                : 'five'}`}>{review.rating.toString().length < 3 ? `${review.rating}.0` : review.rating}</p>
                                         <p className='username'>{review.username}</p>
                                     </Link>
                                 )

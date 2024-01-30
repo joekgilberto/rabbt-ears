@@ -73,7 +73,7 @@ export default function Review() {
                                                 : review.rating === 3 || review.rating === 3.5 ? 'three'
                                                     : review.rating === 4 || review.rating === 4.5 ? 'four'
                                                         : 'five'}`}>
-                                    {review.rating}
+                                    {review.rating.toString().length < 3 ? `${review.rating}.0` : review.rating}
                                     {review.fav ?
                                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
                                         : null}
