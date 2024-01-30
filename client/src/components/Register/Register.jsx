@@ -23,12 +23,12 @@ export default function Register({ handleSubmit }) {
         <div className='Register'>
             {credentials ?
                 <form onSubmit={handleSubmit}>
-                    <input type='text' placeholder='Username' name='username' autoComplete='username' maxLength='12' value={credentials.username} onChange={handleChange}></input>
-                    <input type='password' placeholder='Password' name='password' autoComplete='password' minLength='8' value={credentials.password} onChange={handleChange}></input>
-                    <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' minLength='8' value={credentials.reEnterPassword} onChange={handleChange}></input>
-                    <input className='auth-submit' type='submit'></input>
+                    <input type='text' placeholder='Username' name='username' autoComplete='username' maxLength='12' value={credentials.username} onChange={handleChange} required />
+                    <input type='password' placeholder='Password' name='password' autoComplete='password' minLength='8' value={credentials.password} onChange={handleChange} required />
+                    <input type='password' placeholder='Re-Enter Password' name='reEnterPassword' autoComplete='password' minLength='8' value={credentials.reEnterPassword} onChange={handleChange} required />
+                    <input className='auth-submit' type='submit' />
                     {error ?
-                        <p className='login-error'>{error.response?.data.error}</p>
+                        <p className='auth-error'>{error}</p>
                         : null}
                 </form>
                 :

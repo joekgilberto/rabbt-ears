@@ -20,14 +20,14 @@ export default function Login({ handleSubmit }) {
     };
 
     return (
-        <div className={`Login${error?.message?'error':''}`}>
+        <div className='Login'>
             {credentials ?
                 <form onSubmit={handleSubmit}>
-                    <input type='text' placeholder='Username' name='username' autoComplete='username' value={credentials.username} onChange={handleChange}></input>
-                    <input type='password' placeholder='Password' name='password' autoComplete='password' value={credentials.password} onChange={handleChange}></input>
-                    <input className='auth-submit' type='submit'></input>
+                    <input type='text' placeholder='Username' name='username' autoComplete='username' value={credentials.username} onChange={handleChange} required />
+                    <input type='password' placeholder='Password' name='password' autoComplete='password' value={credentials.password} onChange={handleChange} required />
+                    <input className='auth-submit' type='submit' />
                     {error ?
-                        <p className='login-error'>{error.response?.data.error}</p>
+                        <p className='auth-error'>{error}</p>
                         : null}
                 </form>
                 :

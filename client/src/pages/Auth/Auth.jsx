@@ -7,6 +7,7 @@ import { setUserToken, setUser } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCredentials, setLoginError, setRegisterError, selectCredentials } from '../../features/authSlice';
 import { getUserToken, getUser } from '../../utilities/local-storage';
+import * as tools from '../../utilities/tools';
 
 import Carousel from '../../components/Carousel/Carousel';
 import Login from '../../components/Login/Login';
@@ -21,7 +22,7 @@ export default function Auth() {
 
     function handleThrowErr(res, cb) {
         if (res.code === 'ERR_BAD_REQUEST') {
-            dispatch(cb(res));
+            dispatch(cb(tools.simplifyErrorMessage(res.response.data.error)));
             throw Error;
         }
     }

@@ -61,16 +61,12 @@ export function average(reviews) {
     return average;
 }
 
-export function errorToObject(key, value) {
-    if (value instanceof Error) {
-        var error = {};
-
-        Object.getOwnPropertyNames(value).forEach(function (propName) {
-            error[propName] = value[propName];
-        });
-
-        return error;
+export function simplifyErrorMessage(error) {
+    if(error.includes('The provided username or password is incorrect')){
+        return 'Username or password is incorrect'
+    } else if(error.includes('E11000')){
+        return 'That username is already taken, please choose another';
     }
 
-    return value;
+    return error;
 }

@@ -9,8 +9,8 @@ const authSlice = createSlice({
       password: '',
       reEnterPassword: ''
     },
-    loginError: {},
-    registerError: {}
+    loginError: '',
+    registerError: ''
   },
   reducers: {
     updateCredentials(state, action) {
