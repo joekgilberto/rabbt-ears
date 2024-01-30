@@ -18,6 +18,12 @@
     box-shadow: 0 3px 3px #00000060;
 }
 
+.Show .show-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .Show .show-header {
     width: 100%;
     display: flex;
@@ -42,7 +48,7 @@
     background-color: #000;
 }
 
-.Show .show-title{
+.Show .show-title {
     font-size: 28px;
 }
 
@@ -75,7 +81,7 @@
     align-items: center;
 }
 
-.Show .website{
+.Show .website {
     height: 35px;
     display: flex;
     align-items: center;
@@ -90,7 +96,7 @@
     border-radius: 20px;
 }
 
-.Show .website img{
+.Show .website img {
     height: 100%;
 }
 
@@ -102,7 +108,15 @@
     margin: 0;
 }
 
-.Show .show-reviews {
+.Show .show-reviews{
+    width: 100%;
+}
+
+.Show .show-reviews h3{
+    margin-bottom: 15px;
+}
+
+.Show .show-squares {
     width: 100%;
     display: flex;
     gap: 20px;
@@ -124,7 +138,7 @@
     box-shadow: 0px 2px 2px #00000060;
 }
 
-.Show .review{
+.Show .review {
     width: 110px;
     height: 100px;
     display: flex;
@@ -138,7 +152,7 @@
     box-shadow: 0px 2px 2px #00000060;
 }
 
-.Show .username{
+.Show .username {
     width: 110px;
     height: 30px;
     display: flex;
@@ -150,4 +164,37 @@
     text-align: center;
     background-color: #000;
     box-shadow: 0px 2px 2px #00000060;
+}
+
+@media screen and (min-width:1000px) {
+    .Show {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: fit-content(100%) fit-content(100%);
+        padding: 30px;
+    }
+
+    .Show .show-poster{
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        align-self: flex-start;
+        margin-top: 0;
+    }
+
+    .Show .show-content{
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        align-self: flex-start;
+    }
+
+    .Show .show-synopsis{
+        max-height: 285px;
+        overflow-y: scroll;
+    }
+
+    .Show .show-reviews{
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 1;
+        align-self: flex-start;
+    }
 }

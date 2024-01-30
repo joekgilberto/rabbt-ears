@@ -37,7 +37,7 @@ export default function Auth() {
                     password: credentials.password
                 }).then((res) => {
                     handleThrowErr(res, setLoginError)
-                    dispatch(setLoginError({}));
+                    dispatch(setLoginError(''));
                     setUserToken(res.token);
                     setUser(res.user);
                     dispatch(updateCredentials({
@@ -64,36 +64,40 @@ export default function Auth() {
         e.preventDefault();
 
         if (toggle) {
-            try {
-                console.log(credentials)
-                await authServices.register({
-                    username: credentials.username,
-                    password: credentials.password
-                }).then(async (registerRes) => {
-                    handleThrowErr(registerRes, setRegisterError);
-                    await authServices.login({
+            if (credentials.password === credentials.reEnterPassword) {
+                try {
+                    console.log(credentials)
+                    await authServices.register({
                         username: credentials.username,
                         password: credentials.password
-                    }).then((loginRes) => {
-                        handleThrowErr(loginRes, setRegisterError);
-                        dispatch(setRegisterError({},));
-                        setUserToken(loginRes.token);
-                        setUser(loginRes.user);
-                        dispatch(updateCredentials({
-                            username: '',
-                            password: '',
-                            reEnterPassword: ''
-                        }));
-                        navigate('/feed');
-                    })
-                });
-            } catch (err) {
-                console.log(err);
-                dispatch(updateCredentials({
-                    username: '',
-                    password: '',
-                    reEnterPassword: ''
-                }));
+                    }).then(async (registerRes) => {
+                        handleThrowErr(registerRes, setRegisterError);
+                        await authServices.login({
+                            username: credentials.username,
+                            password: credentials.password
+                        }).then((loginRes) => {
+                            handleThrowErr(loginRes, setRegisterError);
+                            dispatch(setRegisterError(''));
+                            setUserToken(loginRes.token);
+                            setUser(loginRes.user);
+                            dispatch(updateCredentials({
+                                username: '',
+                                password: '',
+                                reEnterPassword: ''
+                            }));
+                            navigate('/feed');
+                        })
+                    });
+                } catch (err) {
+                    console.log(err);
+                    dispatch(updateCredentials({
+                        username: '',
+                        password: '',
+                        reEnterPassword: ''
+                    }));
+                }
+            } else {
+                dispatch(setRegisterError('Your passwords do not match.'));
             }
         } else {
             setToggle(true);
@@ -101,6 +105,14 @@ export default function Auth() {
     }
 
     useEffect(() => {
+        dispatch(updateCredentials({
+            username: '',
+            password: '',
+            reEnterPassword: ''
+        }));
+        dispatch(setLoginError(''));
+        dispatch(setRegisterError(''));
+
         if (getUserToken() && getUser()) {
             navigate('/profile');
         }

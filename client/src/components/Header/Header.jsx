@@ -45,7 +45,7 @@ export default function Header() {
                         <Link className='feed' to='/feed'>
                             <p>FEED</p>
                         </Link>
-                        <p className='random' onClick={handleRandom}>RANDO</p>
+                        <p className='random' onClick={handleRandom}>RANDOM</p>
                         <p className='search' onClick={handleSearch}>SEARCH</p>
                         {token ?
                             <Link className='header-auth' to='/profile'>
