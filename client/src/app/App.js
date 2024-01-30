@@ -13,6 +13,7 @@ import Profile from '../pages/Profile/Profile';
 import SearchResults from '../pages/SearchResults/SearchResults';
 import Error from '../pages/Error/Error';
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
+import OtherUser from '../pages/OtherUser/OtherProfile';
 
 export default function App() {
   return (
@@ -55,6 +56,11 @@ export default function App() {
               <Profile />
             </Main>
           </PrivateRoute>
+        } />
+        <Route path='/user/:id' element={
+          <Main>
+            <OtherUser />
+          </Main>
         } />
         <Route path='/results/:id' element={
           <Main>
