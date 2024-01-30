@@ -15,11 +15,19 @@ export default function Edit() {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const [token, setToken] = useState(null);
-    const [toggle, setToggle] = useState(false)
-    const [bttn, setBttn] = useState('+')
-    const [fav, setFav] = useState(false);
-    const [tags, setTags] = useState([
+    const initReview = {
+        rating: 0,
+        review: '',
+        title: '',
+        poster: '',
+        showId: 0,
+        finished: false,
+        fav: false,
+        tags: [],
+        username: '',
+        user: ''
+    }
+    const initTags = [
         { text: 'Absolute Boys Content', symbol: '+' },
         { text: 'Addicted', symbol: '+' },
         { text: 'Annoying', symbol: '+' },
@@ -57,7 +65,6 @@ export default function Edit() {
         { text: 'Obsessed', symbol: '+' },
         { text: 'Out Of This World', symbol: '+' },
         { text: 'Poorly Written', symbol: '+' },
-        { text: 'Revisit Often', symbol: '+' },
         { text: 'Revolutionary', symbol: '+' },
         { text: 'Serious', symbol: '+' },
         { text: 'Sludge', symbol: '+' },
@@ -74,7 +81,12 @@ export default function Edit() {
         { text: 'Tropey', symbol: '+' },
         { text: 'Well Written', symbol: '+' },
         { text: 'Zany', symbol: '+' }
-    ])
+    ]
+    const [token, setToken] = useState(null);
+    const [toggle, setToggle] = useState(false)
+    const [bttn, setBttn] = useState('+')
+    const [fav, setFav] = useState(false);
+    const [tags, setTags] = useState(initTags)
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
@@ -126,7 +138,9 @@ export default function Edit() {
                     tags: addedTags
                 }));
 
-                tags[e.target.id] = { text: e.target.value, symbol: '-' };
+                const tagsCache = [...tags];
+                tagsCache[e.target.id] = { text: e.target.value, symbol: '-' };
+                setTags(tagsCache);
             }
         } else if (tags[e.target.id].symbol === '-') {
             const lessenedTags = [...review.tags];
@@ -143,42 +157,32 @@ export default function Edit() {
                 tags: lessenedTags
             }));
 
-            tags[e.target.id] = { text: e.target.value, symbol: '+' };
-
+            const tagsCache =[...tags];
+            tagsCache[e.target.id] = { text: e.target.value, symbol: '+' };
+            setTags(tagsCache);
         }
+    }
+
+    function handleCancel(e){
+        e.preventDefault();
+        dispatch(updateEditReview(initReview));
+        setTags(initTags)
+        navigate(`/reviews/${id}`);
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
         try {
             await reviewsServices.updateReview(review._id, review).then((res) => {
-                dispatch(updateEditReview({
-                    rating: 0,
-                    review: '',
-                    title: '',
-                    poster: '',
-                    showId: 0,
-                    fav: false,
-                    tags: [],
-                    username: '',
-                    user: ''
-                }));
+                dispatch(updateEditReview(initReview));
+                setTags(initTags)
                 dispatch(loadReview(id));
                 navigate(`/reviews/${id}`)
             })
         } catch (err) {
             console.log(err);
-            dispatch(updateEditReview({
-                rating: 0,
-                review: '',
-                title: '',
-                poster: '',
-                showId: 0,
-                fav: false,
-                tags: [],
-                username: '',
-                user: ''
-            }));
+            dispatch(updateEditReview(initReview));
+            setTags(initTags)
             dispatch(loadReview(id));
         }
     }
@@ -189,19 +193,25 @@ export default function Edit() {
 
     useEffect(() => {
         if (review.tags?.length) {
+            const tagsCache = [...initTags];
             for (let tag of review.tags) {
-                const idx = tags.map(t => t.text).indexOf(tag);
+                const idx = tagsCache.map(t => t.text).indexOf(tag);
 
                 if (idx > -1) {
-                    tags[idx] = { ...tags[idx], symbol: '-' }
+                    tagsCache[idx] = { ...tags[idx], symbol: '-' }
                 }
             }
+            setTags(tagsCache)
         }
     }, [review.tags])
 
     useEffect(() => {
         setFav(review.fav);
     }, [review.fav])
+
+    useEffect(()=>{
+
+    },[review])
 
     useEffect(() => {
         dispatch(loadReview(id));
@@ -252,7 +262,7 @@ export default function Edit() {
                         <label className='edit-thoughts'>Thoughts
                             <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>
-                        <div className='edit-tags-put'>
+                        <div className='edit-options'>
                             <label className='edit-tag-label' onClick={handleClick}>Tags
                                 <p>{bttn}</p>
                             </label>
@@ -264,6 +274,7 @@ export default function Edit() {
                                 </div>
                                 : null}
                             <button className='edit-put' type='submit'>Save</button>
+                            <button className='edit-cancel' onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
                 </>

@@ -14,10 +14,7 @@ export default function New() {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const [token, setToken] = useState(null);
-    const [toggle, setToggle] = useState(false)
-    const [bttn, setBttn] = useState('+')
-    const [initReview, setInitReview] = useState({
+    const initReview = {
         rating: 0,
         review: '',
         title: '',
@@ -28,9 +25,9 @@ export default function New() {
         tags: [],
         username: '',
         user: ''
-    })
-    const [fav, setFav] = useState(false);
-    const [tags, setTags] = useState([
+    }
+
+    const initTags = [
         { text: 'Absolute Boys Content', symbol: '+' },
         { text: 'Addicted', symbol: '+' },
         { text: 'Annoying', symbol: '+' },
@@ -84,7 +81,12 @@ export default function New() {
         { text: 'Tropey', symbol: '+' },
         { text: 'Well Written', symbol: '+' },
         { text: 'Zany', symbol: '+' }
-    ])
+    ]
+    const [token, setToken] = useState(null);
+    const [toggle, setToggle] = useState(false)
+    const [bttn, setBttn] = useState('+')
+    const [fav, setFav] = useState(false);
+    const [tags, setTags] = useState(initTags);
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
@@ -135,7 +137,9 @@ export default function New() {
                     tags: addedTags
                 }));
 
-                tags[e.target.id] = { text: e.target.value, symbol: '-' };
+                const tagsCache = [...tags];
+                tagsCache[e.target.id] = { text: e.target.value, symbol: '-' };
+                setTags(tagsCache);
             }
         } else if (tags[e.target.id].symbol === '-') {
             const lessenedTags = [...review.tags];
@@ -152,22 +156,32 @@ export default function New() {
                 tags: lessenedTags
             }));
 
-            tags[e.target.id] = { text: e.target.value, symbol: '+' };
+            const tagsCache = [...tags];
+            tagsCache[e.target.id] = { text: e.target.value, symbol: '+' };
+            setTags(tagsCache);
         }
+    }
+
+    function handleCancel(e){
+        e.preventDefault();
+        dispatch(updateNewReview(initReview));
+        setTags(initTags)
+        navigate(`/shows/${id}`);
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const showId = review.showId;
         try {
             await reviewsServices.createReview(review).then((res) => {
                 dispatch(updateNewReview(initReview));
+                setTags(initTags)
                 dispatch(loadShow(id));
-                navigate(`/shows/${showId}`)
+                navigate(`/shows/${id}`)
             })
         } catch (err) {
             console.log(err);
             dispatch(updateNewReview(initReview));
+            setTags(initTags)
             dispatch(loadShow(id));
         }
     }
@@ -225,7 +239,7 @@ export default function New() {
                         <label className='new-thoughts'>Thoughts
                             <textarea name='review' onChange={handleChange} />
                         </label>
-                        <div className='new-tags-post'>
+                        <div className='new-options'>
                             <label className='new-tag-label' onClick={handleClick}>Tags
                                 <p>{bttn}</p>
                             </label>
@@ -237,6 +251,7 @@ export default function New() {
                                 </div>
                                 : null}
                             <button className='new-post' type='submit'>Post</button>
+                            <button className='new-cancel' onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
                 </>
