@@ -9,6 +9,7 @@ import { isLoading, hasError, loadShow, selectNewReview, selectShow, updateNewRe
 import * as reviewsServices from '../../utilities/reviews/reviews-service';
 
 import Loading from '../../components/Loading/Loading';
+import ToggleTag from '../../components/ToggleTag/ToggleTag';
 
 export default function New() {
 
@@ -127,7 +128,6 @@ export default function New() {
 
     function handleTag(e) {
         e.preventDefault();
-
         if (tags[e.target.id].symbol === '+') {
             if (review.tags.length < 5) {
                 const addedTags = [...review.tags, e.target.value];
@@ -246,7 +246,7 @@ export default function New() {
                             {toggle ?
                                 <div className='new-tags'>
                                     {tags.map((tag, idx) => {
-                                        return <button key={idx} id={idx} className={`new-tag${tag.symbol === '+' && review.tags.length >= 5 ? ' disable' : tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
+                                        return <ToggleTag key={idx} idx={idx} tag={tag} count={review.tags.length} cb={handleTag} />
                                     })}
                                 </div>
                                 : null}

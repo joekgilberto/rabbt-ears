@@ -118,6 +118,10 @@
     box-shadow: 0px 3px 3px #00000060;
 }
 
+.Edit button.edit-put{
+    color: #000;
+}
+
 .Edit button.edit-cancel{
     color: #697595;
 }
@@ -127,38 +131,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.Edit .edit-tag {
-    margin: 10px 5px !important;
-    padding: 5px 15px;
-    font-size: 20px;
-    font-weight: 800;
-    white-space: nowrap;
-    text-align: center;
-    box-shadow: 0px 2px 2px #00000060;
-    border: none;
-    border-radius: 20px;
-}
-
-.Edit .edit-tag:hover {
-    animation: .5s rise forwards;
-}
-
-.Edit .edit-tag.plus {
-    color: #000;
-    background-color: #fff;
-}
-
-.Edit .edit-tag.minus {
-    color: #fff;
-    background-color: #000;
-}
-
-.Edit .edit-tag.disable {
-    color: #697595;
-    background-color: #bcc7e8;
-    animation: none !important;
 }
 
 @media screen and (min-width: 760px) {

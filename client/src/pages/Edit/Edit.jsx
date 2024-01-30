@@ -9,6 +9,7 @@ import { isLoading, hasError, loadReview, selectEditReview, updateEditReview } f
 import * as reviewsServices from '../../utilities/reviews/reviews-service';
 
 import Loading from '../../components/Loading/Loading';
+import ToggleTag from '../../components/ToggleTag/ToggleTag';
 
 export default function Edit() {
 
@@ -269,7 +270,7 @@ export default function Edit() {
                             {toggle ?
                                 <div className='edit-tags'>
                                     {tags.map((tag, idx) => {
-                                        return <button key={idx} id={idx} className={`edit-tag${tag.symbol === '+' && review.tags.length >= 5 ? ' disable' : tag.symbol === '+' ? ' plus' : tag.symbol === '-' ? ' minus' : ''}`} value={tag.text} onClick={handleTag}>{tag.symbol} {tag.text}</button>
+                                        return <ToggleTag key={idx} idx={idx} tag={tag} count={review.tags.length} cb={handleTag} />
                                     })}
                                 </div>
                                 : null}
