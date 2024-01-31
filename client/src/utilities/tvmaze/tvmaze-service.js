@@ -9,17 +9,17 @@ export async function getShow(id) {
     }
 }
 
-export async function getShowList(searchQueries) { 
+export async function getShowList(searchQueries) {
     try {
         const searchResults = [];
 
-        for(let id of searchQueries){
+        for (let id of searchQueries) {
             const data = await tvmazeApi.show(id);
             searchResults.push(data);
         }
 
         return searchResults;
-    } catch(err) {
+    } catch (err) {
         return err;
     }
 }
@@ -31,8 +31,10 @@ export async function getRandomShows(length) {
         const unusable = [0, 17, 36, 85, 113, 119, 121, 135, 173, 223, 264, 381, 389, 441, 442, 596, 606, 608, 639, 640, 642, 715, 723, 724, 783, 784, 820, 852, 853, 876, 893, 925, 927];
         let iterations = 10;
 
-        if (length > iterations) {
+        if (length > iterations && length < 100) {
             iterations = length;
+        } else if (length >= 100) {
+            iterations = 100;
         }
 
         while (data.length < iterations) {
