@@ -1,5 +1,7 @@
+//Imports custom API calls from tvmaze-api
 import * as tvmazeApi from './tvmaze-api';
 
+//Exports function that returns one show based on id
 export async function getShow(id) {
     try {
         const data = await tvmazeApi.show(id);
@@ -9,6 +11,7 @@ export async function getShow(id) {
     }
 }
 
+//Exports function that returns a list of random shows (with certain ids excluded)
 export async function getRandomShows(length) {
     try {
         const data = [];
@@ -42,6 +45,7 @@ export async function getRandomShows(length) {
     }
 }
 
+//Exports function that returns a list of shows based on a query
 export async function searchShow(query) {
     try {
         const encodedQuery = encodeURIComponent(query);

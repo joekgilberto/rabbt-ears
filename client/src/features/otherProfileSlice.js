@@ -9,13 +9,9 @@ export const loadOtherProfile = createAsyncThunk(
     async (id) => {
         const data = { user: {}, reviews: {}, favs:[] }
         return await authServices.getUser(id).then(async (userRes)=>{
-            if (userRes.length){
-                data.user = userRes[0];
-            } else {
-                throw Error('User not found.')
-            }
+            data.user = userRes;
 
-            return await reviewServices.getUsersReview(userRes[0]._id).then((reviewRes) => {
+            return await reviewServices.getUsersReview(userRes._id).then((reviewRes) => {
                 data.reviews = reviewRes;
     
                 for (let review of reviewRes){

@@ -1,6 +1,7 @@
+//Exports a function to return a random show id (with certain ids excluded)
 export function randomShow() {
     let randomId;
-    const unusable = [0, 17, 36, 85, 113, 119, 121, 135, 173, 223, 264, 381, 389, 441, 442, 596, 606, 608, 639, 642, 715, 723, 724, 783, 784, 820, 852, 853, 876, 893, 925,927];
+    const unusable = [0, 17, 36, 85, 113, 119, 121, 135, 173, 223, 264, 381, 389, 441, 442, 596, 606, 608, 639, 640, 642, 715, 723, 724, 783, 784, 820, 852, 853, 876, 893, 925, 927];
 
     while (!randomId) {
         const cache = Math.floor(Math.random() * 1000) + 1;
@@ -13,6 +14,7 @@ export function randomShow() {
     return randomId;
 }
 
+//Exports a function to remove HTML tags from a string
 export function noTags(string) {
     let filtered = string
 
@@ -37,6 +39,7 @@ export function noTags(string) {
     return filtered;
 }
 
+//Exports a function to split a title with a colon into multiple lines
 export function enter(title) {
     if (title.includes(': ')) {
         let titleArr = title.split(': ');
@@ -48,25 +51,12 @@ export function enter(title) {
     }
 }
 
-export function average(reviews) {
-    if (!reviews.length) {
-        return 'N/A'
-    }
-
-    let sum = 0;
-    for (let review of reviews) {
-        sum += review.rating;
-    }
-    const average = sum / reviews.length;
-    return average;
-}
-
+//Exports a function to simplify common error messages to be easier to read for users 
 export function simplifyErrorMessage(error) {
     if(error.includes('The provided username or password is incorrect')){
         return 'Username or password is incorrect'
     } else if(error.includes('E11000')){
         return 'That username is already taken, please choose another';
     }
-
     return error;
 }

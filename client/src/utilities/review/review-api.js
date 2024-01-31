@@ -1,7 +1,10 @@
+//Imports axios for API calls
 import axios from 'axios';
 
+//Imports API url from environmental variables
 const BASE_URL = process.env.REACT_APP_REVIEWS_API_URL;
 
+//Exports API call for all reviews
 export async function index() {
     return axios
         .get(BASE_URL)
@@ -13,6 +16,7 @@ export async function index() {
         });
 };
 
+//Exports API call for a specific review by id
 export async function show(id) {
     return axios
         .get(`${BASE_URL}${id}/`)
@@ -24,6 +28,7 @@ export async function show(id) {
         });
 };
 
+//Exports API call for reviews associated with a show by id
 export async function associated(id) {
     return axios
         .get(`${BASE_URL}associated/${id}/`)
@@ -35,6 +40,7 @@ export async function associated(id) {
         });
 };
 
+//Exports API call for reviews associated with a user by id
 export async function users(id) {
     return axios
         .get(`${BASE_URL}users/${id}/`)
@@ -47,6 +53,7 @@ export async function users(id) {
 };
 
 
+//Exports API call to create a review
 export async function create(data) {
     const config = {
         headers: {
@@ -64,6 +71,7 @@ export async function create(data) {
 
 };
 
+//Exports API call to update a review by id
 export async function update(id, data) {
     const config = {
         headers: {
@@ -81,6 +89,7 @@ export async function update(id, data) {
 
 };
 
+//Exports API call to delete a review by id
 export async function destroy(id) {
     const config = {
         headers: {

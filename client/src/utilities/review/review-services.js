@@ -1,6 +1,8 @@
+//Imports custom API calls from auth-api and custom local storage tool
 import * as reviewsApi from './review-api';
 import { getUserToken } from '../local-storage';
 
+//Exports function that calls all reviews
 export async function getAllReviews() {
     try {
         const res = await reviewsApi.index();
@@ -11,6 +13,7 @@ export async function getAllReviews() {
     }
 }
 
+//Exports function that calls a specific review by id
 export async function getReview(id) {
     try {
         const res = await reviewsApi.show(id);
@@ -20,6 +23,7 @@ export async function getReview(id) {
     }
 }
 
+//Exports function that calls reviews associated with a show by id
 export async function getAssociated(id) {
     try {
         const res = await reviewsApi.associated(id);
@@ -30,6 +34,7 @@ export async function getAssociated(id) {
     }
 }
 
+//Exports function that calls reviews associated with a user by id
 export async function getUsersReview(id) {
     try {
         const res = await reviewsApi.users(id);
@@ -40,6 +45,7 @@ export async function getUsersReview(id) {
     }
 }
 
+//Exports function that creates a review
 export async function createReview(data) {
     try {
         const token = getUserToken();
@@ -51,6 +57,7 @@ export async function createReview(data) {
     }
 }
 
+//Exports function that updates a specific review by id
 export async function updateReview(id,data) {
     try {
         const res = await reviewsApi.update(id,data);
@@ -60,6 +67,7 @@ export async function updateReview(id,data) {
     }
 }
 
+//Exports function that deletes a specific review by id
 export async function destroyReview(id) {
     try {
         const res = await reviewsApi.destroy(id);
