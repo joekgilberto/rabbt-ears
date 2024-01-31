@@ -88,6 +88,7 @@
     background-color: transparent;
     border: none;
     border-bottom: 3px solid #000;
+    border-radius: 0;
 }
 
 .Auth input::placeholder{

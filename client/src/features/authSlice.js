@@ -1,6 +1,7 @@
+//Imports createSlice from Redux toolkit
 import { createSlice } from '@reduxjs/toolkit'
-import * as tools from '../utilities/tools';
 
+//Createss auth slice with credntial, loginError, and registerError state along with its reducers
 const authSlice = createSlice({
   name: 'auth',
   initialState: {

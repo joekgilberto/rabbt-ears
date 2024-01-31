@@ -29,7 +29,6 @@ export default function Auth() {
 
     async function handleLogin(e) {
         e.preventDefault();
-
         if (!toggle) {
             try {
                 await authServices.login({
@@ -66,7 +65,6 @@ export default function Auth() {
         if (toggle) {
             if (credentials.password === credentials.reEnterPassword) {
                 try {
-                    console.log(credentials)
                     await authServices.register({
                         username: credentials.username,
                         password: credentials.password
@@ -130,7 +128,7 @@ export default function Auth() {
                         <button className='login-button' onClick={handleLogin}>Login</button>
                         <button className='register-button' onClick={handleRegister}>Register</button>
                     </div>
-                    {!toggle ? <Login handleSubmit={handleLogin} /> : <Register handleSubmit={handleRegister} />}
+                    {!toggle ? <Login submit={handleLogin} /> : <Register submit={handleRegister} />}
                 </div>
             </div>
             <Carousel />

@@ -201,7 +201,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
     }, [review.fav])
 
     return (
-        <form className='ReviewForm' onSubmit={handleSubmit}>
+        <form className='ReviewForm' onSubmit={submit}>
             <img className='review-form-poster' src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
