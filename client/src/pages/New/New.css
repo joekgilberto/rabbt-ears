@@ -60,6 +60,13 @@
     font-size: 40px;
 }
 
+.New label.new-finished:hover,
+.New label.new-fav:hover,
+.New label.new-tag-label:hover,
+.New select{
+    cursor: pointer;
+}
+
 .New label.new-thoughts {
     width: 250px;
     flex-direction: column;

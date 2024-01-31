@@ -50,6 +50,13 @@
     box-shadow: 0 3px 3px #00000060;
 }
 
+.Edit label.edit-finished:hover,
+.Edit label.edit-fav:hover,
+.Edit label.edit-tag-label:hover,
+.Edit select{
+    cursor: pointer;
+}
+
 .Edit label p {
     height: 20px;
     display: flex;

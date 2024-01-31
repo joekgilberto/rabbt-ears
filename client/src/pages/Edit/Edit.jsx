@@ -251,13 +251,13 @@ export default function Edit() {
                                 <option selected={review.rating === 5}>5.0</option>
                             </select>
                         </label>
-                        <label onChange={handleFinish}>Finished
+                        <label className='edit-finished' onChange={handleFinish}>Finished
                             <div className='container'>
                                 <input className='checkbox' type='checkbox' name='finished' defaultChecked={review.finished} />
                                 <span className='checkmark'></span>
                             </div>
                         </label>
-                        <label onClick={handleFav}>Favorite
+                        <label className='edit-fav' onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
                         <label className='edit-thoughts'>Thoughts
