@@ -1,7 +1,7 @@
 //Imports style sheet
 import './Delete.css';
 
-//Imports useEffect from React, useNavigate from react-router, and custome reviews services tools
+//Imports state tool from React, useNavigate from react-router, and customreviews services tools
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import * as reviewsServices from '../../utilities/reviews/reviews-service';

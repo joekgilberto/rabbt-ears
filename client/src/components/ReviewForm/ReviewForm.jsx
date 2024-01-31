@@ -1,12 +1,15 @@
+//Imports style sheets
 import './ReviewForm.css';
 
-import { useState } from 'react';
-import { useEffect } from 'react';
+//Imports state tools from React, imports naviation tool from react-router, imports reducer tool from Redux
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 
+//Imports ToggleTag component
 import ToggleTag from '../ToggleTag/ToggleTag';
 
+//Exports function for creating or editing reviews
 export default function ReviewForm({ review, cb, submit, cancel }) {
 
     const navigate = useNavigate();
@@ -38,10 +41,12 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         { text: 'Drama Queen', symbol: '+' },
         { text: 'Drawn To It', symbol: '+' },
         { text: 'Dribble', symbol: '+' },
+        { text: 'Endearing', symbol: '+' },
         { text: 'Exciting', symbol: '+' },
         { text: 'Family Fav', symbol: '+' },
         { text: 'Fantastical', symbol: '+' },
         { text: 'Fascinating', symbol: '+' },
+        { text: 'Feel Good', symbol: '+' },
         { text: 'Formulaic', symbol: '+' },
         { text: 'Girl Power!', symbol: '+' },
         { text: 'Good Enough', symbol: '+' },
@@ -66,6 +71,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         { text: 'Sludge', symbol: '+' },
         { text: 'Spooky', symbol: '+' },
         { text: 'Stupid', symbol: '+' },
+        { text: 'Sweet', symbol: '+' },
         { text: 'Tearjerker', symbol: '+' },
         { text: 'Terrible', symbol: '+' },
         { text: 'Thrilling', symbol: '+' },
@@ -76,6 +82,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         { text: 'Trendsetter', symbol: '+' },
         { text: 'Tropey', symbol: '+' },
         { text: 'Well Written', symbol: '+' },
+        { text: 'Wholesome', symbol: '+' },
         { text: 'Zany', symbol: '+' }
     ]
     const [toggle, setToggle] = useState(false)
@@ -83,6 +90,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
     const [fav, setFav] = useState(false);
     const [tags, setTags] = useState(initTags)
 
+    //Fucntion to update a review as it's edited
     function handleChange(e) {
         dispatch(cb({
             ...review,
@@ -90,6 +98,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         }));
     };
 
+    //Function to set a reviews' fav
     function handleFav(e) {
         dispatch(cb({
             ...review,
@@ -98,15 +107,15 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         setFav(!fav);
     }
 
+    //Function to set whether a user finished a show
     function handleFinish(e) {
-        console.log(review.finished)
-        console.log(!review.finished)
         dispatch(cb({
             ...review,
             finished: !review.finished
         }));
     }
 
+    //Function toggles the tag section open or not
     function handleToggle(e) {
         e.preventDefault();
         if (!toggle) {
@@ -117,6 +126,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         setToggle(!toggle);
     }
 
+    //Function that updates a review's tag list of added tags (if it has less than 5), and removes added tags when clicked again. It updates a tag's status either way
     function handleTag(e) {
         e.preventDefault();
 
@@ -154,6 +164,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         }
     }
 
+    //Resets review and tags, and navigates to cancel string
     function handleCancel(e) {
         e.preventDefault();
         dispatch(cb(initReview));
@@ -161,6 +172,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         navigate(cancel);
     }
 
+    //Calls submit function and resets review and tags
     async function handleSubmit(e) {
         await submit(e).then((res) => {
             dispatch(cb(initReview));
@@ -168,6 +180,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         })
     }
 
+    //On each change of the review.tags, the list of tags is updated for those that have already been selected
     useEffect(() => {
         if (review.tags?.length) {
             const tagsCache = [...initTags];
@@ -182,6 +195,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
         }
     }, [review.tags])
 
+    //Sets fav to review.fav upon change of review.fav
     useEffect(() => {
         setFav(review.fav);
     }, [review.fav])

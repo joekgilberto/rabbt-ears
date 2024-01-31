@@ -1,5 +1,7 @@
+//Imports style sheets
 import './ProfilePoster.css';
 
+//Takes in image source, alt text, rating, and favorite status and returns a poster with a rating for the Profile page
 export default function ProfilePoster({ source, altText, rating, fav }) {
     return (
         <div className='ProfilePoster'>

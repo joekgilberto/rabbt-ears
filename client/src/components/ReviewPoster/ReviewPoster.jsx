@@ -1,5 +1,7 @@
+//Imports style sheet
 import './ReviewPoster.css';
 
+//Takes in image source, alt text, rating, favorite status, and user and returns a poster with a rating alongside a username for the Feed page
 export default function ReviewPoster({ source, altText, rating, fav, user }) {
     return (
         <div className='ReviewPoster'>

@@ -1,12 +1,15 @@
+//Imports style sheet
 import './Login.css';
 
+//Imports reducer tools from Redux, imports custom Redux actions to retrieve and update credentials
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCredentials, selectCredentials, selectLoginError } from '../../features/authSlice';
 
+//Imports loading component
 import Loading from '../Loading/Loading';
-import { useEffect } from 'react';
 
-export default function Login({ handleSubmit }) {
+//Exports Login funciton form that allows users to login or receive a login error
+export default function Login({ submit }) {
 
     const dispatch = useDispatch();
     const credentials = useSelector(selectCredentials);
@@ -22,7 +25,7 @@ export default function Login({ handleSubmit }) {
     return (
         <div className='Login'>
             {credentials ?
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={submit}>
                     <input type='text' placeholder='Username' name='username' autoComplete='username' value={credentials.username} onChange={handleChange} required />
                     <input type='password' placeholder='Password' name='password' autoComplete='password' value={credentials.password} onChange={handleChange} required />
                     <input className='auth-submit' type='submit' />

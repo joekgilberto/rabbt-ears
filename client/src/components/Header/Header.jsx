@@ -1,12 +1,16 @@
+//Imports style sheets
 import './Header.css';
 
+//Imports use state tools from React, navigation tools from react-router-dom, custom local storage tools for user and token, and custom tools
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken, getUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
+//Imports SearchBar component
 import SearchBar from '../SearchBar/SearchBar';
 
+//Exports component with a header with links throughout the application (home, feed, a random show, and user's profile) and a search bar that pops up when toggled
 export default function Header() {
 
     const navigate = useNavigate();
@@ -31,12 +35,12 @@ export default function Header() {
     return (
         <div className='Header'>
             <nav>
-                <Link className={`logo${toggle?' disappear':''}`} to='/'>
+                <Link className={`logo${toggle ? ' disappear' : ''}`} to='/'>
                     <img src='https://i.imgur.com/fUPednw.png' alt='Rabbt Ears logo' />
                     <h1>Rabbt Ears</h1>
                 </Link>
                 {toggle ?
-                    <div className={`pop-search${toggle?' disappear':''}`}>
+                    <div className={`pop-search${toggle ? ' disappear' : ''}`}>
                         <p onClick={handleSearch}>X</p>
                         <SearchBar setToggle={setToggle} />
                     </div>
