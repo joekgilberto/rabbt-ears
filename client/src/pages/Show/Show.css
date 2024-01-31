@@ -120,7 +120,7 @@
 
 .Show .show-squares {
     width: 100%;
-    height: calc(100% + 2px);
+    height: 132px;
     display: flex;
     gap: 20px;
     overflow-x: scroll;
