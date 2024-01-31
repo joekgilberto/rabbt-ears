@@ -1,8 +1,11 @@
+//Imports style sheet
 import './App.css';
+
+//Imports routing tools from react-router-dom
 import { Routes, Route } from 'react-router-dom'
 
+//Imports pages and custom routes
 import Title from '../pages/Title/Title';
-import Main from '../components/Main/Main';
 import Auth from '../pages/Auth/Auth';
 import Feed from '../pages/Feed/Feed';
 import Show from '../pages/Show/Show';
@@ -13,10 +16,12 @@ import Profile from '../pages/Profile/Profile';
 import OtherUser from '../pages/OtherUser/OtherProfile';
 import SearchResults from '../pages/SearchResults/SearchResults';
 import Error from '../pages/Error/Error';
+import Main from '../components/Main/Main';
 import PrivateRoute from '../components/CustomRoutes/PrivateRoute';
 import ProfileRoute from '../components/CustomRoutes/ProfileRoute';
 import AuthRoute from '../components/CustomRoutes/AuthRoute';
 
+//Exports App component which routes through the applications pages
 export default function App() {
   return (
     <div className='App'>

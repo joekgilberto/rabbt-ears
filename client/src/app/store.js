@@ -1,5 +1,7 @@
+//Imports configureStore from the Redux tool kit
 import { configureStore } from '@reduxjs/toolkit';
 
+//Imports reducers
 import feedReducer from '../features/feedSlice';
 import reviewReducer from '../features/reviewSlice';
 import newReviewReducer from '../features/newReviewSlice';
@@ -21,8 +23,5 @@ export const store = configureStore({
     auth: authReducer,
     profile: profileReducer,
     otherProfile: otherProfileReducer
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  })
+  }
 });
