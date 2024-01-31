@@ -1,4 +1,4 @@
-import './Edit.css';
+import './ReviewForm.css';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -231,8 +231,8 @@ export default function Edit() {
             {token && review._id ?
                 <>
                     <h1>Edit {review.username}'s <span className='italic'>{review.title}</span> Review</h1>
-                    <form onSubmit={handleSubmit}>
-                        <img className='edit-poster' src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
+                    <form className='review-form' onSubmit={handleSubmit}>
+                        <img className='review-form-poster' src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
                             currentTarget.onerror = null;
                             currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                         }} />
@@ -251,31 +251,31 @@ export default function Edit() {
                                 <option selected={review.rating === 5}>5.0</option>
                             </select>
                         </label>
-                        <label className='edit-finished' onChange={handleFinish}>Finished
+                        <label className='review-form-finished' onChange={handleFinish}>Finished
                             <div className='container'>
                                 <input className='checkbox' type='checkbox' name='finished' defaultChecked={review.finished} />
                                 <span className='checkmark'></span>
                             </div>
                         </label>
-                        <label className='edit-fav' onClick={handleFav}>Favorite
+                        <label className='review-form-fav' onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
-                        <label className='edit-thoughts'>Thoughts
+                        <label className='review-form-thoughts'>Thoughts
                             <textarea name='review' value={review.review} onChange={handleChange} />
                         </label>
-                        <div className='edit-options'>
-                            <label className='edit-tag-label' onClick={handleClick}>Tags
+                        <div className='review-form-options'>
+                            <label className='review-form-tag-label' onClick={handleClick}>Tags
                                 <p>{bttn}</p>
                             </label>
                             {toggle ?
-                                <div className='edit-tags'>
+                                <div className='review-form-tags'>
                                     {tags.map((tag, idx) => {
                                         return <ToggleTag key={idx} idx={idx} tag={tag} count={review.tags.length} cb={handleTag} />
                                     })}
                                 </div>
                                 : null}
-                            <button className='edit-put' type='submit'>Save</button>
-                            <button className='edit-cancel' onClick={handleCancel}>Cancel</button>
+                            <button className='review-form-submit' type='submit'>Save</button>
+                            <button className='review-form-cancel' onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
                 </>

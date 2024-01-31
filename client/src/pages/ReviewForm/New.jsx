@@ -1,4 +1,4 @@
-import './New.css';
+import './ReviewForm.css';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -207,8 +207,8 @@ export default function New() {
             {token && show.id ?
                 <>
                     <h1>New <span className='italic'>{show.name}</span> Review</h1>
-                    <form onSubmit={handleSubmit}>
-                        <img className='new-poster' src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
+                    <form className='review-form' onSubmit={handleSubmit}>
+                        <img className='review-form-poster' src={show.image ? show.image.original : 'none'} alt={show.name} onError={({ currentTarget }) => {
                             currentTarget.onerror = null;
                             currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
                         }} />
@@ -227,31 +227,31 @@ export default function New() {
                                 <option>5.0</option>
                             </select>
                         </label>
-                        <label className="new-finished" onChange={handleFinish}>Finished
+                        <label className="review-form-finished" onChange={handleFinish}>Finished
                             <div className='container'>
                                 <input className='checkbox' type='checkbox' name='finished' />
                                 <span className='checkmark'></span>
                             </div>
                         </label>
-                        <label className="new-fav" onClick={handleFav}>Favorite
+                        <label className="review-form-fav" onClick={handleFav}>Favorite
                             <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
                         </label>
-                        <label className='new-thoughts'>Thoughts
+                        <label className='review-form-thoughts'>Thoughts
                             <textarea name='review' onChange={handleChange} />
                         </label>
-                        <div className='new-options'>
-                            <label className='new-tag-label' onClick={handleClick}>Tags
+                        <div className='review-form-options'>
+                            <label className='review-form-tag-label' onClick={handleClick}>Tags
                                 <p>{bttn}</p>
                             </label>
                             {toggle ?
-                                <div className='new-tags'>
+                                <div className='review-form-tags'>
                                     {tags.map((tag, idx) => {
                                         return <ToggleTag key={idx} idx={idx} tag={tag} count={review.tags.length} cb={handleTag} />
                                     })}
                                 </div>
                                 : null}
-                            <button className='new-post' type='submit'>Post</button>
-                            <button className='new-cancel' onClick={handleCancel}>Cancel</button>
+                            <button className='review-form-submit' type='submit'>Post</button>
+                            <button className='review-form-cancel' onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
                 </>

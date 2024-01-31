@@ -12,6 +12,7 @@ import authReducer from '../features/authSlice';
 import profileReducer from '../features/profileSlice';
 import otherProfileReducer from '../features/otherProfileSlice';
 
+//Exports configuredStore using reducers
 export const store = configureStore({
   reducer: {
     feed: feedReducer,

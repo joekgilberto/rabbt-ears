@@ -1,4 +1,5 @@
-.New {
+.New, 
+.Edit{
     flex: 1;
     width: 100%;
     display: flex;
@@ -8,7 +9,8 @@
     padding: 20px 20px 0 20px;
 }
 
-.New h1 {
+.New h1,
+.Edit h1 {
     width: 100%;
     margin: 0;
     padding-bottom: 10px;
@@ -18,7 +20,7 @@
     border-bottom: 3px solid #fff;
 }
 
-.New form {
+.review-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -29,14 +31,14 @@
     overflow-y: scroll;
 }
 
-.New .new-poster {
+.review-form .review-form-poster {
     width: 200px;
     height: 300px;
     object-fit: cover;
     box-shadow: 0 3px 3px #00000060;
 }
 
-.New label {
+.review-form label {
     width: 180px;
     display: flex;
     justify-content: space-around;
@@ -50,7 +52,7 @@
     box-shadow: 0 3px 3px #00000060;
 }
 
-.New label p {
+.review-form label p {
     height: 20px;
     display: flex;
     justify-content: center;
@@ -60,36 +62,36 @@
     font-size: 40px;
 }
 
-.New label.new-finished:hover,
-.New label.new-fav:hover,
-.New label.new-tag-label:hover,
-.New select{
+.review-form label.review-form-finished:hover,
+.review-form label.review-form-fav:hover,
+.review-form label.review-form-tag-label:hover,
+.review-form select{
     cursor: pointer;
 }
 
-.New label.new-thoughts {
+.review-form label.review-form-thoughts {
     width: 250px;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.New label select {
+.review-form label select {
     color: #fff;
     font-size: 24px;
     background-color: transparent;
     border: none;
 }
 
-.New label img {
+.review-form label img {
     width: 30px;
     height: 30px;
 }
 
-.New img.white {
+.review-form img.white {
     filter: brightness(0) invert(1);
 }
 
-.New label textarea {
+.review-form label textarea {
     width: 100%;
     height: 100px;
     color: #fff;
@@ -98,27 +100,84 @@
     border: none;
 }
 
-.New label select:focus,
-.New label textarea:focus {
+.review-form label select:focus,
+.review-form label textarea:focus {
     outline: none;
 }
 
-.New .new-options{
+.container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border: 2px solid #fff;
+  }
+  
+  .container input:checked~.checkmark {
+    background-color: transparent;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked~.checkmark:after {
+    display: block;
+  }
+  
+  .container .checkmark:after {
+    left: 6.5px;
+    top: 2.5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.review-form .review-form-options{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.New .new-tags {
+.review-form .review-form-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.New button.new-cancel,
-.New button.new-post {
+.review-form button.review-form-cancel,
+.review-form button.review-form-submit {
     display: flex;
     width: 180px;
     justify-content: center;
@@ -133,39 +192,39 @@
     box-shadow: 0px 3px 3px #00000060;
 }
 
-.New button.new-post{
+.review-form button.review-form-submit{
     color: #000;
 }
 
-.New button.new-cancel{
+.review-form button.review-form-cancel{
     color: #697595;
 }
 
 @media screen and (min-width: 760px) {
-    .New form {
+    .review-form {
         display: grid;
         grid-template-columns: 200px repeat(3, 1fr);
         grid-template-rows: 52px 208px fit-content(100%);
         gap: 20px;
     }
 
-    .New .new-poster{
+    .review-form .review-form-poster{
         grid-column: 1 / span 1;
         grid-row: 1 / span 3;
     }
 
-    .New label{
+    .review-form label{
         width: 100%;
         height: 100%;
         font-size: 20px;
     }
 
-    .New label select{
+    .review-form label select{
         font-size: 20px;
     }
 
 
-    .New label.new-thoughts{
+    .review-form label.review-form-thoughts{
         width: 100%;
         height: 100%;
         grid-column: 2 / span 3;
@@ -174,12 +233,12 @@
         justify-content: stretch;
     }
 
-    .New label.new-thoughts textarea{
+    .review-form label.review-form-thoughts textarea{
         width: 100% !important;
         height: 100%;
     }
 
-    .New .new-options{
+    .review-form .review-form-options{
         width: 100%;
         grid-column: 1 / span 4;
         grid-row: 4 / span 1;
@@ -188,26 +247,26 @@
         grid-template-rows: 50px fit-content(100%);
     }
 
-    .New label.new-tag-label{
+    .review-form label.review-form-tag-label{
         grid-column: 2 / span 1;
         grid-row: 1 / span 1;
     }
 
-    .New button.new-post{
+    .review-form button.review-form-submit{
         width: 100%;
         grid-column: 4 / span 1;
         grid-row: 1 / span 1;
         margin-top: 0;
     }
 
-    .New button.new-cancel{
+    .review-form button.review-form-cancel{
         width: 100%;
         grid-column: 6 / span 1;
         grid-row: 1 / span 1;
         margin-top: 0;
     }
 
-    .New .new-tags{
+    .review-form .review-form-tags{
         width: 100%;
         grid-column: 1 / span 7;
         grid-row: 2 / span 1;
@@ -216,22 +275,22 @@
 }
 
 @media screen and (min-width: 900px) {
-    .New form {
+    .review-form {
         grid-template-columns: 300px repeat(3, 1fr);
         grid-template-rows: 52px 358px fit-content(100%);
     }
 
-    .New label,
-    .New label select{
+    .review-form label,
+    .review-form label select{
         font-size: 24px;
     }
 
-    .New .new-poster{
+    .review-form .review-form-poster{
         width: 300px;
         height: 450px;
     }
 
-    .New .new-options{
+    .review-form .review-form-options{
         grid-template-columns: 320px 1fr 20px 1fr 20px 1fr;
     }
 }
