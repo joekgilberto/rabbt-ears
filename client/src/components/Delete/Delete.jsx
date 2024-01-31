@@ -1,32 +1,41 @@
+//Imports style sheet
 import './Delete.css';
 
+//Imports useEffect from React, useNavigate from react-router, and custome reviews services tools
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import * as reviewsServices from '../../utilities/reviews/reviews-service';
 
+//Imports Loading component
 import Loading from '../Loading/Loading';
 
+//Exports Delete component that takes in user, review, and setDestroy props
+//Used to present user's with options to delete a review, edit it, or cancel deletion
 export default function Delete({ user, review, setDestroy }) {
 
     const navigate = useNavigate();
 
+    //If the current user's id is not equal to the review's owner, the Delete component is no longer rendered
     useEffect(() => {
         if (user._id !== review.owner) {
             setDestroy(false);
         }
     }, [])
 
+    //If the user chooses the cancel button, the DOM no longer renders the Delete component
     function handleCancel(e) {
         setDestroy(false);
     }
 
+    //If the user chooses the edit button, the user is routed to the review's edit page
     function handleEdit(e) {
         navigate(`/reviews/edit/${review._id}`);
     }
 
+    //Uses reviewsServices tools to delete the current review and navigate to the show page
     async function handleDelete(e) {
         await reviewsServices.destroyReview(review._id).then((res) => {
-            navigate('/feed');
+            navigate(`/shows/${review.showId}`);
         })
     }
 

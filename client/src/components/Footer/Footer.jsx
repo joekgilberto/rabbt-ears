@@ -1,5 +1,7 @@
+//Imports style sheet
 import './Footer.css';
 
+//Exports Footer component with links to technologies used and the developer's info
 export default function Footer() {
     return (
         <footer>

@@ -48,12 +48,12 @@ export default function Show() {
                                 :
                                 <h1><span className='bold show-title'>{show.name}</span></h1>
                             }
-                            <h2 className={`${average === 0 ? 'zero'
-                                : average === .5 ? ' point-five'
-                                    : average === 1 || average === 1.5 ? 'one'
-                                        : average === 2 || average === 2.5 ? 'two'
-                                            : average === 3 || average === 3.5 ? 'three'
-                                                : average === 4 || average === 4.5 ? 'four'
+                            <h2 className={`${average < .5 ? 'zero'
+                                : average >= .5 && average < 1 ? ' point-five'
+                                    : average >= 1 && average < 2 ? 'one'
+                                        : average >= 2 && average < 3 ? 'two'
+                                            : average >= 3 && average < 4 ? 'three'
+                                                : average >= 4 && average < 5 ? 'four'
                                                     : 'five'}`}>{reviews.length ? average.toString().length > 3 ? average.toString().substring(0, 3) : average.toString().length < 3 ? `${average}.0` : average : 'TBD'}</h2>
                         </div>
                         {show.summary ?

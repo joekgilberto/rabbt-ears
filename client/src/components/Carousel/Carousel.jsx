@@ -1,5 +1,7 @@
+//Imports style sheet
 import './Carousel.css';
 
+//Exports carousel of posters for decoration
 export default function Carousel() {
     return (
         <div className='Carousel'>

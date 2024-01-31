@@ -49,7 +49,7 @@ const newReviewSlice = createSlice({
                 state.isLoadingShow = false;
                 state.show = action.payload.show;
                 state.newReview.title = action.payload.show.name;
-                state.newReview.poster = action.payload.show.image.original;
+                state.newReview.poster = action.payload.show.image?.original;
                 state.newReview.showId = action.payload.show.id;
                 state.newReview.username = action.payload.user.username;
             })
