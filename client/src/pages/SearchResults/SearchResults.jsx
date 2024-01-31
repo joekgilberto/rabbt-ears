@@ -36,7 +36,7 @@ export default function SearchResults() {
         <div className='SearchResults'>
             {results?.length ?
                 <>
-                    <h1>Results for "{id}" </h1>
+                    <h1>RESULTS FOR "{id}" </h1>
                     <div className='results'>
                         {results.map((result, idx) => {
                             return (

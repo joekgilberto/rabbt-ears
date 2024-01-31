@@ -117,8 +117,8 @@ export default function Auth() {
                 <div className='auth-forms'>
                     <div className='auth-buttons'>
                         <div className={`auth-button-back${toggle === null ? ' start' : !toggle ? ' left' : ' right'}`}></div>
-                        <button className='login-button' onClick={handleLogin}>Login</button>
-                        <button className='register-button' onClick={handleRegister}>Register</button>
+                        <button className='login-button' onClick={handleLogin}>LOGIN</button>
+                        <button className='register-button' onClick={handleRegister}>REGISTER</button>
                     </div>
                     {!toggle ? <Login submit={handleLogin} /> : <Register submit={handleRegister} />}
                 </div>

@@ -206,7 +206,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
                 currentTarget.onerror = null;
                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
             }} />
-            <label>Rating
+            <label>RATING
                 <select name='rating' onChange={handleChange}>
                     <option selected={review.rating === 0}>0.0</option>
                     <option selected={review.rating === .5}>0.5</option>
@@ -221,16 +221,16 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
                     <option selected={review.rating === 5}>5.0</option>
                 </select>
             </label>
-            <label className='review-form-finished' onChange={handleFinish}>Finished
+            <label className='review-form-finished' onChange={handleFinish}>FINISHED
                 <div className='container'>
                     <input className='checkbox' type='checkbox' name='finished' defaultChecked={review.finished} />
                     <span className='checkmark'></span>
                 </div>
             </label>
-            <label className='review-form-fav' onClick={handleFav}>Favorite
+            <label className='review-form-fav' onClick={handleFav}>FAVORITE
                 <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
             </label>
-            <label className='review-form-thoughts'>Thoughts
+            <label className='review-form-thoughts'>THOUGHTS
                 <textarea name='review' value={review.review} onChange={handleChange} />
             </label>
             <div className='review-form-options'>
@@ -244,8 +244,8 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
                         })}
                     </div>
                     : null}
-                <button className='review-form-submit' type='submit'>Save</button>
-                <button className='review-form-cancel' onClick={handleCancel}>Cancel</button>
+                <button className='review-form-submit' type='submit'>SAVE</button>
+                <button className='review-form-cancel' onClick={handleCancel}>CANCEL</button>
             </div>
         </form>
     );
