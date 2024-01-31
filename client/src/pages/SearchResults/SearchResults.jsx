@@ -35,8 +35,8 @@ export default function SearchResults() {
                     <div className='results'>
                         {results.map((result, idx) => {
                             return (
-                                <Link key={idx} to={`/shows/${result?.id}`}>
-                                    <ShowPoster source={result.image?.original} title={result.name} />
+                                <Link key={idx} to={`/shows/${result.show?.id}`}>
+                                    <ShowPoster source={result.show?.image?.original} title={result.show?.name} />
                                 </Link>
                             )
                         })}

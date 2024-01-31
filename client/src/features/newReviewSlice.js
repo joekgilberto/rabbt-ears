@@ -1,7 +1,9 @@
+//Imports thunk and slice tools from Redux toolkit, custom tvmaze services API tools, and custom local storage tool to get current user
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import * as tvmazeServices from '../utilities/tvmaze/tvmaze-service';
+import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
 import { getUser } from '../utilities/local-storage';
 
+//Defines initial state of reviews
 const initReview = {
     rating: 0,
     review: '',
@@ -14,6 +16,7 @@ const initReview = {
     username: '',
 }
 
+//Creates an async thunk to call the current user from local stoage and a show (based on a passed in id), and then updates the state with the response
 export const loadShow = createAsyncThunk(
     'newReview/loadShow',
     async (id) => {
@@ -26,6 +29,7 @@ export const loadShow = createAsyncThunk(
     }
 );
 
+//Creates and newReviewSlice with show, review, isLoading, and error state, along with its reducers
 const newReviewSlice = createSlice({
     name: 'newReview',
     initialState: {
@@ -62,6 +66,7 @@ const newReviewSlice = createSlice({
     },
 })
 
+//Exports state, actions, and reducer
 export const selectNewReview = (state) => state.newReview.newReview;
 
 export const selectShow = (state) => state.newReview.show;

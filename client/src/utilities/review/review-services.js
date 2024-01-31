@@ -1,4 +1,4 @@
-import * as reviewsApi from './reviews-api';
+import * as reviewsApi from './review-api';
 import { getUserToken } from '../local-storage';
 
 export async function getAllReviews() {

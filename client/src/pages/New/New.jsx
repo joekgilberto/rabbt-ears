@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { getUserToken } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadShow, selectNewReview, selectShow, updateNewReview } from '../../features/newReviewSlice';
-import * as reviewsServices from '../../utilities/reviews/reviews-service';
+import * as reviewServices from '../../utilities/review/review-services';
 
 import Loading from '../../components/Loading/Loading';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
@@ -97,7 +97,7 @@ export default function New() {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            await reviewsServices.createReview(review).then((res) => {
+            await reviewServices.createReview(review).then((res) => {
                 dispatch(loadShow(id));
                 navigate(`/shows/${id}`)
             })

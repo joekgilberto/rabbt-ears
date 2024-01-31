@@ -1,21 +1,17 @@
+//Imports thunk and slice tools from Redux toolkit and custom tvmaze services API tools
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as tvmazeServices from '../utilities/tvmaze/tvmaze-service';
+import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
 
+//Creates an async thunk to call a list of shows based on a passed through query
 export const loadResults = createAsyncThunk(
   'search/loadResults',
   async (query) => {
-    return await tvmazeServices.searchShow(query).then(async (res) => {
-      const ids = [];
-
-      for (let result of res) {
-        ids.push(result.show.id);
-      }
-
-      return await tvmazeServices.getShowList(ids);
-    })
+    const res = await tvmazeServices.searchShow(query);
+    return res;
   }
 );
 
+//Creates and searchSlice with results, isLoading, and error state, along with its reducers
 export const searchSlice = createSlice({
   name: 'search',
   initialState: {
@@ -41,6 +37,7 @@ export const searchSlice = createSlice({
   },
 });
 
+//Exports state, actions, and reducer
 export const selectResults = (state) => state.search.results;
 
 export const isLoading = (state) => state.search.isLoadingResults;

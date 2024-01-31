@@ -1,10 +1,10 @@
 //Imports style sheet
 import './Delete.css';
 
-//Imports state tool from React, useNavigate from react-router, and customreviews services tools
+//Imports state tool from React, useNavigate from react-router, and custom reviews API tools
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import * as reviewsServices from '../../utilities/reviews/reviews-service';
+import * as reviewServices from '../../utilities/review/review-services';
 
 //Imports Loading component
 import Loading from '../Loading/Loading';
@@ -32,9 +32,9 @@ export default function Delete({ user, review, setDestroy }) {
         navigate(`/reviews/edit/${review._id}`);
     }
 
-    //Uses reviewsServices tools to delete the current review and navigate to the show page
+    //Uses reviewServices tools to delete the current review and navigate to the show page
     async function handleDelete(e) {
-        await reviewsServices.destroyReview(review._id).then((res) => {
+        await reviewServices.destroyReview(review._id).then((res) => {
             navigate(`/shows/${review.showId}`);
         })
     }

@@ -1,6 +1,8 @@
+//Imports thunk and slice tools from Redux toolkit and custom review services API tools
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import * as reviewsServices from '../utilities/reviews/reviews-service';
+import * as reviewServices from '../utilities/review/review-services';
 
+//Defines initial state of reviews
 const initReview = {
     rating: 0,
     review: '',
@@ -14,14 +16,16 @@ const initReview = {
     owner: ''
 }
 
+//Creates an async thunk to call a review and updates the state with the response
 export const loadReview = createAsyncThunk(
     'editReview/loadReview',
     async (id) => {
-        const data = await reviewsServices.getReview(id);
-        return data;
+        const res = await reviewServices.getReview(id);
+        return res;
     }
 );
 
+//Creates and editReviewSlice with review, isLoading, and error state, along with its reducers
 const editReviewSlice = createSlice({
     name: 'editReview',
     initialState: {
@@ -52,6 +56,7 @@ const editReviewSlice = createSlice({
     },
 })
 
+//Exports state, actions, and reducer
 export const selectEditReview = (state) => state.editReview.editReview;
 
 export const { updateEditReview } = editReviewSlice.actions

@@ -1,7 +1,9 @@
+//Imports thunk and slice tools from Redux toolkit and custom tvmaze and review services API tools
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as tvmazeServices from '../utilities/tvmaze/tvmaze-service';
-import * as reviewServices from '../utilities/reviews/reviews-service';
+import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
+import * as reviewServices from '../utilities/review/review-services';
 
+//Creates an async thunk to call a shows based on a passed through id, along with its reviews, and then calculates the average of its reviews
 export const loadShow = createAsyncThunk(
     'show/loadShow',
     async (id) => {
@@ -29,6 +31,7 @@ export const loadShow = createAsyncThunk(
     }
 );
 
+//Creates and showSlice with show, reviews, average, isLoading, and error state, along with its reducers
 export const showSlice = createSlice({
     name: 'show',
     initialState: {
@@ -60,6 +63,7 @@ export const showSlice = createSlice({
     },
 });
 
+//Exports state, actions, and reducer
 export const selectShow = (state) => state.show.show;
 
 export const selectReviews = (state) => state.show.reviews;

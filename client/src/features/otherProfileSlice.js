@@ -1,7 +1,9 @@
+//Imports thunk and slice tools from Redux toolkit, custom review and auth services API tools
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as reviewServices from '../utilities/reviews/reviews-service';
+import * as reviewServices from '../utilities/review/review-services';
 import * as authServices from '../utilities/auth/auth-service';
 
+//Creates an async thunk to call get a user's info along with their reviews and favorites
 export const loadOtherProfile = createAsyncThunk(
     'otherProfile/loadOtherProfile',
     async (id) => {
@@ -29,6 +31,7 @@ export const loadOtherProfile = createAsyncThunk(
     }
 );
 
+//Creates and otherProfileSlice with user, reviews, favs, isLoading, and error state, along with its reducers
 export const otherProfileSlice = createSlice({
     name: 'otherProfile',
     initialState: {
@@ -60,6 +63,7 @@ export const otherProfileSlice = createSlice({
     },
 });
 
+//Exports state, actions, and reducer
 export const selectUser = (state) => state.otherProfile.user;
 
 export const selectReviews = (state) => state.otherProfile.reviews;

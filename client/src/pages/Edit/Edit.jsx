@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadReview, selectEditReview, updateEditReview } from '../../features/editReviewSlice';
 import { getUserToken } from '../../utilities/local-storage';
-import * as reviewsServices from '../../utilities/reviews/reviews-service';
+import * as reviewServices from '../../utilities/review/review-services';
 
 import Loading from '../../components/Loading/Loading';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
@@ -23,7 +23,7 @@ export default function Edit() {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            await reviewsServices.updateReview(review._id, review).then((res) => {
+            await reviewServices.updateReview(review._id, review).then((res) => {
                 dispatch(loadReview(id));
                 navigate(`/reviews/${id}`)
             })

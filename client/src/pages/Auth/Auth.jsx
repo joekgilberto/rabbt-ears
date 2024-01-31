@@ -3,10 +3,9 @@ import './Auth.css';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import * as authServices from '../../utilities/auth/auth-service';
-import { setUserToken, setUser } from '../../utilities/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCredentials, setLoginError, setRegisterError, selectCredentials } from '../../features/authSlice';
-import { getUserToken, getUser } from '../../utilities/local-storage';
+import { getUserToken, getUser, setUserToken, setUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
 import Carousel from '../../components/Carousel/Carousel';

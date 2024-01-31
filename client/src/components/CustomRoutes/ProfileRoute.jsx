@@ -1,4 +1,4 @@
-//Imports useEffect form React, useNavigate and useParams from react-router-dom, and getUser from local-storage tools
+//Imports useEffect form React, useNavigate and useParams from react-router-dom, and getUser from local storage tools
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../../utilities/local-storage";

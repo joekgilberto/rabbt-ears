@@ -1,7 +1,9 @@
+//Imports thunk and slice tools from Redux toolkit, custom review services API tools, and custom local storage tool to get current user
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as reviewServices from '../utilities/reviews/reviews-service';
+import * as reviewServices from '../utilities/review/review-services';
 import { getUser } from '../utilities/local-storage';
 
+//Creates an async thunk to call the current user from local stoage and their reviews (based on a passed in user id), and then updates the state with the response
 export const loadProfile = createAsyncThunk(
     'profile/loadProfile',
     async () => {
@@ -22,6 +24,7 @@ export const loadProfile = createAsyncThunk(
     }
 );
 
+//Creates and profileSlice with user, reviews, favs, isLoading, and error state, along with its reducers
 export const profileSlice = createSlice({
     name: 'profile',
     initialState: {
@@ -53,6 +56,7 @@ export const profileSlice = createSlice({
     },
 });
 
+//Exports state, actions, and reducer
 export const selectUser = (state) => state.profile.user;
 
 export const selectReviews = (state) => state.profile.reviews;

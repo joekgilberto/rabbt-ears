@@ -1,7 +1,7 @@
 //Imports style sheet
 import './Menu.css';
 
-//Imports tate tools from React, navigation tools from react-router-dom, local storage tools, custom auth services tools, and custom tools
+//Imports tate tools from React, navigation tools from react-router-dom, local storage tools, custom auth API tools, and custom tools
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken, clearUserToken, clearUser } from '../../utilities/local-storage';

@@ -1,4 +1,4 @@
-//Imports useEffect form React, useNavigate from react-router-dom, getUserToken and getUser from local-storage tools, and decodeToken from auth-tools
+//Imports useEffect form React, useNavigate from react-router-dom, getUserToken and getUser from local storage tools, and decodeToken from auth-tools
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserToken, getUser } from "../../utilities/local-storage";

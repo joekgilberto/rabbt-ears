@@ -9,21 +9,6 @@ export async function getShow(id) {
     }
 }
 
-export async function getShowList(searchQueries) {
-    try {
-        const searchResults = [];
-
-        for (let id of searchQueries) {
-            const data = await tvmazeApi.show(id);
-            searchResults.push(data);
-        }
-
-        return searchResults;
-    } catch (err) {
-        return err;
-    }
-}
-
 export async function getRandomShows(length) {
     try {
         const data = [];
