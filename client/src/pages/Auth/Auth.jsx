@@ -119,7 +119,7 @@ export default function Auth() {
     }, [])
 
     return (
-        <div className='Auth'>
+        <main className='Auth'>
             <div className='auth-content'>
                 <Link to='/'>
                     <img src="https://i.imgur.com/fUPednw.png" alt="TV logo" />
@@ -134,6 +134,6 @@ export default function Auth() {
                 </div>
             </div>
             <Carousel />
-        </div>
+        </main>
     );
 };

@@ -1,0 +1,14 @@
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 2px #00000060;
+}
+
+footer:hover a{
+    text-decoration: underline;
+}

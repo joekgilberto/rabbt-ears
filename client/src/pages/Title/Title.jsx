@@ -6,9 +6,9 @@ import Carousel from '../../components/Carousel/Carousel';
 export default function Title() {
 
     return (
-        <div className='Title'>
+        <main className='Title'>
             <Menu />
             <Carousel />
-        </div>
+        </main>
     );
 };
