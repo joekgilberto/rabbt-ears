@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadOtherProfile, selectUser, selectReviews, selectFavs } from '../../features/otherProfileSlice';
-import { clearUserToken, clearUser } from '../../utilities/local-storage';
-import * as authServices from '../../utilities/auth/auth-service';
+import { getUserToken, getUser } from '../../utilities/local-storage';
 
 import Loading from '../../components/Loading/Loading';
 import ShowPoster from '../../components/ShowPoster/ShowPoster';

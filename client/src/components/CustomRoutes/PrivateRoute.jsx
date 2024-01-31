@@ -19,7 +19,7 @@ export default function PrivateRoute({ children }) {
     useEffect(() => {
         if (!token || !user) {
             navigate("/auth");
-        } else{
+        } else {
             evalCurrentUser();
         }
     }, []);

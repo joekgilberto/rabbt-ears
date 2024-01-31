@@ -65,7 +65,11 @@ export default function Review() {
                         </Link>
                         <div className='review-body'>
                             <div className='review-header'>
-                                <h1>{review.username}'s review</h1>
+                                <h1>
+                                    <Link to={`/user/${review.username}`}>
+                                    <span className='bold'>{review.username}</span>
+                                    </Link>
+                                    's review</h1>
                                 <h2 className={`${review.rating === 0 ? 'zero'
                                     : review.rating === .5 ? ' point-five'
                                         : review.rating === 1 || review.rating === 1.5 ? 'one'

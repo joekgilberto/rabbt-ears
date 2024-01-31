@@ -10,17 +10,23 @@ import New from '../pages/New/New';
 import Review from '../pages/Review/Review';
 import Edit from '../pages/Edit/Edit';
 import Profile from '../pages/Profile/Profile';
+import OtherUser from '../pages/OtherUser/OtherProfile';
 import SearchResults from '../pages/SearchResults/SearchResults';
 import Error from '../pages/Error/Error';
-import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
-import OtherUser from '../pages/OtherUser/OtherProfile';
+import PrivateRoute from '../components/CustomRoutes/PrivateRoute';
+import ProfileRoute from '../components/CustomRoutes/ProfileRoute';
+import AuthRoute from '../components/CustomRoutes/AuthRoute';
 
 export default function App() {
   return (
     <div className='App'>
       <Routes>
         <Route path="/" element={<Title />} />
-        <Route path='/auth' element={<Auth />} />
+        <Route path='/auth' element={
+          <AuthRoute>
+            <Auth />
+          </AuthRoute>
+        } />
         <Route path='/feed' element={
           <Main>
             <Feed />
@@ -58,9 +64,11 @@ export default function App() {
           </PrivateRoute>
         } />
         <Route path='/user/:id' element={
-          <Main>
-            <OtherUser />
-          </Main>
+          <ProfileRoute>
+            <Main>
+              <OtherUser />
+            </Main>
+          </ProfileRoute>
         } />
         <Route path='/results/:id' element={
           <Main>
