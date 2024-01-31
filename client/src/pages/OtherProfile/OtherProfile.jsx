@@ -3,16 +3,15 @@ import './OtherProfile.css';
 
 //Imports a state tool from React, navigation tools from react-router-dom, reducer tools from Redux, and custom reducer state and actions from otherProfileSlcie
 import { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadOtherProfile, selectUser, selectReviews, selectFavs } from '../../features/otherProfileSlice';
 
-//Imports ShowPoster, ProfilePoster, and Loading components
-import ShowPoster from '../../components/ShowPoster/ShowPoster';
-import ProfilePoster from '../../components/ProfilePoster/ProfilePoster';
+//Imports Profile and Loading components
+import Profile from '../../components/Profile/Profile';
 import Loading from '../../components/Loading/Loading';
 
-//Exports OtherProfile page that displays a user's favs and reviews (the user being not the current user)
+//Exports OtherProfile page that renders a Profile componet and shows a user's favs and reviews (the user being not the current user)
 export default function OtherProfile() {
 
     const { id } = useParams();
@@ -24,70 +23,32 @@ export default function OtherProfile() {
     const reviews = useSelector(selectReviews);
     const favs = useSelector(selectFavs);
 
-    //Changes user based on url id param
+    //Changes user based on the reducer being dispatched
     useEffect(() => {
         dispatch(loadOtherProfile(id));
     }, [dispatch]);
 
+    //Changes user based on url id param
+    useEffect(() => {
+        dispatch(loadOtherProfile(id));
+    }, [id]);
+
+
     //If theres an error, the page navigates to the error page
-    useEffect(()=>{
-        if(error){
+    useEffect(() => {
+        if (error) {
             navigate('/error');
         }
-    },[error])
+    }, [error])
 
     if (loading) {
         return <Loading />
     }
 
     return (
-        <div className='OtherProfile'>
-            {user._id ?
-                <>
-                    <div className='circle'>
-                        <h2>{user.username[0]}</h2>
-                    </div>
-                    <h1>{user.username}</h1>
-                    <p className={`count${reviews.length < 5 ? ' point-five' :
-                        51 >= 5 && reviews.length < 25 ? ' one' :
-                            reviews.length >= 25 && reviews.length < 50 ? ' three' :
-                                reviews.length >= 50 && reviews.length < 100 ? ' four' :
-                                    ' five'}`}>
-                        {reviews.length < 5 ? 'Pilot Epiosde' :
-                            reviews.length >= 5 && reviews.length < 25 ? 'Series Order' :
-                                reviews.length >= 25 && reviews.length < 50 ? 'Syndicated' :
-                                    reviews.length >= 50 && reviews.length < 100 ? 'Channel Surfer' :
-                                        'A TV Guide'}
-                        <span className='divider'>|</span>{reviews.length} Reviews</p>
-                    <div className='other-profile-content'>
-                        <h3>Favorites</h3>
-                        <div className='other-profile-list'>
-                            {favs?.length ?
-                                favs.map((fav, idx) => {
-                                    return (
-                                        <Link key={idx} to={`/shows/${fav.showId}`}>
-                                            <ShowPoster source={fav.poster} title={fav.title} />
-                                        </Link>
-                                    )
-                                }) :
-                                <p className='none-yet'>No favorites</p>}
-                        </div>
-                        <h3>Reviews</h3>
-                        <div className='other-profile-list'>
-                            {reviews?.length ?
-                                reviews.map((review, idx) => {
-                                    return (
-                                        <Link key={idx} to={`/reviews/${review._id}`}>
-                                            <ProfilePoster source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} />
-                                        </Link>
-                                    )
-                                }) :
-                                <p className='none-yet'>None yet</p>}
-                        </div>
-                    </div>
-                </>
-                :
-                <Loading />}
-        </div>
+        user._id ?
+            <Profile user={user} reviews={reviews} favs={favs} />
+            :
+            <Loading />
     );
 };

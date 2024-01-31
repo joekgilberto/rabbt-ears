@@ -2,11 +2,10 @@
 import './Profile.css';
 
 //Imports a state tool from React, navigation tools from react-router-dom, reducer tools from Redux, cutom local storage tools, custom reducer state and actions from otherProfileSlcie, and custom auth API calls
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { isLoading, hasError, loadProfile, selectUser, selectReviews, selectFavs } from '../../features/profileSlice';
-import { clearUserToken, clearUser } from '../../utilities/local-storage';
+import { useDispatch } from 'react-redux';
+import { getUser, clearUserToken, clearUser } from '../../utilities/local-storage';
 import * as authServices from '../../utilities/auth/auth-service';
 
 //Imports ShowPoster, ProfilePoster, and Loading components
@@ -15,33 +14,26 @@ import ProfilePoster from '../../components/ProfilePoster/ProfilePoster';
 import Loading from '../../components/Loading/Loading';
 
 //Exports Profile page that displays the current user's favs and reviews
-export default function Profile() {
+export default function Profile({ user, reviews, favs }) {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const loading = useSelector(isLoading);
-    const error = useSelector(hasError);
-    const user = useSelector(selectUser);
-    const reviews = useSelector(selectReviews);
-    const favs = useSelector(selectFavs);
+    const [currentUser, setCurrentUser] = useState(null)
 
     //Creates a function that logs a user out and returns them to the home page
     async function handleLogout() {
-        await authServices.logout().then(() => {
-            clearUserToken();
-            clearUser();
-            navigate('/')
-        })
+        if (currentUser._id === user._id) {
+            await authServices.logout().then(() => {
+                clearUserToken();
+                clearUser();
+                navigate('/')
+            })
+        }
     }
 
-    //Updates user based when reducer is dispatched
+    //Updates user based when component is rendered
     useEffect(() => {
-        dispatch(loadProfile());
-    }, [dispatch]);
-
-    if (loading) {
-        return <Loading />
-    }
+        setCurrentUser(getUser());
+    }, []);
 
     return (
         <div className='Profile'>
@@ -87,9 +79,13 @@ export default function Profile() {
                                 }) :
                                 <p className='none-yet'>None yet</p>}
                         </div>
-                        <div className='profile-logout'>
-                            <button onClick={handleLogout}>Logout</button>
-                        </div>
+
+                        {currentUser?._id === user._id ?
+                            <div className='profile-logout'>
+                                <button onClick={handleLogout}>Logout</button>
+                            </div>
+                            :
+                            null}
                     </div>
                 </>
                 :
