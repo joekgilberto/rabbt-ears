@@ -23,7 +23,6 @@ export default function SearchBar() {
         e.preventDefault()
         try {
             if (searchString.length) {
-                dispatch(loadResults(searchString))
                 navigate(`/results/${searchString}`)
                 setSearchString('')
             } else {

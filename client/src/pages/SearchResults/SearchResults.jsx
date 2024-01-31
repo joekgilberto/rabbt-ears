@@ -1,14 +1,18 @@
+//Imports style sheet
 import './SearchResults.css';
 
+//Imports state tool from React, navigation tooks from react-router and react-router-dom, reducer tools from Redux, and reducer state and actions from searchSlice
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoading, hasError, loadResults, selectSearchTerm, selectResults } from '../../features/searchSlice';
+import { isLoading, hasError, loadResults, selectResults } from '../../features/searchSlice';
 
-import Loading from '../../components/Loading/Loading';
+//Imports ShowPoster and Loading components
 import ShowPoster from '../../components/ShowPoster/ShowPoster';
+import Loading from '../../components/Loading/Loading';
 
+//Exports a SearchResults page of search results based on a search query
 export default function SearchResults() {
 
     const { id } = useParams();
@@ -17,6 +21,7 @@ export default function SearchResults() {
     const error = useSelector(hasError);
     const results = useSelector(selectResults);
 
+    //Loads new search results based on if the parameter id changes
     useEffect(() => {
         dispatch(loadResults(id));
     }, [id]);

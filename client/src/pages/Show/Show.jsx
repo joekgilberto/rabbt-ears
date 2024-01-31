@@ -1,5 +1,7 @@
+//Imports style sheet
 import './Show.css';
 
+//Imports state tool from React, navigation tools from react-router-dom and react-router, reducer tools from Redux, custom reducer state and actions from showSlice, and custom tools
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
@@ -7,9 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadShow, selectShow, selectReviews, selectAverage } from '../../features/showSlice';
 import * as tools from '../../utilities/tools';
 
-import Loading from '../../components/Loading/Loading';
+//Imports Tag and Loading components
 import Tag from '../../components/Tag/Tag';
+import Loading from '../../components/Loading/Loading';
 
+//Exports Show page that shows a TV show's details
 export default function Show() {
 
     const { id } = useParams();
@@ -20,10 +24,12 @@ export default function Show() {
     const reviews = useSelector(selectReviews);
     const average = useSelector(selectAverage);
 
+    //Loads show on dispatch
     useEffect(() => {
         dispatch(loadShow(id));
     }, [dispatch]);
 
+    //Loads show based on url id parameter change 
     useEffect(() => {
         dispatch(loadShow(id));
     }, [id]);

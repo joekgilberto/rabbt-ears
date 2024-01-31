@@ -1,5 +1,7 @@
+//Imports style sheet
 import './Review.css';
 
+//Imports  state tools from React, naviation tools from react-router and react-router-dom, reducer tools from Redux, custom reducer state and actions from reviewSlice, a custom local storage tool, and custom tools
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -8,10 +10,12 @@ import { isLoading, hasError, loadReview, selectReview } from '../../features/re
 import { getUser } from '../../utilities/local-storage';
 import * as tools from '../../utilities/tools';
 
-import Loading from '../../components/Loading/Loading';
-import Delete from '../../components/Delete/Delete';
+//Imports Tag, Delete, and Loading components
 import Tag from '../../components/Tag/Tag';
+import Delete from '../../components/Delete/Delete';
+import Loading from '../../components/Loading/Loading';
 
+//Exports Review page that shows a review's details
 export default function Review() {
 
     const { id } = useParams();
@@ -23,23 +27,32 @@ export default function Review() {
     const error = useSelector(hasError);
     const review = useSelector(selectReview);
 
+    //Sets user to local storage of user upon loading the page
     useEffect(() => {
         setUser(getUser());
-    }, [])
+    }, []);
 
+    //Loads review when reducer is dispatched
     useEffect(() => {
         dispatch(loadReview(id));
     }, [dispatch]);
 
+    //Loads review when url id param changes
+    useEffect(() => {
+        dispatch(loadReview(id));
+    }, [id]);
+
+    //Toggles Destroy component when delete button is pressed, if the user is the owner of the review
     function handleDelete(e) {
-        setDestroy(true);
+        if (user?._id === review?.owner) {
+            setDestroy(true);
+        }
     }
 
+    //Navigates to edit page if the user is the owner of the review
     function handleEdit(e) {
-        if (user && review) {
-            if (user._id === review.owner) {
-                navigate(`/reviews/edit/${review._id}`)
-            }
+        if (user?._id === review?.owner) {
+            navigate(`/reviews/edit/${review._id}`)
         }
     }
 

@@ -1,15 +1,18 @@
+//Imports style sheet
 import './OtherProfile.css';
 
+//Imports a state tool from React, navigation tools from react-router-dom, reducer tools from Redux, and custom reducer state and actions from otherProfileSlcie
 import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadOtherProfile, selectUser, selectReviews, selectFavs } from '../../features/otherProfileSlice';
-import { getUserToken, getUser } from '../../utilities/local-storage';
 
-import Loading from '../../components/Loading/Loading';
+//Imports ShowPoster, ProfilePoster, and Loading components
 import ShowPoster from '../../components/ShowPoster/ShowPoster';
 import ProfilePoster from '../../components/ProfilePoster/ProfilePoster';
+import Loading from '../../components/Loading/Loading';
 
+//Exports OtherProfile page that displays a user's favs and reviews (the user being not the current user)
 export default function OtherProfile() {
 
     const { id } = useParams();
@@ -21,12 +24,13 @@ export default function OtherProfile() {
     const reviews = useSelector(selectReviews);
     const favs = useSelector(selectFavs);
 
+    //Changes user based on url id param
     useEffect(() => {
         dispatch(loadOtherProfile(id));
     }, [dispatch]);
 
+    //If theres an error, the page navigates to the error page
     useEffect(()=>{
-        console.log(error)
         if(error){
             navigate('/error');
         }

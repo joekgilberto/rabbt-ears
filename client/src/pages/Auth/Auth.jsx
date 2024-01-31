@@ -1,24 +1,34 @@
+//Imports style sheet
 import './Auth.css';
 
-import { useEffect, useState } from 'react';
+//Improts state tools from React, navigation tools from react-router-dom, reducer tools from Redux, custom reducer state and action tools from the authSlice, custom local storage tools, auth services tools, and custom tools 
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import * as authServices from '../../utilities/auth/auth-service';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCredentials, setLoginError, setRegisterError, selectCredentials } from '../../features/authSlice';
 import { getUserToken, getUser, setUserToken, setUser } from '../../utilities/local-storage';
+import * as authServices from '../../utilities/auth/auth-service';
 import * as tools from '../../utilities/tools';
 
+//Imports Carousel, Login, and Register components
 import Carousel from '../../components/Carousel/Carousel';
 import Login from '../../components/Login/Login';
 import Register from '../../components/Register/Register';
 
+//Exports Auth page with a logo, toggle buttons between login and register, and login and register component forms
 export default function Auth() {
 
     const [toggle, setToggle] = useState(null)
+    const initCredentials = {
+        username: '',
+        password: '',
+        reEnterPassword: ''
+    };
     const credentials = useSelector(selectCredentials);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //Throws an error if a response contains an error
     function handleThrowErr(res, cb) {
         if (res.code === 'ERR_BAD_REQUEST') {
             dispatch(cb(tools.simplifyErrorMessage(res.response.data.error)));
@@ -26,6 +36,7 @@ export default function Auth() {
         }
     }
 
+    //If on the login form, submits credentials to login.  Otherwise, it toggles from the register to the login form
     async function handleLogin(e) {
         e.preventDefault();
         if (!toggle) {
@@ -38,26 +49,19 @@ export default function Auth() {
                     dispatch(setLoginError(''));
                     setUserToken(res.token);
                     setUser(res.user);
-                    dispatch(updateCredentials({
-                        username: '',
-                        password: '',
-                        reEnterPassword: ''
-                    }));
+                    dispatch(updateCredentials(initCredentials));
                     navigate('/feed');
                 });
             } catch (err) {
                 console.log(err);
-                dispatch(updateCredentials({
-                    username: '',
-                    password: '',
-                    reEnterPassword: ''
-                }));
+                dispatch(updateCredentials(initCredentials));
             }
         } else {
             setToggle(false);
         }
     }
 
+    //If on the register form, submits credentials to register, then logins in.  Otherwise, it toggles from the login to the register form
     async function handleRegister(e) {
         e.preventDefault();
 
@@ -77,21 +81,13 @@ export default function Auth() {
                             dispatch(setRegisterError(''));
                             setUserToken(loginRes.token);
                             setUser(loginRes.user);
-                            dispatch(updateCredentials({
-                                username: '',
-                                password: '',
-                                reEnterPassword: ''
-                            }));
+                            dispatch(updateCredentials(initCredentials));
                             navigate('/feed');
                         })
                     });
                 } catch (err) {
                     console.log(err);
-                    dispatch(updateCredentials({
-                        username: '',
-                        password: '',
-                        reEnterPassword: ''
-                    }));
+                    dispatch(updateCredentials(initCredentials));
                 }
             } else {
                 dispatch(setRegisterError('Your passwords do not match.'));
@@ -101,12 +97,9 @@ export default function Auth() {
         }
     }
 
+    //Sets credentials to init state and errors to an empty string, then, if local storage has a token and user, redirects to the profile page
     useEffect(() => {
-        dispatch(updateCredentials({
-            username: '',
-            password: '',
-            reEnterPassword: ''
-        }));
+        dispatch(updateCredentials(initCredentials));
         dispatch(setLoginError(''));
         dispatch(setRegisterError(''));
 

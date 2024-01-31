@@ -13,7 +13,7 @@ import New from '../pages/New/New';
 import Review from '../pages/Review/Review';
 import Edit from '../pages/Edit/Edit';
 import Profile from '../pages/Profile/Profile';
-import OtherUser from '../pages/OtherUser/OtherProfile';
+import OtherUser from '../pages/OtherProfile/OtherProfile';
 import SearchResults from '../pages/SearchResults/SearchResults';
 import Error from '../pages/Error/Error';
 import Main from '../components/Main/Main';

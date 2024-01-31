@@ -1,15 +1,19 @@
+//Imports style sheet
 import './Feed.css';
 
+//Imports state tools from React, navigation tool from react-router-dom, reducer tools from Redux, custom reducer state and actions from feedSlice, and a custom local storage tool
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadFeed, selectReviews, selectShows } from '../../features/feedSlice';
 import { getUser } from '../../utilities/local-storage';
 
-import Loading from '../../components/Loading/Loading';
+//Imports Review Poster, ShowPoster, and Loading components
 import ReviewPoster from '../../components/ReviewPoster/ReviewPoster';
 import ShowPoster from '../../components/ShowPoster/ShowPoster';
+import Loading from '../../components/Loading/Loading';
 
+//Exports Feed page with list of reviews and random shows
 export default function Feed() {
 
     const [user, setUser] = useState(null)
