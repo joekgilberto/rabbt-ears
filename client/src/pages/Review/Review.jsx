@@ -67,7 +67,7 @@ export default function Review() {
                             <div className='review-header'>
                                 <h1>
                                     <Link to={`/user/${review.username}`}>
-                                    <span className='bold'>{review.username}</span>
+                                        <span className='bold'>{review.username}</span>
                                     </Link>
                                     's review</h1>
                                 <h2 className={`${review.rating === 0 ? 'zero'
@@ -83,16 +83,19 @@ export default function Review() {
                                         : null}
                                 </h2>
                             </div>
-                            <p className='review-thoughts'>{review.review}</p>
+                            {review.review ?
+                                <p className='review-thoughts'>{review.review}</p>
+                                :
+                                null}
                             <div className='review-tags'>
                                 {review.finished ?
                                     <p className={`finished ${review.rating === 0 ? 'zero'
-                                    : review.rating === .5 ? ' point-five'
-                                        : review.rating === 1 || review.rating === 1.5 ? 'one'
-                                            : review.rating === 2 || review.rating === 2.5 ? 'two'
-                                                : review.rating === 3 || review.rating === 3.5 ? 'three'
-                                                    : review.rating === 4 || review.rating === 4.5 ? 'four'
-                                                        : 'five'}`}>Finished <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Check_Mark_%2889605%29_-_The_Noun_Project.svg/1024px-Check_Mark_%2889605%29_-_The_Noun_Project.svg.png?20180419151324' alt='checkmark' /></p>
+                                        : review.rating === .5 ? ' point-five'
+                                            : review.rating === 1 || review.rating === 1.5 ? 'one'
+                                                : review.rating === 2 || review.rating === 2.5 ? 'two'
+                                                    : review.rating === 3 || review.rating === 3.5 ? 'three'
+                                                        : review.rating === 4 || review.rating === 4.5 ? 'four'
+                                                            : 'five'}`}>Finished <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Check_Mark_%2889605%29_-_The_Noun_Project.svg/1024px-Check_Mark_%2889605%29_-_The_Noun_Project.svg.png?20180419151324' alt='checkmark' /></p>
                                     :
                                     null}
                                 {review.tags.map((tag, idx) => {

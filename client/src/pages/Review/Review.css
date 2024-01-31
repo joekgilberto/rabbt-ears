@@ -109,11 +109,16 @@
 }
 
 .Review .review-thoughts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
     color: #fff;
     font-size: 24px;
     font-weight: 600;
     text-shadow: 0px 2px 2px #00000060;
-    text-align: center;
+    text-align: justify;
+    background-color: #00000035;
 }
 
 .Review .review-tags {
@@ -175,6 +180,6 @@
     }
 
     .Review .review-thoughts{
-        padding: 30px 0;
+        padding: 15px;
     }
 }
