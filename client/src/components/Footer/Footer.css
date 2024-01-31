@@ -1,4 +1,5 @@
-footer{
+footer {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +10,6 @@ footer{
     text-shadow: 0 2px 2px #00000060;
 }
 
-footer:hover a{
+footer p:hover a {
     text-decoration: underline;
 }
