@@ -13,7 +13,7 @@ import ShowPoster from '../../components/ShowPoster/ShowPoster';
 import ProfilePoster from '../../components/ProfilePoster/ProfilePoster';
 import Loading from '../../components/Loading/Loading';
 
-//Exports Profile page that displays the current user's favs and reviews
+//Exports Profile component that displays the current user's favs and reviews
 export default function Profile({ user, reviews, favs }) {
 
     const navigate = useNavigate();
