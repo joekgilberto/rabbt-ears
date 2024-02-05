@@ -25,36 +25,38 @@ export const feedSlice = createSlice({
     initialState: {
         reviews: [],
         shows: [],
-        isLoadingFeed: false,
-        hasFeedError: false
+        isLoadingReviews: false,
+        hasReviewsError: false,
+        isLoadingShows: false,
+        hasShowsError: false
     },
     extraReducers: (builder) => {
         builder
             .addCase(loadFeedReviews.pending, (state) => {
-                state.isLoadingFeed = true;
-                state.hasFeedError = false;
+                state.isLoadingReviews = true;
+                state.hasReviewsError = false;
             })
             .addCase(loadFeedReviews.fulfilled, (state, action) => {
-                state.isLoadingFeed = false;
+                state.isLoadingReviews = false;
                 state.reviews = action.payload;
             })
             .addCase(loadFeedReviews.rejected, (state) => {
-                state.isLoadingFeed = false;
-                state.hasFeedError = true;
+                state.isLoadingReviews = false;
+                state.hasReviewsError = true;
                 state.reviews = [];
             })
 
             .addCase(loadFeedShows.pending, (state) => {
-                state.isLoadingFeed = true;
-                state.hasFeedError = false;
+                state.isLoadingShows = true;
+                state.hasShowsError = false;
             })
             .addCase(loadFeedShows.fulfilled, (state, action) => {
-                state.isLoadingFeed = false;
+                state.isLoadingShows = false;
                 state.shows = action.payload;
             })
             .addCase(loadFeedShows.rejected, (state) => {
-                state.isLoadingFeed = false;
-                state.hasFeedError = true;
+                state.isLoadingShows = false;
+                state.hasShowsError = true;
                 state.shows = [];
             })
     },
@@ -65,8 +67,12 @@ export const selectReviews = (state) => state.feed.reviews;
 
 export const selectShows = (state) => state.feed.shows;
 
-export const isLoading = (state) => state.feed.isLoadingFeed;
+export const isLoadingReviews = (state) => state.feed.isLoadingReviews;
 
-export const hasError = (state) => state.feed.hasFeedError;
+export const hasReviewsError = (state) => state.feed.hasReviewsError;
+
+export const isLoadingShows = (state) => state.feed.isLoadingShows;
+
+export const hasShowsError = (state) => state.feed.hasShowsError;
 
 export default feedSlice.reducer;

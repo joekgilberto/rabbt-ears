@@ -5,7 +5,7 @@ import './Feed.css';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoading, hasError, loadFeedReviews, selectReviews, selectShows } from '../../features/feedSlice';
+import { isLoadingReviews, hasReviewsError, isLoadingShows, hasShowsError, loadFeedReviews, selectReviews, selectShows } from '../../features/feedSlice';
 import { getUser } from '../../utilities/local-storage';
 
 //Imports Review Poster, ShowPoster, and Loading components
@@ -18,8 +18,10 @@ export default function Feed() {
 
     const [user, setUser] = useState(null)
     const dispatch = useDispatch();
-    const loading = useSelector(isLoading);
-    const error = useSelector(hasError);
+    const loadingReviews = useSelector(isLoadingReviews);
+    const reviewsError = useSelector(hasReviewsError);
+    const loadingShows = useSelector(isLoadingShows);
+    const showsError = useSelector(hasShowsError);
     const reviews = useSelector(selectReviews);
     const shows = useSelector(selectShows);
 
@@ -31,7 +33,7 @@ export default function Feed() {
         dispatch(loadFeedReviews());
     }, [dispatch]);
 
-    if (loading) {
+    if (loadingReviews || loadingShows) {
         return <Loading />
     }
 
