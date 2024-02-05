@@ -12,7 +12,7 @@ export async function getShow(id) {
 }
 
 //Exports function that returns a list of random shows (with certain ids excluded)
-export async function getRandomShows(length) {
+export async function getRandomShows() {
     try {
         const data = [];
         const used = [];
