@@ -124,5 +124,6 @@ Land on our colorful homepage and login or dive right into our feed.  From there
 
 ## Future Features
 Features to be added in further edits:
-- Adding followers
+- Adding followers and following from user to user
 - Adding likes and comments for reviews
+- Adding a want to watch list for users
