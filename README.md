@@ -1,4 +1,4 @@
-# Dynamic Duel
+# Rabbt Ears
 A full-stack MERN application that allows users to read up on their favorite tv shows and review them!  Utilizes a React frontend with a Redux library, making Axios API calls to the TVMaze API and deployed on Netlify, and an Express.js and Node.js backend deployed on Heroku interacting with a MongoDB database structured by Mongoose schemas.  Built by [Joe Gilberto](https://joekgilberto.com/).
 
 ## Deployment
