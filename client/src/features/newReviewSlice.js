@@ -22,7 +22,7 @@ export const loadShow = createAsyncThunk(
     async (id) => {
         const data = { show: {}, user: {} };
         data.user = getUser();
-        return await tvmazeServices.getShow(id).then((res)=>{
+        return await tvmazeServices.getShow(id).then((res) => {
             data.show = res;
             return data
         })
@@ -52,10 +52,13 @@ const newReviewSlice = createSlice({
             .addCase(loadShow.fulfilled, (state, action) => {
                 state.isLoadingShow = false;
                 state.show = action.payload.show;
-                state.newReview.title = action.payload.show.name;
-                state.newReview.poster = action.payload.show.image?.original;
-                state.newReview.showId = action.payload.show.id;
-                state.newReview.username = action.payload.user.username;
+                state.newReview = {
+                    ...initReview,
+                    title: action.payload.show.name,
+                    poster: action.payload.show.image?.original,
+                    showId: action.payload.show.id,
+                    username: action.payload.user.username
+                }
             })
             .addCase(loadShow.rejected, (state) => {
                 state.isLoadingShow = false;

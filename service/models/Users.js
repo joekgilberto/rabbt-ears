@@ -1,6 +1,9 @@
+//Imports mongoose and destructures Schema from mongoose
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
-const UserSchema = new mongoose.Schema(
+//Creates User schema
+const UserSchema = new Schema(
     {
         username: {
             type: String,
@@ -26,4 +29,5 @@ const UserSchema = new mongoose.Schema(
     }
 );
 
+//Exports User model from UserSchema
 module.exports = mongoose.model('User', UserSchema);

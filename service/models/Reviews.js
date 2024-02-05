@@ -1,6 +1,8 @@
+//Imports mongoose and destructures Schema from mongoose
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+//Creates Review schema
 const ReviewSchema = new Schema({
     rating: {
         type: Number,
@@ -34,4 +36,5 @@ const ReviewSchema = new Schema({
     timestamps: true
 });
 
+//Exports Review model from ReviewSchema
 module.exports = mongoose.model('Review', ReviewSchema);

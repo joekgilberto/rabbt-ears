@@ -18,79 +18,7 @@ export default function New() {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const initReview = {
-        rating: 0,
-        review: '',
-        title: '',
-        poster: '',
-        showId: 0,
-        finished: false,
-        fav: false,
-        tags: [],
-        username: '',
-        user: ''
-    }
-
-    const initTags = [
-        { text: 'Absolute Boys Content', symbol: '+' },
-        { text: 'Addicted', symbol: '+' },
-        { text: 'Annoying', symbol: '+' },
-        { text: 'Background Noise', symbol: '+' },
-        { text: 'Bingeable', symbol: '+' },
-        { text: 'Classic TV', symbol: '+' },
-        { text: 'Chilling (EEK!)', symbol: '+' },
-        { text: 'Comfort Show', symbol: '+' },
-        { text: 'Criminally Good', symbol: '+' },
-        { text: 'Dark', symbol: '+' },
-        { text: 'Date Night TV', symbol: '+' },
-        { text: 'Drama Queen', symbol: '+' },
-        { text: 'Drawn To It', symbol: '+' },
-        { text: 'Dribble', symbol: '+' },
-        { text: 'Exciting', symbol: '+' },
-        { text: 'Family Fav', symbol: '+' },
-        { text: 'Fantastical', symbol: '+' },
-        { text: 'Fascinating', symbol: '+' },
-        { text: 'Formulaic', symbol: '+' },
-        { text: 'Girl Power!', symbol: '+' },
-        { text: 'Good Enough', symbol: '+' },
-        { text: 'Grinds My Gears', symbol: '+' },
-        { text: 'Heroic', symbol: '+' },
-        { text: 'Historic Television', symbol: '+' },
-        { text: 'Insightful', symbol: '+' },
-        { text: 'Legends Only', symbol: '+' },
-        { text: 'Lil\' Silly', symbol: '+' },
-        { text: 'LOL Out Loud Funny', symbol: '+' },
-        { text: 'Masterpiece', symbol: '+' },
-        { text: 'Meh', symbol: '+' },
-        { text: 'Messy', symbol: '+' },
-        { text: 'Mind Bending', symbol: '+' },
-        { text: 'Must Watch', symbol: '+' },
-        { text: 'Nothing Like It', symbol: '+' },
-        { text: 'Obsessed', symbol: '+' },
-        { text: 'Out Of This World', symbol: '+' },
-        { text: 'Poorly Written', symbol: '+' },
-        { text: 'Revolutionary', symbol: '+' },
-        { text: 'Serious', symbol: '+' },
-        { text: 'Sludge', symbol: '+' },
-        { text: 'Spooky', symbol: '+' },
-        { text: 'Stupid', symbol: '+' },
-        { text: 'Tearjerker', symbol: '+' },
-        { text: 'Terrible', symbol: '+' },
-        { text: 'Thrilling', symbol: '+' },
-        { text: 'Too Much', symbol: '+' },
-        { text: 'Too Real', symbol: '+' },
-        { text: 'Totally Tubular', symbol: '+' },
-        { text: 'Trash TV', symbol: '+' },
-        { text: 'Trendsetter', symbol: '+' },
-        { text: 'Tropey', symbol: '+' },
-        { text: 'Well Written', symbol: '+' },
-        { text: 'Zany', symbol: '+' }
-    ]
     const [token, setToken] = useState(null);
-    const [toggle, setToggle] = useState(false)
-    const [bttn, setBttn] = useState('+')
-    const [fav, setFav] = useState(false);
-    const [tags, setTags] = useState(initTags);
     const dispatch = useDispatch();
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
@@ -121,7 +49,7 @@ export default function New() {
         dispatch(loadShow(id));
     }, [dispatch])
 
-    //Updates show being reviewed when id changes
+    //Updates show and clears review being reviewed when id changes
     useEffect(() => {
         dispatch(loadShow(id));
     }, [id]);

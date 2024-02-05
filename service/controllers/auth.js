@@ -1,7 +1,9 @@
+//Imports User model, bycrypt, and createUserToken middleware
 const { User } = require('../models')
 const bcrypt = require('bcrypt');
 const { createUserToken } = require('../middleware/auth');
 
+//Exports auth controllers
 module.exports = {
     register,
     login,
@@ -10,7 +12,8 @@ module.exports = {
     show
 }
 
-async function register(req, res, next) {
+//Creates function to register user
+async function register(req, res) {
     try {
 
         const salt = await bcrypt.genSalt(10);
@@ -39,8 +42,8 @@ async function register(req, res, next) {
 };
 
 
-
-async function login(req, res, next) {
+//Creates function to login user
+async function login(req, res) {
     try {
         const loggingUser = req.body.username;
         const foundUser = await User.findOne({ username: loggingUser });
@@ -56,7 +59,8 @@ async function login(req, res, next) {
     }
 }
 
-async function logout(req, res, next) {
+//Creates function to logout user
+async function logout(req, res) {
     try {
         res.status(200).json({
             token: ''
@@ -67,7 +71,8 @@ async function logout(req, res, next) {
     }
 };
 
-async function update(req, res, next) {
+//Creates function to update a user's credentials
+async function update(req, res) {
     try {
         if (req.user._id.equals(req.body._id)) {
             const updatedUser = await User.findByIdAndUpdate(
@@ -83,7 +88,8 @@ async function update(req, res, next) {
     }
 };
 
-async function show(req, res, next) {
+//Creates function to show a user's details found by username
+async function show(req, res) {
     try {
         const foundUser = await User.find({ username: req.params.id })
         res.status(200).json(foundUser);

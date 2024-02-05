@@ -1,8 +1,11 @@
 //Imports style sheet
 import './App.css';
 
-//Imports routing tools from react-router-dom
+//Imports state tool from React, routing tools from react-router-dom, reducer tools from Redux, and custom reducer action from feedSlice, 
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { loadFeedShows } from '../features/feedSlice';
 
 //Imports pages and custom routes
 import Title from '../pages/Title/Title';
@@ -23,6 +26,14 @@ import AuthRoute from '../components/CustomRoutes/AuthRoute';
 
 //Exports App component which routes through the applications pages
 export default function App() {
+
+  const dispatch = useDispatch();
+
+  //Loads all random feed shows 
+  useEffect(() => {
+    dispatch(loadFeedShows());
+  }, [dispatch]);
+
   return (
     <div className='App'>
       <Routes>

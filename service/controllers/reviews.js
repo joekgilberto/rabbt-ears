@@ -1,6 +1,8 @@
+//Imports User model and handleValidateOwnership middleware
 const { Reviews } = require('../models')
 const { handleValidateOwnership } = require('../middleware/auth');
 
+//Exports review controllers
 module.exports = {
     index,
     create,
@@ -11,7 +13,8 @@ module.exports = {
     update
 }
 
-async function index(req, res, next) {
+//Creates a function to show all reviews
+async function index(req, res) {
     try {
         const allReviews = await Reviews.find();
         res.status(200).json(allReviews);
@@ -20,7 +23,8 @@ async function index(req, res, next) {
     }
 };
 
-async function create(req, res, next) {
+//Creates a function to create a review
+async function create(req, res) {
     try {
         req.body.owner = req.user._id;
         const newReview = await Reviews.create(req.body);
@@ -30,7 +34,8 @@ async function create(req, res, next) {
     }
 };
 
-async function show(req, res, next) {
+//Creates a function to show a review
+async function show(req, res) {
     try {
         const foundReview = await Reviews.findById(req.params.id);
         res.status(200).json(foundReview);
@@ -39,7 +44,8 @@ async function show(req, res, next) {
     }
 };
 
-async function associated(req, res, next) {
+//Creates a function to get reviews by their showId
+async function associated(req, res) {
     try {
         const foundReviews = await Reviews.find({ showId: req.params.id });
         res.status(200).json(foundReviews);
@@ -48,7 +54,8 @@ async function associated(req, res, next) {
     }
 };
 
-async function users(req, res, next){
+//Creates a function to get reviews by their owner
+async function users(req, res){
     try {
         console.log(req.params.id)
         const ownedReviews = await Reviews.find({ owner: req.params.id });
@@ -58,7 +65,8 @@ async function users(req, res, next){
     }
 }
 
-async function destroy(req, res, next) {
+//Creates a function to destroy a review
+async function destroy(req, res) {
     try {
         handleValidateOwnership(req, await Reviews.findById(req.params.id))
         const deletedReview = await Reviews.findByIdAndDelete(req.params.id);
@@ -68,7 +76,8 @@ async function destroy(req, res, next) {
     }
 };
 
-async function update(req, res, next) {
+//Creates a function to update a review
+async function update(req, res) {
     try {
         handleValidateOwnership(req, await Reviews.findById(req.params.id))
 

@@ -3,19 +3,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as reviewServices from '../utilities/review/review-services';
 import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
 
-//Creates an async thunk to call all reviews then random shows, and then updates the state with the response
-export const loadFeed = createAsyncThunk(
-    'feed/loadFeed',
+//Creates an async thunk to call all reviews and then updates the state with the response
+export const loadFeedReviews = createAsyncThunk(
+    'feed/loadFeedReviews',
     async () => {
-        const data = { reviews: [], shows: [] };
-        return await reviewServices.getAllReviews().then(async (reviewRes) => {
-            data.reviews = reviewRes;
-            const reviewCount = data.reviews.length;
-            return await tvmazeServices.getRandomShows(reviewCount).then((showRes) => {
-                data.shows = showRes;
-                return data;
-            })
-        })
+        return await reviewServices.getAllReviews();
+    }
+);
+
+//Creates an async thunk to call random shows and then updates the state with the response
+export const loadFeedShows = createAsyncThunk(
+    'feed/loadFeedShows',
+    async () => {
+        return await tvmazeServices.getRandomShows();
     }
 );
 
@@ -30,19 +30,31 @@ export const feedSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(loadFeed.pending, (state) => {
+            .addCase(loadFeedReviews.pending, (state) => {
                 state.isLoadingFeed = true;
                 state.hasFeedError = false;
             })
-            .addCase(loadFeed.fulfilled, (state, action) => {
+            .addCase(loadFeedReviews.fulfilled, (state, action) => {
                 state.isLoadingFeed = false;
-                state.reviews = action.payload.reviews;
-                state.shows = action.payload.shows;
+                state.reviews = action.payload;
             })
-            .addCase(loadFeed.rejected, (state) => {
+            .addCase(loadFeedReviews.rejected, (state) => {
                 state.isLoadingFeed = false;
                 state.hasFeedError = true;
                 state.reviews = [];
+            })
+
+            .addCase(loadFeedShows.pending, (state) => {
+                state.isLoadingFeed = true;
+                state.hasFeedError = false;
+            })
+            .addCase(loadFeedShows.fulfilled, (state, action) => {
+                state.isLoadingFeed = false;
+                state.shows = action.payload;
+            })
+            .addCase(loadFeedShows.rejected, (state) => {
+                state.isLoadingFeed = false;
+                state.hasFeedError = true;
                 state.shows = [];
             })
     },
