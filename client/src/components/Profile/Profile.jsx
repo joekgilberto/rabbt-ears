@@ -48,7 +48,7 @@ export default function Profile({ user, reviews, favs }) {
                             reviews.length >= 25 && reviews.length < 50 ? ' three' :
                                 reviews.length >= 50 && reviews.length < 100 ? ' four' :
                                     ' five'}`}>
-                        {reviews.length < 5 ? 'Pilot Epiosde' :
+                        {reviews.length < 5 ? 'Pilot' :
                             reviews.length >= 5 && reviews.length < 25 ? 'Series Order' :
                                 reviews.length >= 25 && reviews.length < 50 ? 'Syndicated' :
                                     reviews.length >= 50 && reviews.length < 100 ? 'Channel Surfer' :
