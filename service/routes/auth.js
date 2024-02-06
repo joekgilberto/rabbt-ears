@@ -23,5 +23,9 @@ router.get('/:id', authCtrl.show);
 //Creates an update by id route, requiring a token
 router.put('/:id', requireToken, authCtrl.update);
 
+router.put('/follow/:id', requireToken, authCtrl.follow);
+
+router.put('/unfollow/:id', requireToken, authCtrl.unfollow);
+
 //Exports router
 module.exports = router;

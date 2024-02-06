@@ -54,3 +54,23 @@ export async function updateUser(id,data) {
         return err;
     }
 }
+
+export async function follow(id,data) {
+    try {
+        const follower = {follower: data}
+        const res = await authApi.follow(id,follower);
+        return res;
+    } catch (err) {
+        return err;
+    }
+}
+
+export async function unfollow(id,data) {
+    try {
+        const follower = {follower: data}
+        const res = await authApi.unfollow(id,follower);
+        return res;
+    } catch (err) {
+        return err;
+    }
+}

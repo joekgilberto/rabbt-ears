@@ -31,7 +31,6 @@ export default function Review() {
     //Sets user to local storage of user upon loading the page
     useEffect(() => {
         setCurrentUser(getUser());
-        console.log(getUser())
     }, []);
 
     //Loads review when reducer is dispatched
@@ -65,6 +64,7 @@ export default function Review() {
                 setUser(res);
                 setCurrentUser(getUser());
             })
+            authServices.follow(review.owner,currentUser._id)
         }
     }
 
@@ -77,6 +77,7 @@ export default function Review() {
                 setUser(res);
                 setCurrentUser(getUser());
             })
+            authServices.unfollow(review.owner,currentUser._id)
         }
     }
 
