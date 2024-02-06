@@ -58,7 +58,7 @@ export async function show(id) {
 export async function update(id, data) {
     const config = {
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
