@@ -1,7 +1,7 @@
 //Imports style sheet
 import './App.css';
 
-//Imports state tool from React, routing tools from react-router-dom, reducer tools from Redux, and custom reducer action from feedSlice, 
+//Imports state tool from React, routing tools from react-router-dom, reducer tools from Redux, custom reducer action from feedSlice, and custom local storage tools
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
@@ -36,6 +36,7 @@ export default function App() {
     dispatch(loadFeedShows());
   }, [dispatch]);
 
+  //Checks to see if a token has expired
   useEffect(() => {
     const token = getUserToken();
     if (token) {
