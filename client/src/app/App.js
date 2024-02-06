@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { loadFeedShows } from '../features/feedSlice';
+import { clearUser, clearUserToken, getUserToken } from '../utilities/local-storage';
+import { decodeToken } from '../utilities/auth/auth-tools';
 
 //Imports pages and custom routes
 import Title from '../pages/Title/Title';
@@ -33,6 +35,22 @@ export default function App() {
   useEffect(() => {
     dispatch(loadFeedShows());
   }, [dispatch]);
+
+  useEffect(() => {
+    const token = getUserToken();
+    if (token) {
+      try {
+        const { exp } = decodeToken(token);
+        if (Date.now() >= exp * 1000) {
+          clearUserToken();
+          clearUser();
+        }
+      } catch (err) {
+        clearUserToken();
+        clearUser();
+      }
+    }
+  }, [])
 
   return (
     <div className='App'>
