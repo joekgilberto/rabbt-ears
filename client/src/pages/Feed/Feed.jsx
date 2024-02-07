@@ -28,17 +28,17 @@ export default function Feed() {
     const reviews = useSelector(selectReviews);
     const shows = useSelector(selectShows);
 
+    //Sets user
     useEffect(() => {
         setUser(getUser());
     }, []);
 
+    //Loads reviews on dispatch
     useEffect(() => {
         dispatch(loadFeedReviews());
-        if(user){
-            dispatch(loadFeedFollows(user.following))
-        }
     }, [dispatch]);
 
+    //Upon user updating, loads user followings reviews
     useEffect(() => {
         if(user){
             dispatch(loadFeedFollows(user.following))
@@ -67,7 +67,7 @@ export default function Feed() {
             </>
             :null}
 
-            <h2>REVIEWS</h2>
+            <h2>RECENT</h2>
             <div className='feed-list'>
                 {reviews?.length? reviews.map((review, id) => {
                     return (

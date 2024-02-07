@@ -30,6 +30,7 @@ export default function Profile({ user, reviews, favs }) {
         }
     }
 
+    //Creates function to follow a user from their page
     function handleFollow(e) {
         if (currentUser && user._id !== currentUser._id && !currentUser.following.includes(user._id)) {
             const followingCache = [...currentUser.following, user._id]
@@ -42,6 +43,7 @@ export default function Profile({ user, reviews, favs }) {
         }
     }
 
+    //Creates function to unfollow a user from their page
     function handleUnfollow(e) {
         if (currentUser && user._id !== currentUser._id && currentUser.following.includes(user._id)) {
             const followingCache = [...currentUser.following]

@@ -89,6 +89,24 @@ export async function update(id, data) {
 
 };
 
+//Exports API call just to updated the likes of a review
+export async function like(id, data) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }
+    return axios
+        .put(`${BASE_URL}like/${id}/`, data, config)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            return err
+        });
+
+};
+
 //Exports API call to delete a review by id
 export async function destroy(id) {
     const config = {
@@ -106,20 +124,3 @@ export async function destroy(id) {
         });
 
 }
-
-export async function like(id, data) {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    }
-    return axios
-        .put(`${BASE_URL}like/${id}/`, data, config)
-        .then((res) => {
-            return res.data
-        })
-        .catch((err) => {
-            return err
-        });
-
-};

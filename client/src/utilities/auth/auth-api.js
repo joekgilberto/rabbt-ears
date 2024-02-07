@@ -72,6 +72,7 @@ export async function update(id, data) {
 
 };
 
+//Exports user API call just for following
 export async function follow(id, data) {
     const config = {
         headers: {
@@ -89,6 +90,7 @@ export async function follow(id, data) {
 
 };
 
+//Exports user API call just for unfollowing
 export async function unfollow(id, data) {
     const config = {
         headers: {

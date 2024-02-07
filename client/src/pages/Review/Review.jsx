@@ -63,6 +63,7 @@ export default function Review() {
         }
     }
 
+    //Creates function for user to follow the review owner
     function handleFollow(e) {
         if (currentUser && review.owner !== currentUser._id && !currentUser.following.includes(review.owner)) {
             const followingCache = [...currentUser.following, review.owner]
@@ -74,6 +75,7 @@ export default function Review() {
         }
     }
 
+    //Creates function for user to unfollow the review owner
     function handleUnfollow(e) {
         if (currentUser && review.owner !== currentUser._id && currentUser.following.includes(review.owner)) {
             const followingCache = [...currentUser.following]
@@ -87,7 +89,7 @@ export default function Review() {
         }
     }
 
-
+    //Creates function to like or unlike a review
     function handleLike(e) {
         if (currentUser && likes.includes(currentUser._id)) {
             const likesCache = [...likes];

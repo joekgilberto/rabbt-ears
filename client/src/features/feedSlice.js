@@ -4,6 +4,7 @@ import * as reviewServices from '../utilities/review/review-services';
 import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
 import { hasError } from './reviewSlice';
 
+//Creates an async thunk to call all reviews from those they follow and then updates the state with the response
 export const loadFeedFollows = createAsyncThunk(
     'feed/loadFeedFollows',
     async (following) => {

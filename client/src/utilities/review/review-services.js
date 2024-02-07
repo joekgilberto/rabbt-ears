@@ -45,6 +45,21 @@ export async function getUsersReview(id) {
     }
 }
 
+//Exports function that calls reviews of a following list through association with a user by id
+export async function getFollowingReviews(following) {
+    try {
+        let data = [];
+        for(let follow of following){
+            const res = await reviewsApi.users(follow);
+            data = data.concat(res);
+        }
+        data.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        return data;
+    } catch (err) {
+        return err
+    }
+}
+
 //Exports function that creates a review
 export async function createReview(data) {
     try {
@@ -67,16 +82,7 @@ export async function updateReview(id,data) {
     }
 }
 
-//Exports function that deletes a specific review by id
-export async function destroyReview(id) {
-    try {
-        const res = await reviewsApi.destroy(id);
-        return res;
-    } catch (err) {
-        return err
-    }
-}
-
+//Exports function to like or unlike a review
 export async function likeReview(id,data) {
     try {
         const likes = {likes: data}
@@ -87,15 +93,11 @@ export async function likeReview(id,data) {
     }
 }
 
-export async function getFollowingReviews(following) {
+//Exports function that deletes a specific review by id
+export async function destroyReview(id) {
     try {
-        let data = [];
-        for(let follow of following){
-            const res = await reviewsApi.users(follow);
-            data = data.concat(res);
-        }
-        data.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
-        return data;
+        const res = await reviewsApi.destroy(id);
+        return res;
     } catch (err) {
         return err
     }

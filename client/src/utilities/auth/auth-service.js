@@ -55,6 +55,7 @@ export async function updateUser(id,data) {
     }
 }
 
+//Exports function that adds a follower to a user
 export async function follow(id,data) {
     try {
         const follower = {follower: data}
@@ -65,6 +66,7 @@ export async function follow(id,data) {
     }
 }
 
+//Exports function that removes a follower from a user
 export async function unfollow(id,data) {
     try {
         const follower = {follower: data}

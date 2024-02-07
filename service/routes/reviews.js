@@ -26,10 +26,11 @@ router.post('/', requireToken, reviewsCtrl.create);
 //Creates an update review by id router, requiring a token
 router.put('/:id', requireToken, reviewsCtrl.update);
 
+//Creates an update review by id router, requiring a token, that adds or removes a like
+router.put('/like/:id', requireToken, reviewsCtrl.like);
+
 //Creates a delete review router, requiring a token
 router.delete('/:id', requireToken, reviewsCtrl.delete);
-
-router.put('/like/:id', requireToken, reviewsCtrl.like);
 
 //Exports router
 module.exports = router
