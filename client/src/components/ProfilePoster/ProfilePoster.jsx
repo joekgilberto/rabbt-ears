@@ -18,7 +18,7 @@ export default function ProfilePoster({ source, altText, rating, fav }) {
                                 : rating === 2 || rating === 2.5 ? ' two'
                                     : rating === 3 || rating === 3.5 ? ' three'
                                         : rating === 4 || rating === 4.5 ? ' four'
-                                            : ' five'}`} src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
+                                            : ' five'}`} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Bookmark-fav-front-color.png/1200px-Bookmark-fav-front-color.png?20230821164801' alt='star' />
                     :
                     null}
             </div>

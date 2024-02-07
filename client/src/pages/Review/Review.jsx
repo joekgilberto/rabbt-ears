@@ -7,7 +7,9 @@ import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadReview, selectReview } from '../../features/reviewSlice';
-import { getUser } from '../../utilities/local-storage';
+import { getUser, setUser } from '../../utilities/local-storage';
+import * as authServices from '../../utilities/auth/auth-service';
+import * as reviewServices from '../../utilities/review/review-services';
 import * as tools from '../../utilities/tools';
 
 //Imports Tag, Delete, and Loading components
@@ -19,7 +21,8 @@ import Loading from '../../components/Loading/Loading';
 export default function Review() {
 
     const { id } = useParams();
-    const [user, setUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [likes, setLikes] = useState(null)
     const [destroy, setDestroy] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,7 +32,7 @@ export default function Review() {
 
     //Sets user to local storage of user upon loading the page
     useEffect(() => {
-        setUser(getUser());
+        setCurrentUser(getUser());
     }, []);
 
     //Loads review when reducer is dispatched
@@ -42,17 +45,60 @@ export default function Review() {
         dispatch(loadReview(id));
     }, [id]);
 
+    useEffect(() => {
+        setLikes(review.likes);
+    }, [review])
+
     //Toggles Destroy component when delete button is pressed, if the user is the owner of the review
     function handleDelete(e) {
-        if (user?._id === review?.owner) {
+        if (currentUser?._id === review?.owner) {
             setDestroy(true);
         }
     }
 
     //Navigates to edit page if the user is the owner of the review
     function handleEdit(e) {
-        if (user?._id === review?.owner) {
+        if (currentUser?._id === review?.owner) {
             navigate(`/reviews/edit/${review._id}`)
+        }
+    }
+
+    function handleFollow(e) {
+        if (currentUser && review.owner !== currentUser._id && !currentUser.following.includes(review.owner)) {
+            const followingCache = [...currentUser.following, review.owner]
+            authServices.updateUser(currentUser._id, { ...currentUser, following: followingCache }).then((res) => {
+                setUser(res);
+                setCurrentUser(getUser());
+            })
+            authServices.follow(review.owner, currentUser._id)
+        }
+    }
+
+    function handleUnfollow(e) {
+        if (currentUser && review.owner !== currentUser._id && currentUser.following.includes(review.owner)) {
+            const followingCache = [...currentUser.following]
+            const unfollowIdx = followingCache.findIndex((f) => f === review.owner);
+            followingCache.splice(unfollowIdx, 1)
+            authServices.updateUser(currentUser._id, { ...currentUser, following: followingCache }).then((res) => {
+                setUser(res);
+                setCurrentUser(getUser());
+            })
+            authServices.unfollow(review.owner, currentUser._id)
+        }
+    }
+
+
+    function handleLike(e) {
+        if (currentUser && likes.includes(currentUser._id)) {
+            const likesCache = [...likes];
+            const unfollowIdx = likesCache.findIndex((l) => l === currentUser._id);
+            likesCache.splice(unfollowIdx, 1)
+            reviewServices.likeReview(review._id, likesCache)
+            setLikes(likesCache);
+        } else if (currentUser && !likes.includes(currentUser._id)) {
+            const likesCache = [...likes, currentUser._id];
+            reviewServices.likeReview(review._id, likesCache)
+            setLikes(likesCache);
         }
     }
 
@@ -63,14 +109,16 @@ export default function Review() {
     return (
         <div className='Review'>
             {review?._id ?
-                destroy && user?._id === review.owner ?
-                    <Delete user={user} review={review} setDestroy={setDestroy} />
+                destroy && currentUser?._id === review.owner ?
+                    <Delete user={currentUser} review={review} setDestroy={setDestroy} />
                     :
                     <>
                         <Link className='review-poster' to={`/shows/${review.showId}`}>
+                            <div>
                             {[...tools.enter(review.title)].map((title, idx) => {
                                 return <h2 key='idx' className='review-show'>{title}</h2>
                             })}
+                            </div>
                             <img src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
@@ -100,6 +148,17 @@ export default function Review() {
                                 <p className='review-thoughts'>{review.review}</p>
                                 :
                                 null}
+                            <div className='review-social'>
+                                {likes?
+                                    <p className={!likes.includes(currentUser._id)?'not-clicked':''} onClick={handleLike}>{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</p>
+                                    : null}
+                                {currentUser && review.owner !== currentUser._id ?
+                                    currentUser.following.includes(review.owner) ?
+                                        <p onClick={handleUnfollow}>- Unfollow</p>
+                                        :
+                                        <p className='not-clicked' onClick={handleFollow}>+ Follow</p>
+                                    : null}
+                            </div>
                             <div className='review-tags'>
                                 {review.finished ?
                                     <p className={`finished ${review.rating === 0 ? 'zero'
@@ -115,7 +174,7 @@ export default function Review() {
                                     return <Tag key={idx} text={tag} />
                                 })}
                             </div>
-                            {user?._id === review.owner ?
+                            {currentUser?._id === review.owner ?
                                 <div className='review-buttons'>
                                     <button className='review-edit' onClick={handleEdit}>
                                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Pencil_-_The_Noun_Project.svg/640px-Pencil_-_The_Noun_Project.svg.png' alt='edit pencil' />

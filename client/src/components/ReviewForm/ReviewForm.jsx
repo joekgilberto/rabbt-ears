@@ -228,7 +228,7 @@ export default function ReviewForm({ review, cb, submit, cancel }) {
                 </div>
             </label>
             <label className='review-form-fav' onClick={handleFav}>FAVORITE
-                <img className={!fav ? 'white' : ''} src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Star-front-premium.png' />
+                <img className={!fav ? 'white' : ''} src='r-front-premium.png' />
             </label>
             <label className='review-form-thoughts'>THOUGHTS
                 <textarea name='review' value={review.review} onChange={handleChange} />

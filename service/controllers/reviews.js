@@ -10,7 +10,8 @@ module.exports = {
     associated,
     users,
     delete: destroy,
-    update
+    update,
+    like
 }
 
 //Creates a function to show all reviews
@@ -93,3 +94,18 @@ async function update(req, res) {
     }
 };
 
+async function like(req, res) {
+    try {
+        const originalReview = await Reviews.findById(req.params.id)
+        const reviewCache = {...originalReview._doc, likes: req.body.likes}
+        const updatedReview = await Reviews.findByIdAndUpdate(
+            req.params.id,
+            reviewCache,
+            { new: true }
+        )
+        res.status(200).json(updatedReview)
+
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};

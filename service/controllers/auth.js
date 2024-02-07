@@ -9,7 +9,9 @@ module.exports = {
     login,
     logout,
     update,
-    show
+    show,
+    follow,
+    unfollow
 }
 
 //Creates function to register user
@@ -94,6 +96,45 @@ async function show(req, res) {
         const foundUser = await User.find({ username: req.params.id })
         res.status(200).json(foundUser);
     } catch (error) {
+        res.status(400).json(error);
+    }
+};
+
+async function follow(req, res) {
+    try {
+        const followedUser = await User.findById(req.params.id)
+
+        const followersCache = [...followedUser.followers, req.body.follower]
+
+        const updatedUserInfo = { ...followedUser._doc, followers: [...followersCache] }
+        const returnedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            updatedUserInfo,
+            { new: true }
+        )
+        res.status(200).json(returnedUser)
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};
+
+async function unfollow(req, res) {
+    try {
+        const followedUser = await User.findById(req.params.id)
+        const followersCache = [...followedUser.followers]
+
+        const unfollowIdx = followersCache.findIndex((f) => f === req.body.follower);
+        followersCache.splice(unfollowIdx, 1)
+
+        const updatedUserInfo = { ...followedUser._doc, followers: [...followersCache] }
+        const returnedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            updatedUserInfo,
+            { new: true }
+        )
+        res.status(200).json(returnedUser)
+    } catch (error) {
+        console.log(error)
         res.status(400).json(error);
     }
 };

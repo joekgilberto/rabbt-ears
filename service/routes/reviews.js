@@ -29,6 +29,8 @@ router.put('/:id', requireToken, reviewsCtrl.update);
 //Creates a delete review router, requiring a token
 router.delete('/:id', requireToken, reviewsCtrl.delete);
 
+router.put('/like/:id', requireToken, reviewsCtrl.like);
+
 //Exports router
 module.exports = router
 

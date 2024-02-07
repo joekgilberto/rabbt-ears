@@ -4,8 +4,7 @@ import './Profile.css';
 //Imports a state tool from React, navigation tools from react-router-dom, reducer tools from Redux, cutom local storage tools, custom reducer state and actions from otherProfileSlcie, and custom auth API calls
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getUser, clearUserToken, clearUser } from '../../utilities/local-storage';
+import { getUser, setUser, clearUserToken, clearUser } from '../../utilities/local-storage';
 import * as authServices from '../../utilities/auth/auth-service';
 
 //Imports ShowPoster, ProfilePoster, and Loading components
@@ -18,6 +17,7 @@ export default function Profile({ user, reviews, favs }) {
 
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState(null)
+    const [followers, setFollowers] = useState(user.followers.length);
 
     //Creates a function that logs a user out and returns them to the home page
     async function handleLogout() {
@@ -27,6 +27,32 @@ export default function Profile({ user, reviews, favs }) {
                 clearUser();
                 navigate('/')
             })
+        }
+    }
+
+    function handleFollow(e) {
+        if (currentUser && user._id !== currentUser._id && !currentUser.following.includes(user._id)) {
+            const followingCache = [...currentUser.following, user._id]
+            authServices.updateUser(currentUser._id, { ...currentUser, following: followingCache }).then((res) => {
+                setUser(res);
+                setCurrentUser(getUser());
+            })
+            authServices.follow(user._id,currentUser._id)
+            setFollowers(followers+1)
+        }
+    }
+
+    function handleUnfollow(e) {
+        if (currentUser && user._id !== currentUser._id && currentUser.following.includes(user._id)) {
+            const followingCache = [...currentUser.following]
+            const unfollowIdx = followingCache.findIndex((f) => f === user.usern_idame);
+            followingCache.splice(unfollowIdx, 1)
+            authServices.updateUser(currentUser._id, { ...currentUser, following: followingCache }).then((res) => {
+                setUser(res);
+                setCurrentUser(getUser());
+            })
+            authServices.unfollow(user._id,currentUser._id)
+            setFollowers(followers-1)
         }
     }
 
@@ -43,6 +69,7 @@ export default function Profile({ user, reviews, favs }) {
                         <h2>{user.username[0]}</h2>
                     </div>
                     <h1>{user.username}</h1>
+                    <p className='profile-follow-count'>{followers} Followers | {user.following.length} Following</p>
                     <p className={`count${reviews.length < 5 ? ' point-five' :
                         51 >= 5 && reviews.length < 25 ? ' one' :
                             reviews.length >= 25 && reviews.length < 50 ? ' three' :
@@ -53,7 +80,16 @@ export default function Profile({ user, reviews, favs }) {
                                 reviews.length >= 25 && reviews.length < 50 ? 'Syndicated' :
                                     reviews.length >= 50 && reviews.length < 100 ? 'Channel Surfer' :
                                         'A TV Guide'}
-                        <span className='divider'>|</span>{reviews.length} Reviews</p>
+                        <span className='divider'> at </span>
+                        {reviews.length} Reviews</p>
+                        <div className='profile-follow'>
+                                {currentUser && user._id !== currentUser._id ?
+                                    currentUser.following.includes(user._id) ?
+                                        <p onClick={handleUnfollow}>- Unfollow</p>
+                                        :
+                                        <p onClick={handleFollow}>+ Follow</p>
+                                    : null}
+                            </div>
                     <div className='profile-content'>
                         <h3>Favorites</h3>
                         <div className='profile-list'>

@@ -26,6 +26,10 @@ const ReviewSchema = new Schema({
         type: Array,
         default: []
     },
+    likes: {
+        type: Array,
+        required: true
+    },
     username: { type: String, required: true },
     owner: {
         type: mongoose.Schema.Types.ObjectId,

@@ -58,11 +58,45 @@ export async function show(id) {
 export async function update(id, data) {
     const config = {
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     }
     return axios
         .put(`${BASE_URL}${id}/`, data, config)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            return err
+        });
+
+};
+
+export async function follow(id, data) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }
+    return axios
+        .put(`${BASE_URL}follow/${id}/`, data, config)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            return err
+        });
+
+};
+
+export async function unfollow(id, data) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }
+    return axios
+        .put(`${BASE_URL}unfollow/${id}/`, data, config)
         .then((res) => {
             return res.data
         })

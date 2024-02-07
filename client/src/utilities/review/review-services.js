@@ -76,3 +76,27 @@ export async function destroyReview(id) {
         return err
     }
 }
+
+export async function likeReview(id,data) {
+    try {
+        const likes = {likes: data}
+        const res = await reviewsApi.like(id,likes);
+        return res;
+    } catch (err) {
+        return err
+    }
+}
+
+export async function getFollowingReviews(following) {
+    try {
+        let data = [];
+        for(let follow of following){
+            const res = await reviewsApi.users(follow);
+            data = data.concat(res);
+        }
+        data.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        return data;
+    } catch (err) {
+        return err
+    }
+}
