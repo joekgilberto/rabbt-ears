@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isLoading, hasError, loadReview, selectReview } from '../../features/reviewSlice';
 import { getUser, setUser } from '../../utilities/local-storage';
 import * as authServices from '../../utilities/auth/auth-service';
+import * as reviewServices from '../../utilities/review/review-services';
 import * as tools from '../../utilities/tools';
 
 //Imports Tag, Delete, and Loading components
@@ -21,6 +22,7 @@ export default function Review() {
 
     const { id } = useParams();
     const [currentUser, setCurrentUser] = useState(null);
+    const [likes, setLikes] = useState(null)
     const [destroy, setDestroy] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -43,6 +45,10 @@ export default function Review() {
         dispatch(loadReview(id));
     }, [id]);
 
+    useEffect(()=>{
+        setLikes(review.likes?.length);
+    },[review])
+
     //Toggles Destroy component when delete button is pressed, if the user is the owner of the review
     function handleDelete(e) {
         if (currentUser?._id === review?.owner) {
@@ -64,7 +70,7 @@ export default function Review() {
                 setUser(res);
                 setCurrentUser(getUser());
             })
-            authServices.follow(review.owner,currentUser._id)
+            authServices.follow(review.owner, currentUser._id)
         }
     }
 
@@ -77,7 +83,22 @@ export default function Review() {
                 setUser(res);
                 setCurrentUser(getUser());
             })
-            authServices.unfollow(review.owner,currentUser._id)
+            authServices.unfollow(review.owner, currentUser._id)
+        }
+    }
+
+
+    function handleLike(e) {
+        if (currentUser && review.likes.includes(currentUser._id)) {
+            const likesCache = [...review.likes];
+            const unfollowIdx = likesCache.findIndex((l) => l === currentUser._id);
+            likesCache.splice(unfollowIdx, 1)
+            reviewServices.likeReview(review._id,likesCache)
+            setLikes(likes-1);
+        } else if (currentUser && !review.likes.includes(currentUser._id)) {
+            const likesCache = [...review.likes, currentUser._id];
+            reviewServices.likeReview(review._id,likesCache)
+            setLikes(likes+1);
         }
     }
 
@@ -126,6 +147,7 @@ export default function Review() {
                                 :
                                 null}
                             <div className='review-social'>
+                                <p onClick={handleLike}>{likes} {likes===1?'Like':'Likes'}</p>
                                 {currentUser && review.owner !== currentUser._id ?
                                     currentUser.following.includes(review.owner) ?
                                         <p onClick={handleUnfollow}>- Unfollow</p>

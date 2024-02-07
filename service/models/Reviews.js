@@ -28,7 +28,7 @@ const ReviewSchema = new Schema({
     },
     likes: {
         type: Array,
-        default: []
+        required: true
     },
     username: { type: String, required: true },
     owner: {

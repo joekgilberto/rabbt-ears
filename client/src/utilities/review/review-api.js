@@ -106,3 +106,20 @@ export async function destroy(id) {
         });
 
 }
+
+export async function like(id, data) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }
+    return axios
+        .put(`${BASE_URL}like/${id}/`, data, config)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            return err
+        });
+
+};

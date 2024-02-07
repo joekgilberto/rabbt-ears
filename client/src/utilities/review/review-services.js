@@ -76,3 +76,13 @@ export async function destroyReview(id) {
         return err
     }
 }
+
+export async function likeReview(id,data) {
+    try {
+        const likes = {likes: data}
+        const res = await reviewsApi.like(id,likes);
+        return res;
+    } catch (err) {
+        return err
+    }
+}

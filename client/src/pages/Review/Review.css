@@ -128,6 +128,7 @@
 }
 
 .Review .review-social p{
+    cursor: pointer;
     margin: 10px 20px;
     padding: 5px 15px;
     color: #fff;
