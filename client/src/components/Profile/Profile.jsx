@@ -45,7 +45,7 @@ export default function Profile({ user, reviews, favs }) {
     function handleUnfollow(e) {
         if (currentUser && user._id !== currentUser._id && currentUser.following.includes(user._id)) {
             const followingCache = [...currentUser.following]
-            const unfollowIdx = followingCache.findIndex((f) => f === user._id);
+            const unfollowIdx = followingCache.findIndex((f) => f === user.usern_idame);
             followingCache.splice(unfollowIdx, 1)
             authServices.updateUser(currentUser._id, { ...currentUser, following: followingCache }).then((res) => {
                 setUser(res);

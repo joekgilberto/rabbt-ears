@@ -2,12 +2,26 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as reviewServices from '../utilities/review/review-services';
 import * as tvmazeServices from '../utilities/tvmaze/tvmaze-services';
+import { hasError } from './reviewSlice';
+
+export const loadFeedFollows = createAsyncThunk(
+    'feed/loadFeedFollows',
+    async (following) => {
+        return await reviewServices.getFollowingReviews(following);
+    }
+);
 
 //Creates an async thunk to call all reviews and then updates the state with the response
 export const loadFeedReviews = createAsyncThunk(
     'feed/loadFeedReviews',
     async () => {
-        return await reviewServices.getAllReviews();
+        return await reviewServices.getAllReviews().then((res) => {
+            if (res.length <= 10) {
+                return res;
+            } else {
+                return res.slice(0, 10)
+            }
+        });
     }
 );
 
@@ -23,8 +37,11 @@ export const loadFeedShows = createAsyncThunk(
 export const feedSlice = createSlice({
     name: 'feed',
     initialState: {
+        follows: [],
         reviews: [],
         shows: [],
+        isLoadingFollows: false,
+        hasErrorFollows: false,
         isLoadingReviews: false,
         hasReviewsError: false,
         isLoadingShows: false,
@@ -32,6 +49,20 @@ export const feedSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(loadFeedFollows.pending, (state) => {
+                state.isLoadingFollows = true;
+                state.hasErrorFollows = false;
+            })
+            .addCase(loadFeedFollows.fulfilled, (state, action) => {
+                state.isLoadingFollows = false;
+                state.follows = action.payload;
+            })
+            .addCase(loadFeedFollows.rejected, (state) => {
+                state.isLoadingFollows = false;
+                state.hasErrorFollows = true;
+                state.follows = [];
+            })
+
             .addCase(loadFeedReviews.pending, (state) => {
                 state.isLoadingReviews = true;
                 state.hasReviewsError = false;
@@ -63,9 +94,15 @@ export const feedSlice = createSlice({
 });
 
 //Exports state, actions, and reducer
+export const selectFollows = (state) => state.feed.follows;
+
 export const selectReviews = (state) => state.feed.reviews;
 
 export const selectShows = (state) => state.feed.shows;
+
+export const isLoadingFollows = (state) => state.feed.isLoadingFollows;
+
+export const hasFollowsError = (state) => state.feed.hasErrorFollows;
 
 export const isLoadingReviews = (state) => state.feed.isLoadingReviews;
 

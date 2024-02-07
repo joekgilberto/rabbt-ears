@@ -86,3 +86,17 @@ export async function likeReview(id,data) {
         return err
     }
 }
+
+export async function getFollowingReviews(following) {
+    try {
+        let data = [];
+        for(let follow of following){
+            const res = await reviewsApi.users(follow);
+            data = data.concat(res);
+        }
+        data.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        return data;
+    } catch (err) {
+        return err
+    }
+}
