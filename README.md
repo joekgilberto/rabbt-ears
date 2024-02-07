@@ -50,7 +50,7 @@ Below are specific relevant resources I referenced while building this applicati
 - [The TVMaze API](https://www.tvmaze.com/api/) I used to gather television show information.
 - [A public domain pencil icon](https://commons.wikimedia.org/wiki/File:Pencil_-_The_Noun_Project.svg) I used as an edit icon.
 - [A public domain trash icon](https://commons.wikimedia.org/wiki/File:Trash_(89060)_-_The_Noun_Project.svg) I used as a delete icon.
-- [A public domain star icon](https://commons.wikimedia.org/wiki/File:Star-front-premium.png) I used as a favorite icon.
+- [A public domain bookmark icon](https://commons.wikimedia.org/wiki/File:Bookmark-fav-front-color.png) I used as a favorite icon.
 - [A public domain website icon](https://commons.wikimedia.org/wiki/File:Noun_Project_website_icon_3077870.svg) I used as a website icon.
 - [A public domain checkmark icon](https://commons.wikimedia.org/wiki/File:Check_Mark_(89605)_-_The_Noun_Project.svg) I used as a finished icon.
 
