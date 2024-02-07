@@ -101,6 +101,8 @@ export default function Review() {
             const likesCache = [...likes, currentUser._id];
             reviewServices.likeReview(review._id, likesCache)
             setLikes(likesCache);
+        } else {
+            navigate('/auth');
         }
     }
 
