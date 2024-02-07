@@ -45,9 +45,9 @@ export default function Review() {
         dispatch(loadReview(id));
     }, [id]);
 
-    useEffect(()=>{
-        setLikes(review.likes?.length);
-    },[review])
+    useEffect(() => {
+        setLikes(review.likes);
+    }, [review])
 
     //Toggles Destroy component when delete button is pressed, if the user is the owner of the review
     function handleDelete(e) {
@@ -89,16 +89,16 @@ export default function Review() {
 
 
     function handleLike(e) {
-        if (currentUser && review.likes.includes(currentUser._id)) {
-            const likesCache = [...review.likes];
+        if (currentUser && likes.includes(currentUser._id)) {
+            const likesCache = [...likes];
             const unfollowIdx = likesCache.findIndex((l) => l === currentUser._id);
             likesCache.splice(unfollowIdx, 1)
-            reviewServices.likeReview(review._id,likesCache)
-            setLikes(likes-1);
-        } else if (currentUser && !review.likes.includes(currentUser._id)) {
-            const likesCache = [...review.likes, currentUser._id];
-            reviewServices.likeReview(review._id,likesCache)
-            setLikes(likes+1);
+            reviewServices.likeReview(review._id, likesCache)
+            setLikes(likesCache);
+        } else if (currentUser && !likes.includes(currentUser._id)) {
+            const likesCache = [...likes, currentUser._id];
+            reviewServices.likeReview(review._id, likesCache)
+            setLikes(likesCache);
         }
     }
 
@@ -114,9 +114,11 @@ export default function Review() {
                     :
                     <>
                         <Link className='review-poster' to={`/shows/${review.showId}`}>
+                            <div>
                             {[...tools.enter(review.title)].map((title, idx) => {
                                 return <h2 key='idx' className='review-show'>{title}</h2>
                             })}
+                            </div>
                             <img src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = 'https://i.imgur.com/zuvrO9V.png';
@@ -147,12 +149,14 @@ export default function Review() {
                                 :
                                 null}
                             <div className='review-social'>
-                                <p onClick={handleLike}>{likes} {likes===1?'Like':'Likes'}</p>
+                                {likes?
+                                    <p className={!likes.includes(currentUser._id)?'not-clicked':''} onClick={handleLike}>{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</p>
+                                    : null}
                                 {currentUser && review.owner !== currentUser._id ?
                                     currentUser.following.includes(review.owner) ?
                                         <p onClick={handleUnfollow}>- Unfollow</p>
                                         :
-                                        <p onClick={handleFollow}>+ Follow</p>
+                                        <p className='not-clicked' onClick={handleFollow}>+ Follow</p>
                                     : null}
                             </div>
                             <div className='review-tags'>

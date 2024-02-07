@@ -129,6 +129,10 @@
 
 .Review .review-social p{
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin: 10px 20px;
     padding: 5px 15px;
     color: #fff;
@@ -138,6 +142,11 @@
     background-color: #000;
     box-shadow: 0px 2px 2px #00000060;
     border-radius: 20px;
+}
+
+.Review .review-social .not-clicked{
+    color: #000 !important;
+    background-color: #fff !important;
 }
 
 .Review .review-tags {
