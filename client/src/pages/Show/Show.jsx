@@ -92,9 +92,9 @@ export default function Show() {
                             <Link to={`/new/${show.id}`}>
                                 <p className='new-review'>+</p>
                             </Link>
-                            {reviews.length ? reviews.map((review, idx) => {
+                            {reviews.length ? reviews.map((review) => {
                                 return (
-                                    <Link key={idx} to={`/reviews/${review._id}`}>
+                                    <Link key={review._id} to={`/reviews/${review._id}`}>
                                         <p className={`review ${review.rating === 0 ? 'zero'
                                             : review.rating === .5 ? ' point-five'
                                                 : review.rating === 1 || review.rating === 1.5 ? 'one'

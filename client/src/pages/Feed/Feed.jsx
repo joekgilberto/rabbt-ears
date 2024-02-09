@@ -56,9 +56,9 @@ export default function Feed() {
             <>
             <h2>FOLLOWING</h2>
             <div className='feed-list'>
-                {follows?.length? follows.map((review, id) => {
+                {follows?.length? follows.map((review) => {
                     return (
-                        <Link key={id} to={`/reviews/${review._id}`}>
+                        <Link key={review._id} to={`/reviews/${review._id}`}>
                             <ReviewPoster source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} user={review.username} />
                         </Link>
                     )
@@ -69,9 +69,9 @@ export default function Feed() {
 
             <h2>RECENT</h2>
             <div className='feed-list'>
-                {reviews?.length? reviews.map((review, id) => {
+                {reviews?.length? reviews.map((review) => {
                     return (
-                        <Link key={id} to={`/reviews/${review._id}`}>
+                        <Link key={review._id} to={`/reviews/${review._id}`}>
                             <ReviewPoster source={review.poster} altText={review.title} rating={review.rating} fav={review.fav} user={review.username} />
                         </Link>
                     )
@@ -80,9 +80,9 @@ export default function Feed() {
 
             <h2>SHOWS</h2>
             <div className='feed-list'>
-                {shows?.length? shows.map((show, id) => {
+                {shows?.length? shows.map((show) => {
                     return (
-                        <Link key={id} to={`/shows/${show.id}`}>
+                        <Link key={show.id} to={`/shows/${show.id}`}>
                             <ShowPoster source={show.image.original} title={show.name} />
                         </Link>
                     )

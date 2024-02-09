@@ -120,7 +120,7 @@ export default function Review() {
                         <Link className='review-poster' to={`/shows/${review.showId}`}>
                             <div>
                             {[...tools.enter(review.title)].map((title, idx) => {
-                                return <h2 key='idx' className='review-show'>{title}</h2>
+                                return <h2 key={idx} className='review-show'>{title}</h2>
                             })}
                             </div>
                             <img src={review.poster ? review.poster : 'none'} alt={review.title} onError={({ currentTarget }) => {
@@ -144,7 +144,7 @@ export default function Review() {
                                                         : 'five'}`}>
                                     {review.rating.toString().length < 3 ? `${review.rating}.0` : review.rating}
                                     {review.fav ?
-                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Star-front-premium.png/640px-Star-front-premium.png' alt='star' />
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Bookmark-fav-front-color.png/1200px-Bookmark-fav-front-color.png?20230821164801' alt='star' />
                                         : null}
                                 </h2>
                             </div>
