@@ -39,11 +39,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     font-size: 22px;
 }
 
 .ReviewPoster .rating {
+    height: 27.5px;
     margin: 5px 0;
     padding: 0 10px;
     font-weight: 800;
@@ -55,9 +57,13 @@
 }
 
 .ReviewPoster .user {
+    max-width: 149.22px;
     margin: 5px 0;
     text-align: center;
     font-weight: 600;
     color: #fff;
     text-shadow: 0 2px 2px #00000060;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
