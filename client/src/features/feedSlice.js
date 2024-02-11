@@ -16,13 +16,7 @@ export const loadFeedFollows = createAsyncThunk(
 export const loadFeedReviews = createAsyncThunk(
     'feed/loadFeedReviews',
     async () => {
-        return await reviewServices.getAllReviews().then((res) => {
-            if (res.length <= 10) {
-                return res;
-            } else {
-                return res.slice(0, 10)
-            }
-        });
+        return await reviewServices.getAllReviews();
     }
 );
 

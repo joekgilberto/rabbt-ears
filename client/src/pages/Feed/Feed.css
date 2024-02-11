@@ -47,6 +47,22 @@
     background-color: #00000030;
 }
 
+.Feed .load-more{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 0 2px 2px #00000060;
+    border: none;
+    background-image: linear-gradient(135deg, #3177eeff, #a32ef1ff);
+    box-shadow: 0 2px 2px #00000060;
+}
+
 @media screen and (min-width: 735px) {
     .Feed{
         padding-bottom: 30px;
