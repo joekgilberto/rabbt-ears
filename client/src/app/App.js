@@ -55,7 +55,8 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Routes>
+      <Title />
+      {/* <Routes>
         <Route path="/" element={<Title />} />
         <Route path='/auth' element={
           <AuthRoute>
@@ -115,7 +116,7 @@ export default function App() {
             <Error />
           </Main>
         } />
-      </Routes>
+      </Routes> */}
     </div>
   );
 };

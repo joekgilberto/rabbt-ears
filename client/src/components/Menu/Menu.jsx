@@ -37,7 +37,8 @@ export default function Menu() {
                 <img src="https://i.imgur.com/fUPednw.png" alt="TV logo" />
                 <h1>Rabbt Ears</h1>
             </div>
-            <nav>
+            <p style={{margin: '10px 100px', fontSize:'24px', fontWeight: 800, textAlign: 'center'}}>Rabbt Ears is currently under construction. Please come back later, or reach out to <a href='https://joekgilberto.com/contact' target='_blank' style={{ color: '#fff'}}>Joe Gilberto</a> for more information!</p>
+            {/* <nav>
                 {token ?
                     <Link to='/profile'>
                         <p className='auth-link'>PROFILE</p>
@@ -58,7 +59,7 @@ export default function Menu() {
                     :
                     null
                 }
-            </nav>
+            </nav> */}
         </div>
     );
 };
