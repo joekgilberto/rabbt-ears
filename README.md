@@ -21,7 +21,7 @@ As a user, I want to be able to read a review when I navigate to its details pag
 ![Edit](lib/images/edit.png)
 As a user, I want to be able to edit a review if I'm the owner.
 
-### Show Review
+### Show TV Show
 ![Show](lib/images/show.png)
 As a user, I want to be able to read more about a show when I navigate to its details page, all its reviews, its average score, and the option to review it.
 
